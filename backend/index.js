@@ -1,18 +1,29 @@
-// imports
+// Imports
 require('dotenv').config();
 const chalk = require('chalk');
 const debug = require('debug')('diveServer');
 const express = require('express');
 const morgan = require('morgan');
 
+// DDBB connection
+// require('./src/config/ddbbConfig');
+
 // Server Vars
 const server = express();
 const port = process.env.PORT || 5009;
 
+// Server Routes
+const equipmentRoutes = require('./src/routes/equipmentRoutes');
+const immersionRoutes = require('./src/routes/immersionRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+
 // Server Config
 server
   .use(morgan('dev'))
-  .use(express.json());
+  .use(express.json())
+  .use('dive/equipment', equipmentRoutes)
+  .use('dive/immersion', immersionRoutes)
+  .use('dive/user', userRoutes);
 
 // Server Start
 server.listen(
