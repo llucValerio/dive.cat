@@ -9,4 +9,10 @@ router
   .get(controller.getUsers)
   .post(controller.setUser);
 
+router
+  .route('/:userId')
+  .get(controller.getUserById)
+  .put(controller.updateUserById)
+  .delete(controller.deleteUserById);
+
 module.exports = router;

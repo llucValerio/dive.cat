@@ -8,12 +8,11 @@ async function getImmersions(req, res) {
       debug('getImmersions');
       allImmersions = await Immersion.find()
         .populate('buddies');
-      res.status(200);
-      return res.json(allImmersions);
+    } else {
+      debug('getImmersionsByQuery');
+      allImmersions = await Immersion.find(req.query)
+        .populate('buddies');
     }
-    debug('getImmersionsByQuery');
-    allImmersions = await Immersion.find(req.query)
-      .populate('buddies');
     res.status(200);
     return res.json(allImmersions);
   } catch (error) {
@@ -25,8 +24,7 @@ async function getImmersions(req, res) {
 async function setImmersion(req, res) {
   try {
     debug('setImmersion');
-    const newImmersion = await Immersion.create(req.body)
-      .populate('buddies');
+    const newImmersion = await Immersion.create(req.body);
     res.status(201);
     return res.json(newImmersion);
   } catch (error) {
@@ -50,7 +48,7 @@ async function getImmersionById(req, res) {
 
 async function updateImmersionById(req, res) {
   try {
-    debug('updateImmersion');
+    debug('updateImmersionById');
     const updatedImmersion = await Immersion.findByIdAndUpdate(
       req.params.immersionId,
       req.body,
@@ -67,7 +65,7 @@ async function updateImmersionById(req, res) {
 
 async function deleteImmersionById(req, res) {
   try {
-    debug('deleteImmersion');
+    debug('deleteImmersionById');
     const deletedImmersion = await Immersion.findByIdAndRemove(req.params.immersionId);
     res.status(200);
     return res.json(deletedImmersion);

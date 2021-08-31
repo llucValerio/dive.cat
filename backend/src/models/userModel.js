@@ -7,7 +7,7 @@ const cartSchema = mongoose.Schema({
   surnames: String,
   email: String,
   password: String,
-  picture: String,
+  picture: { type: String, default: 'https://i.ibb.co/kgqwWHz/240px-No-image-available.png' },
   licenseNumber: String,
   medicalCheckDate: { type: Date, default: Date.now },
   licenseExpeditionDate: { type: Date, default: Date.now },
@@ -21,7 +21,8 @@ const cartSchema = mongoose.Schema({
     longitude: { type: Number, default: 0 }
   },
   buddies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Equipment' }]
+  equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Equipment' }],
+  immersions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Immersion' }]
 });
 
 module.exports = mongoose.model('User', cartSchema);

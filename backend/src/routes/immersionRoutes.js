@@ -6,7 +6,8 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(controller.getImmersions);
+  .get(controller.getImmersions)
+  .post(controller.setImmersion);
 
 router
   .route('/:immersionId')

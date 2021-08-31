@@ -3,14 +3,15 @@ const mongoose = require('mongoose');
 
 // DataBase Model
 const cartSchema = mongoose.Schema({
-  startTime: String,
-  endTime: String,
+  startHour: { type: Number, default: 0 },
+  startMinut: { type: Number, default: 0 },
+  endHour: { type: Number, default: 0 },
+  endMinut: { type: Number, default: 0 },
   visibility: String,
   comments: String,
   entry: String,
   seaConditions: String,
   waterType: String,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   place: {
     name: String,
     latitude: { type: Number, default: 0 },
@@ -27,10 +28,12 @@ const cartSchema = mongoose.Schema({
   waterTemperature: { type: Number, default: 0 },
   airTemperature: { type: Number, default: 0 },
   immersionStages: [{
+    // _id: false,
     deep: { type: Number, default: 0 },
     bottomMinuts: { type: Number, default: 0 }
   }],
   buddies: [{
+    // _id: false,
     buddie: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     supervisor: { type: Boolean, default: false }
   }],
