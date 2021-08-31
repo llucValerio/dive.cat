@@ -5,8 +5,10 @@ const mongoose = require('mongoose');
 const cartSchema = mongoose.Schema({
   name: String,
   surnames: String,
-  licenseNumber: String,
+  email: String,
+  password: String,
   picture: String,
+  licenseNumber: String,
   medicalCheckDate: { type: Date, default: Date.now },
   licenseExpeditionDate: { type: Date, default: Date.now },
   certifications: [{
@@ -18,9 +20,8 @@ const cartSchema = mongoose.Schema({
     latitude: { type: Number, default: 0 },
     longitude: { type: Number, default: 0 }
   },
-  buddies: [{
-    buddie: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-  }]
+  buddies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  equipment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Equipment' }]
 });
 
 module.exports = mongoose.model('User', cartSchema);

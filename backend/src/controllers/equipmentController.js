@@ -6,6 +6,15 @@ function getEquipment(req, res) {
   res.send('getEquipment');
 }
 
+// function setEquipment(req, res) {
+//   try {
+
+//   } catch (error) {
+
+//   }
+// }
+
 module.exports = {
   getEquipment
+  // setEquipment
 };

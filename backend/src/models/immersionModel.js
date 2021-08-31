@@ -10,6 +10,7 @@ const cartSchema = mongoose.Schema({
   entry: String,
   seaConditions: String,
   waterType: String,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   place: {
     name: String,
     latitude: { type: Number, default: 0 },

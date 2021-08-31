@@ -6,7 +6,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 // DDBB connection
-// require('./src/config/ddbbConfig');
+require('./src/config/ddbbConfig');
 
 // Server Vars
 const server = express();
@@ -21,12 +21,12 @@ const userRoutes = require('./src/routes/userRoutes');
 server
   .use(morgan('dev'))
   .use(express.json())
-  .use('dive/equipment', equipmentRoutes)
-  .use('dive/immersion', immersionRoutes)
-  .use('dive/user', userRoutes);
+  .use('/dive/equipment', equipmentRoutes)
+  .use('/dive/immersion', immersionRoutes)
+  .use('/dive/user', userRoutes);
 
 // Server Start
 server.listen(
   port,
-  () => { debug(`Server is running on ${chalk.green(`http://localhost:${port}`)}`); }
+  () => { debug(`Server is running on ${chalk.magentaBright(`http://localhost:${port}`)}`); }
 );
