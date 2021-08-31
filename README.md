@@ -28,6 +28,10 @@ The app is going to manage a lot of data related to diving. Is going to
  * chalk --> add styles to debug messages
  * morgan --> middelware that simplifies the logging request to the server.
  * mongoose --> simplifies the interaction with MongoDB.
+ * jsonwebtoken
+ * passport
+ * passport-jwt
+ * passport-local
 
 #### Frontend Dependencies
 

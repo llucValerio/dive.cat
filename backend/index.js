@@ -17,6 +17,7 @@ const equipmentRoutes = require('./src/routes/equipmentRoutes');
 const immersionRoutes = require('./src/routes/immersionRoutes');
 const userRoutes = require('./src/routes/userRoutes');
 const itemRoutes = require('./src/routes/itemRoutes');
+const authRoutes = require('./src/routes/authRoutes');
 
 // Server Config
 server
@@ -25,7 +26,8 @@ server
   .use('/dive/equipment', equipmentRoutes)
   .use('/dive/immersion', immersionRoutes)
   .use('/dive/user', userRoutes)
-  .use('/dive/item', itemRoutes);
+  .use('/dive/item', itemRoutes)
+  .use('/auth', authRoutes);
 
 // Server Start
 server.listen(
