@@ -16,6 +16,7 @@ const port = process.env.PORT || 5009;
 const equipmentRoutes = require('./src/routes/equipmentRoutes');
 const immersionRoutes = require('./src/routes/immersionRoutes');
 const userRoutes = require('./src/routes/userRoutes');
+const itemRoutes = require('./src/routes/itemRoutes');
 
 // Server Config
 server
@@ -23,7 +24,8 @@ server
   .use(express.json())
   .use('/dive/equipment', equipmentRoutes)
   .use('/dive/immersion', immersionRoutes)
-  .use('/dive/user', userRoutes);
+  .use('/dive/user', userRoutes)
+  .use('/dive/item', itemRoutes);
 
 // Server Start
 server.listen(

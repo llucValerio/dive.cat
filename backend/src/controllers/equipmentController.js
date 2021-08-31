@@ -1,4 +1,4 @@
-const debug = require('debug')('diveServer:EquipmentController');
+const debug = require('debug')('diveServer:equipmentController');
 // const User = require('../models/userModel');
 
 function getEquipment(req, res) {

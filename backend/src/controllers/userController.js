@@ -16,10 +16,6 @@ async function setUser(req, res) {
 async function getUsers(req, res) {
   try {
     let allUsers = 0;
-
-    debug(req.query);
-
-    // if (!req.query) {
     if (Object.keys(req.query).length <= 0) {
       debug('getUsers');
       allUsers = await User.find();

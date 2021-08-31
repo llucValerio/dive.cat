@@ -8,4 +8,10 @@ router
   .route('/')
   .get(controller.getImmersions);
 
+router
+  .route('/:immersionId')
+  .get(controller.getImmersionById)
+  .put(controller.updateImmersionById)
+  .delete(controller.deleteImmersionById);
+
 module.exports = router;
