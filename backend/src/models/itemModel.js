@@ -9,4 +9,5 @@ const cartSchema = mongoose.Schema({
   picture: { type: String, default: 'https://i.ibb.co/kgqwWHz/240px-No-image-available.png' }
 });
 
-module.exports = mongoose.model('Items', cartSchema);
+module.exports = mongoose.model('Item', cartSchema);
+// module.exports = mongoose.model('Items', cartSchema);

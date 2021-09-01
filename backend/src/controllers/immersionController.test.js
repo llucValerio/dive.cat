@@ -1,9 +1,9 @@
-const Equipment = require('../models/equipmentModel');
-const equipmentController = require('./equipmentController');
+const Immersion = require('../models/immersionModel');
+const immersionController = require('./immersionController');
 
-jest.mock('../models/equipmentModel');
+jest.mock('../models/immersionModel');
 
-describe('Given a getEquipment function', () => {
+describe('Given a getImmersions function', () => {
   describe('When is invoked', () => {
     let req = {};
     let res = {};
@@ -18,39 +18,39 @@ describe('Given a getEquipment function', () => {
       };
     });
     describe('And the query function is empty', () => {
-      describe('And Equipment.find resolves', () => {
+      describe('And Immersion.find resolves', () => {
         test('Then res.json must be called', async () => {
-          Equipment.find.mockReturnValue({
-            populate: jest.fn().mockResolvedValue({ name: 'Fins' })
+          Immersion.find.mockReturnValue({
+            populate: jest.fn().mockResolvedValue({ name: 'Luke' })
           });
 
-          await equipmentController.getEquipment(req, res);
+          await immersionController.getImmersions(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
       });
     });
     describe('And the query function is NOT empty', () => {
-      describe('And Equipment.find resolves', () => {
+      describe('And Immersion.find resolves', () => {
         test('Then res.json must be called', async () => {
-          Equipment.find.mockReturnValue({
-            populate: jest.fn().mockResolvedValue({ name: 'Fins' })
+          Immersion.find.mockReturnValue({
+            populate: jest.fn().mockResolvedValue({ name: 'Luke' })
           });
           req = {
-            query: { name: 'mask' }
+            query: { date: '2020-09-01' }
           };
 
-          await equipmentController.getEquipment(req, res);
+          await immersionController.getImmersions(req, res);
 
           expect(res.json).toHaveBeenCalled();
         });
       });
     });
-    describe('And Equipment.find rejects', () => {
+    describe('And Immersion.find rejects', () => {
       test('Then res.send must be called', async () => {
-        Equipment.find.mockRejectedValue({});
+        Immersion.find.mockRejectedValue({});
 
-        await equipmentController.getEquipment(req, res);
+        await immersionController.getImmersions(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
@@ -58,7 +58,7 @@ describe('Given a getEquipment function', () => {
   });
 });
 
-describe('Given a setEquipment function', () => {
+describe('Given a setImmersion function', () => {
   describe('When is invoked', () => {
     let req = {};
     let res = {};
@@ -72,20 +72,20 @@ describe('Given a setEquipment function', () => {
         send: jest.fn()
       };
     });
-    describe('And Equipment.create resolves', () => {
+    describe('And Immersion.create resolves', () => {
       test('Then res.json must be called', async () => {
-        Equipment.create.mockResolvedValue({});
+        Immersion.create.mockResolvedValue({});
 
-        await equipmentController.setEquipment(req, res);
+        await immersionController.setImmersion(req, res);
 
         expect(res.json).toHaveBeenCalled();
       });
     });
-    describe('And Equipment.create rejects', () => {
+    describe('And Immersion.create rejects', () => {
       test('Then res.send must be called', async () => {
-        Equipment.create.mockRejectedValue({});
+        Immersion.create.mockRejectedValue({});
 
-        await equipmentController.setEquipment(req, res);
+        await immersionController.setImmersion(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
@@ -93,14 +93,14 @@ describe('Given a setEquipment function', () => {
   });
 });
 
-describe('Given a getEquipmentById function', () => {
+describe('Given a getImmersionById function', () => {
   describe('When is invoked', () => {
     let req = {};
     let res = {};
     beforeEach(() => {
       req = {
         params: {
-          equipmentId: {}
+          immersionId: {}
         }
       };
       res = {
@@ -109,22 +109,22 @@ describe('Given a getEquipmentById function', () => {
         send: jest.fn()
       };
     });
-    describe('And Equipment.findById resolves', () => {
+    describe('And Immersion.findById resolves', () => {
       test('Then res.json must be called', async () => {
-        Equipment.findById.mockReturnValue({
+        Immersion.findById.mockReturnValue({
           populate: jest.fn().mockResolvedValue({ name: 'Fins' })
         });
 
-        await equipmentController.getEquipmentById(req, res);
+        await immersionController.getImmersionById(req, res);
 
         expect(res.json).toHaveBeenCalled();
       });
     });
-    describe('And Equipment.findById rejects', () => {
+    describe('And Immersion.findById rejects', () => {
       test('Then res.send must be called', async () => {
-        Equipment.findById.mockRejectedValue({});
+        Immersion.findById.mockRejectedValue({});
 
-        await equipmentController.getEquipmentById(req, res);
+        await immersionController.getImmersionById(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
@@ -132,7 +132,7 @@ describe('Given a getEquipmentById function', () => {
   });
 });
 
-describe('Given a updateEquipmentById function', () => {
+describe('Given a updateImmersionById function', () => {
   describe('When is invoked', () => {
     let req = {};
     let res = {};
@@ -140,7 +140,7 @@ describe('Given a updateEquipmentById function', () => {
       req = {
         body: {},
         params: {
-          equipmentId: {}
+          immersionId: {}
         }
       };
       res = {
@@ -149,22 +149,22 @@ describe('Given a updateEquipmentById function', () => {
         send: jest.fn()
       };
     });
-    describe('And Equipment.findByIdAndUpdate resolves', () => {
+    describe('And Immersion.findByIdAndUpdate resolves', () => {
       test('Then res.json must be called', async () => {
-        Equipment.findByIdAndUpdate.mockReturnValue({
-          populate: jest.fn().mockResolvedValue({ name: 'Fins' })
+        Immersion.findByIdAndUpdate.mockReturnValue({
+          populate: jest.fn().mockResolvedValue({ name: 'Luke' })
         });
 
-        await equipmentController.updateEquipmentById(req, res);
+        await immersionController.updateImmersionById(req, res);
 
         expect(res.json).toHaveBeenCalled();
       });
     });
-    describe('And Equipment.findByIdAndUpdate rejects', () => {
+    describe('And Immersion.findByIdAndUpdate rejects', () => {
       test('Then res.send must be called', async () => {
-        Equipment.findByIdAndUpdate.mockRejectedValue({});
+        Immersion.findByIdAndUpdate.mockRejectedValue({});
 
-        await equipmentController.updateEquipmentById(req, res);
+        await immersionController.updateImmersionById(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
@@ -172,7 +172,7 @@ describe('Given a updateEquipmentById function', () => {
   });
 });
 
-describe('Given a deleteEquipmentById function', () => {
+describe('Given a deleteImmersionById function', () => {
   describe('When is invoked', () => {
     let req = {};
     let res = {};
@@ -188,20 +188,20 @@ describe('Given a deleteEquipmentById function', () => {
         send: jest.fn()
       };
     });
-    describe('And Equipment.findByIdAndDelete resolves', () => {
+    describe('And Immersion.findByIdAndDelete resolves', () => {
       test('Then res.json must be called', async () => {
-        Equipment.findByIdAndRemove.mockResolvedValue({});
+        Immersion.findByIdAndRemove.mockResolvedValue({});
 
-        await equipmentController.deleteEquipmentById(req, res);
+        await immersionController.deleteImmersionById(req, res);
 
         expect(res.json).toHaveBeenCalled();
       });
     });
-    describe('And Equipment.findByIdAndDelete rejects', () => {
+    describe('And Immersion.findByIdAndDelete rejects', () => {
       test('Then res.send must be called', async () => {
-        Equipment.findByIdAndRemove.mockRejectedValue({});
+        Immersion.findByIdAndRemove.mockRejectedValue({});
 
-        await equipmentController.deleteEquipmentById(req, res);
+        await immersionController.deleteImmersionById(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
