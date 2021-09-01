@@ -25,18 +25,6 @@ async function getUsers(req, res) {
   }
 }
 
-async function setUser(req, res) {
-  try {
-    debug('setUser');
-    const newUser = await User.create(req.body);
-    res.status(201);
-    return res.json(newUser);
-  } catch (error) {
-    res.status(500);
-    return res.send(`An error occurred while creating an element: ${error}`);
-  }
-}
-
 async function getUserById(req, res) {
   try {
     debug('getUserById');
@@ -85,7 +73,6 @@ async function deleteUserById(req, res) {
 
 module.exports = {
   getUsers,
-  setUser,
   getUserById,
   updateUserById,
   deleteUserById

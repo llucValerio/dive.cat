@@ -1,7 +1,10 @@
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const debug = require('debug')('diveServer:localStrategy');
+const bcrypt = require('bcrypt');
 const User = require('../../models/userModel');
+
+const saltRounds = 10;
 
 passport.use(
   'signup',
@@ -11,20 +14,27 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true
     },
-    async (req, email, password, next) => {
+    ((req, email, password, next) => {
       try {
-        let user = await User.findOne({ email });
-        debug(user);
-        if (user) {
-          // return next(null, false, { message: 'User already registered.' });
-          return next(null, { message: 'User already registered.' });
-        }
-        user = await User.create(req.body);
-        return next(null, user);
+        const newUser = req.body;
+        bcrypt.hash(newUser.password, saltRounds, async (err, hash) => {
+          let user = await User.findOne({ email });
+          if (user) {
+            // return next(null, false, { message: 'User already registered.' });
+            return next(null, { message: 'User already registered.' });
+          }
+
+          debug('encrypting...');
+          newUser.password = hash;
+
+          user = await User.create(newUser);
+          return next(null, user);
+        });
+        // return next(null, user);
       } catch (error) {
         return next(error);
       }
-    }
+    })
   )
 );
 
@@ -44,9 +54,12 @@ passport.use(
           return next(null, { message: 'User not found' });
         }
 
-        if (!user.isValidPassword(password)) {
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          // if (!user.isValidPassword(password)) {
           // return next(null, false, { message: 'Wrong Password' });
           return next(null, { message: 'Wrong Password' });
+          // }
         }
 
         return next(null, user, { message: 'Logged in Successfully' });

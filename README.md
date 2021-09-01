@@ -32,6 +32,7 @@ The app is going to manage a lot of data related to diving. Is going to
  * passport
  * passport-jwt
  * passport-local
+ * npm bcrypt  --> protect and unprotect ddbb password
 
 #### Frontend Dependencies
 

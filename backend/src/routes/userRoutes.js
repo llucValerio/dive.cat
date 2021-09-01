@@ -8,8 +8,7 @@ const router = express.Router();
 router
   .route('/')
   .all(passport.authenticate('jwt', { session: false }))
-  .get(controller.getUsers)
-  .post(controller.setUser);
+  .get(controller.getUsers);
 
 router
   .route('/:userId')
