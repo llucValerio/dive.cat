@@ -1,5 +1,6 @@
 const passport = require('passport');
 const localStrategy = require('passport-local');
+const debug = require('debug')('diveServer:localStrategy');
 const User = require('../../models/userModel');
 
 passport.use(
@@ -7,15 +8,21 @@ passport.use(
   new localStrategy.Strategy(
     {
       usernameField: 'email',
-      passwordField: 'password'
+      passwordField: 'password',
+      passReqToCallback: true
     },
-    async (email, password, done) => {
+    async (req, email, password, next) => {
       try {
-        const user = await User.create({ email, password });
-
-        return done(null, user);
+        let user = await User.findOne({ email });
+        debug(user);
+        if (user) {
+          // return next(null, false, { message: 'User already registered.' });
+          return next(null, { message: 'User already registered.' });
+        }
+        user = await User.create(req.body);
+        return next(null, user);
       } catch (error) {
-        return done(error);
+        return next(error);
       }
     }
   )
@@ -28,21 +35,23 @@ passport.use(
       usernameField: 'email',
       passwordField: 'password'
     },
-    async (email, password, done) => {
+    async (email, password, next) => {
       try {
         const user = await User.findOne({ email });
 
         if (!user) {
-          return done(null, false, { message: 'User not found' });
+          // return next(null, false, { message: 'User not found' });
+          return next(null, { message: 'User not found' });
         }
 
         if (!user.isValidPassword(password)) {
-          return done(null, false, { message: 'Wrong Password' });
+          // return next(null, false, { message: 'Wrong Password' });
+          return next(null, { message: 'Wrong Password' });
         }
 
-        return done(null, user, { message: 'Logged in Successfully' });
+        return next(null, user, { message: 'Logged in Successfully' });
       } catch (error) {
-        return done(null, false);
+        return next(null, false);
       }
     }
   )

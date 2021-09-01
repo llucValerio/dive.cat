@@ -5,12 +5,15 @@ const debug = require('debug')('diveServer');
 const express = require('express');
 const morgan = require('morgan');
 
-// DDBB connection
-require('./src/config/ddbbConfig');
-
 // Server Vars
 const server = express();
 const port = process.env.PORT || 5009;
+
+// DDBB connection
+require('./src/config/ddbbConfig');
+
+// Authentication Strategy config
+require('./src/config/passportConfig')(server);
 
 // Server Routes
 const equipmentRoutes = require('./src/routes/equipmentRoutes');
@@ -23,11 +26,11 @@ const authRoutes = require('./src/routes/authRoutes');
 server
   .use(morgan('dev'))
   .use(express.json())
+  .use('/auth', authRoutes)
   .use('/dive/equipment', equipmentRoutes)
   .use('/dive/immersion', immersionRoutes)
   .use('/dive/user', userRoutes)
-  .use('/dive/item', itemRoutes)
-  .use('/auth', authRoutes);
+  .use('/dive/item', itemRoutes);
 
 // Server Start
 server.listen(

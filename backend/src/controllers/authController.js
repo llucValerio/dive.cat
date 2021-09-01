@@ -6,10 +6,17 @@ let refreshTokens = [];
 
 function registerUser(req, res) {
   debug('registerUser');
-  res.send({
-    user: req.user,
-    message: 'Register works'
-  });
+  debug(req?.user.message === undefined);
+  if (req?.user.message !== undefined) {
+    res.send({
+      message: req.user.message
+    });
+  } else {
+    res.send({
+      user: req.user,
+      message: 'Register done'
+    });
+  }
 }
 
 async function loginUser(req, res, next) {
@@ -18,9 +25,20 @@ async function loginUser(req, res, next) {
     'login',
     async (err, user) => {
       try {
-        if (err || !user) {
+        if (err) {
           const error = new Error('An error occurred.');
           return next(error);
+        }
+        debug(user?.message);
+        switch (user?.message) {
+          case 'User not found':
+            res.status(404);
+            return res.send();
+          case 'Wrong Password':
+            res.status(401);
+            return res.send();
+          default:
+            break;
         }
         return req.login(
           user,
