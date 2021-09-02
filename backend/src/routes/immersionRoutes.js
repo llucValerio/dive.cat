@@ -13,7 +13,7 @@ router
 
 router
   .route('/:immersionId')
-  .all(passport.authenticate('signup', { session: false }))
+  .all(passport.authenticate('jwt', { session: false }))
   .get(controller.getImmersionById)
   .put(controller.updateImmersionById)
   .delete(controller.deleteImmersionById);

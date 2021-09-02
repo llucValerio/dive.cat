@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cartSchema = mongoose.Schema({
   name: String,
   brand: String,
-  model: String,
+  brandModel: String,
   picture: { type: String, default: 'https://i.ibb.co/kgqwWHz/240px-No-image-available.png' }
 });
 

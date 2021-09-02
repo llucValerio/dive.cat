@@ -12,7 +12,7 @@ router
 
 router
   .route('/:userId')
-  .all(passport.authenticate('signup', { session: false }))
+  .all(passport.authenticate('jwt', { session: false }))
   .get(controller.getUserById)
   .put(controller.updateUserById)
   .delete(controller.deleteUserById);

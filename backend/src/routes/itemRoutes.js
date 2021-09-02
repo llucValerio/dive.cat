@@ -12,8 +12,8 @@ router
   .post(controller.setItem);
 
 router
-  .route('/:immersionId')
-  .all(passport.authenticate('signup', { session: false }))
+  .route('/:itemId')
+  .all(passport.authenticate('jwt', { session: false }))
   .get(controller.getItemById)
   .put(controller.updateItemById)
   .delete(controller.deleteItemById);

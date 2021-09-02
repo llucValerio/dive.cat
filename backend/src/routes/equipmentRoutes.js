@@ -13,7 +13,7 @@ router
 
 router
   .route('/:equipmentId')
-  .all(passport.authenticate('signup', { session: false }))
+  .all(passport.authenticate('jwt', { session: false }))
   .get(controller.getEquipmentById)
   .put(controller.updateEquipmentById)
   .delete(controller.deleteEquipmentById);

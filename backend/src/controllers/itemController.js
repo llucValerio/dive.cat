@@ -34,6 +34,8 @@ async function setItem(req, res) {
 async function getItemById(req, res) {
   try {
     debug('getItemById');
+    debug(req.params.itemId);
+
     const itemById = await Item.findById(req.params.itemId);
     res.status(200);
     return res.json(itemById);

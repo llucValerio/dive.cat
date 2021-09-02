@@ -1,5 +1,13 @@
 const debug = require('debug')('diveServer:equipmentController');
 const Equipment = require('../models/equipmentModel');
+const User = require('../models/userModel');
+
+async function updateUserEquipment(equipmentID, { userId }) {
+  debug('updateUserEquipment');
+  debug(equipmentID);
+  debug(userId);
+  const currentUser = await User.findById(userId);
+}
 
 async function getEquipment(req, res) {
   try {
@@ -24,7 +32,13 @@ async function getEquipment(req, res) {
 async function setEquipment(req, res) {
   try {
     debug('setEquipment');
+    if (Object.keys(req.query).length <= 0) {
+      res.status(400);
+      return res.send({ message: 'No user on query' });
+    }
     const newEquipment = await Equipment.create(req.body);
+    // eslint-disable-next-line no-underscore-dangle
+    updateUserEquipment(newEquipment._id, req.query);
     res.status(201);
     return res.json(newEquipment);
   } catch (error) {
