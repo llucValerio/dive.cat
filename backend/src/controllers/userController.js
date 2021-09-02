@@ -7,13 +7,13 @@ async function getUsers(req, res) {
     if (Object.keys(req.query).length <= 0) {
       debug('getUsers');
       allUsers = await User.find()
-        .populate('buddies')
+        .populate('buddies', 'name surnames picture')
         .populate('equipment')
         .populate('immersions');
     } else {
       debug('getUsersByQuery');
       allUsers = await User.find(req.query)
-        .populate('buddies')
+        .populate('buddies', 'name surnames picture')
         .populate('equipment')
         .populate('immersions');
     }
@@ -29,7 +29,7 @@ async function getUserById(req, res) {
   try {
     debug('getUserById');
     const userById = await User.findById(req.params.userId)
-      .populate('buddies')
+      .populate('buddies', 'name surnames picture')
       .populate('equipment')
       .populate('immersions');
     res.status(200);
@@ -48,7 +48,7 @@ async function updateUserById(req, res) {
       req.body,
       { new: true }
     )
-      .populate('buddies')
+      .populate('buddies', 'name surnames picture')
       .populate('equipment')
       .populate('immersions');
     res.status(200);
