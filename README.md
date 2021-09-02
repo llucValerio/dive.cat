@@ -35,14 +35,14 @@ The app is going to manage a lot of data related to diving. Is going to
  * npm bcrypt  --> protect and unprotect ddbb password
 
 #### Frontend Dependencies
-
+ * @angular/cli --> Angular Client.
 ### Installing
 
 #### Backend
-
 npm init --yes <-- to install all dependencies on package.json
 
 #### Frontend
+npm init --yes <-- to install all dependencies on package.json
 
 ### Executing Program
 
