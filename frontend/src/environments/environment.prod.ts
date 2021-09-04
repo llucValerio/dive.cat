@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  loginUrl: 'http://localhost:5015/auth/login/'
 };

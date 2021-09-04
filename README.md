@@ -12,7 +12,7 @@ The app is going to manage a lot of data related to diving. Is going to
  * alerts about equipment maintenances.
 
  The backend is developed using Node Express.
- The frontend is developed with Angular applying Redux.
+ The frontend is developed with Angular.
 
 ## Getting Started
 
