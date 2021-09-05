@@ -12,7 +12,7 @@ The app is going to manage a lot of data related to diving. Is going to
  * alerts about equipment maintenances.
 
  The backend is developed using Node Express.
- The frontend is developed with Angular applying Redux.
+ The frontend is developed with Angular.
 
 ## Getting Started
 
@@ -35,14 +35,15 @@ The app is going to manage a lot of data related to diving. Is going to
  * npm bcrypt  --> protect and unprotect ddbb password
 
 #### Frontend Dependencies
-
+ * @angular/cli --> Angular Client.
+ * ngx-cookie-service --> Cookies module manager
 ### Installing
 
 #### Backend
-
 npm init --yes <-- to install all dependencies on package.json
 
 #### Frontend
+npm init --yes <-- to install all dependencies on package.json
 
 ### Executing Program
 
