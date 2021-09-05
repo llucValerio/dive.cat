@@ -1,23 +1,52 @@
-<section class="login">
-  <form class="login__form" method="post">
-    <h1>Login</h1>
-    <input
-      type="email"
-      [(ngModel)]="user.email"
-      name="email"
-      placeholder="Email"
-      required="required"
-    />
-    <input
-      type="password"
-      [(ngModel)]="user.password"
-      name="password"
-      placeholder="Password"
-      required="required"
-    />
-    <button type="submit" (click)="login()">Log in</button>
-  </form>
-  <div class="login__register-link">
-    <a routerLink="/register">Sign In</a>
-  </div>
-</section>
+<header class="login_header">
+  <h1><img src="https://i.ibb.co/pjqYcbn/logo.png" alt="logo" border="0" /></h1>
+</header>
+<p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
+<p-card
+  header="Login"
+  subheader="Enter your user and password for access to DIVE.cat"
+  class="p-card-login"
+  [style]="{ width: '90%' }"
+  styleClass="p-card-shadow"
+>
+  <section class="login">
+    <form class="login__form" method="post">
+      <span class="p-float-label">
+        <input
+          type="email"
+          [(ngModel)]="user.email"
+          name="email"
+          required="required"
+          id="input_email"
+          pInputText
+        />
+        <label for="input_email">E-mail</label>
+      </span>
+      <span class="p-float-label">
+        <input
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          required="required"
+          id="input_pass"
+          pInputText
+        />
+        <label for="input_pass">Password</label>
+      </span>
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="Log in"
+        class="menu-mobile__plink"
+        (click)="login()"
+      ></button>
+    </form>
+  </section>
+
+  <ng-template pTemplate="footer">
+    <div class="login__register-link">
+      <a routerLink="/register" class="login__register-link__btn">Sign In</a>
+    </div>
+  </ng-template>
+</p-card>

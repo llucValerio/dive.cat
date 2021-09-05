@@ -1,9 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
 @import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+
+html {
+  height: 100%;
+}
 
 body {
   font-family: "Fjalla One", sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+  background-image: url(https://i.ibb.co/nM2m2pQ/background.png),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 27%,
+      rgba(97, 122, 229, 1) 51%,
+      rgba(38, 48, 92, 1) 100%
+    );
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: 100%;
+  min-height: 812px;
   //Panel component for menu-mobile
   .p-component {
     font-family: "Fjalla One", sans-serif;
@@ -14,15 +32,19 @@ body {
         background-image: url("https://i.ibb.co/pjqYcbn/logo.png");
         background-position: 20px;
         background-repeat: no-repeat;
-        // background-color: #212529;
-        background-color: #192025;
+        background-color: #212529;
         height: 83px;
       }
       .p-panel-content {
-        background-color: #192025;
+        background-color: #212529;
         padding: 0px;
         border: 0px;
       }
     }
+  }
+}
+@media (min-width: 600px) {
+  body {
+    background-size: contain;
   }
 }
