@@ -1,6 +1,44 @@
-<nav>
-  <a routerLink="/">Dashboard</a>
-  <a routerLink="/equipment">Equipment</a>
-  <a routerLink="/immersions">Immersions</a>
-  <a routerLink="/profile">Profile</a>
-</nav>
+<!-- Mobile menu-->
+<p-panel header=" " [toggleable]="true" [collapsed]="true" class="menu-mobile">
+  <nav>
+    <div class="menu-mobile__links">
+      <a routerLink="/" class="menu-mobile__hlink">
+        <img src="https://i.ibb.co/Q9LQs47/dashboard-icon.png" />Dashboard</a
+      >
+      <a routerLink="/equipment" class="menu-mobile__hlink"
+        ><img src="https://i.ibb.co/WDXnHN6/equipment-icon.png" /> Equipment</a
+      >
+      <a routerLink="/immersions" class="menu-mobile__hlink"
+        ><img src="https://i.ibb.co/72L54dc/immersion-icon.png" /> Immersions</a
+      >
+      <a routerLink="/profile" class="menu-mobile__hlink"
+        ><img src="https://i.ibb.co/9txc5Rf/profile-icon.png" />Profile</a
+      >
+    </div>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Add new dive"
+      class="menu-mobile__plink"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Log out"
+      class="menu-mobile__plink orange"
+    ></button>
+  </nav>
+</p-panel>
+<!-- Desktop menu-->
+<!-- <p-toolbar>
+<div class="p-toolbar-group-left">
+    <h1>LOGO</h1>
+</div>
+<div class="p-toolbar-group-right">
+    <p-button icon="pi pi-search"></p-button>
+    <p-button icon="pi pi-calendar" styleClass="p-button-success"></p-button>
+    <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+</div>
+</p-toolbar> -->

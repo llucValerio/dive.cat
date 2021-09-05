@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+
+body {
+  font-family: "Fjalla One", sans-serif;
+  margin: 0;
+  padding: 0;
+  //Panel component for menu-mobile
+  .p-component {
+    font-family: "Fjalla One", sans-serif;
+  }
+  .menu-mobile {
+    .p-panel {
+      .p-panel-header {
+        background-image: url("https://i.ibb.co/pjqYcbn/logo.png");
+        background-position: 20px;
+        background-repeat: no-repeat;
+        // background-color: #212529;
+        background-color: #192025;
+        height: 83px;
+      }
+      .p-panel-content {
+        background-color: #192025;
+        padding: 0px;
+        border: 0px;
+      }
+    }
+  }
+}
