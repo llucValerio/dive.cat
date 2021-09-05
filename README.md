@@ -36,6 +36,7 @@ The app is going to manage a lot of data related to diving. Is going to
 
 #### Frontend Dependencies
  * @angular/cli --> Angular Client.
+ * ngx-cookie-service --> Cookies module manager
 ### Installing
 
 #### Backend

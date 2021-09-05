@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+// import { ActivatedRoute, Router } from '@angular/router';
+
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +11,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    // private route: ActivatedRoute,
+    private router: Router,
+    private userServices: UserService 
+    ) {}
 
   ngOnInit(): void {
+    const refreshToken = this.userServices.getCookieRefreshToken()
+    this.userServices.refreshToken({refreshToken:refreshToken})
+    .subscribe(
+      (response)=>{
+      console.log('observable response')
+      console.log(response)
+      },
+      (error => {
+        console.log('observable error')
+        console.log(error)
+        this.router.navigateByUrl('/login')
+      })
+    )
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { UserService } from '../services/user.service';
 
@@ -9,32 +9,32 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  name: string = '';
-  surnames: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-
-  apiUsers: any[] = [];
-
-  users$: any;
-
-  // check tap || tap for log observables
-
-  constructor(public userService: UserService) {
-     }
-
-  ngOnInit(): void {
-    // this.userService.fetchUsers()
-    //   .subscribe(users => this.apiUsers = users )
+  user: any = {
+    name: '',
+    surnames: '',
+    email : '',
+    password: '',
+    confirmPassword: ''
   }
 
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) {}
+
+  ngOnInit(): void {}
+
   register() {
-    this.users$ = this.userService.fetchUsers()
-    .pipe(
-      map((pokes: any) => pokes.results),
-     //  map((pokes: any) => pokes.filter((poke: any) => poke.name[0] === 'c'))
-    )
+    console.log(this.user.name);
+    console.log(this.user.surnames);
+    console.log(this.user.email);
+    console.log(this.user.password);
+    console.log(this.user.confirmPassword);
+
+    this.userService.registerUser(this.user)
+    .subscribe(data => {
+      this.router.navigateByUrl('/login');
+    })
   }
 
 }

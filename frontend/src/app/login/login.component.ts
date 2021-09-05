@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 
 import { UserService } from '../services/user.service';
 
@@ -13,15 +14,24 @@ export class LoginComponent implements OnInit {
     password: ''
   }
  
-  constructor(private userService: UserService) {
-   }
+  constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  login() {
+  login(): void {
     console.log(this.user.email);
     console.log(this.user.password);
+    
+    this.userService.loginUser(this.user)
+    .subscribe((data: any) => {
+      console.log(data)
+      console.log(data.token)
+      console.log(data.refreshToken)
+      this.userService.setCookieToken({
+        token:data.token,
+        refreshToken: data.refreshToken
+      })
+      this.router.navigateByUrl('/')
+    })
   }
-
 }
