@@ -2,6 +2,8 @@
 
 body {
   font-family: "Fjalla One", sans-serif;
+  margin: 0;
+  padding: 0;
   //Panel component for menu-mobile
   .p-component {
     font-family: "Fjalla One", sans-serif;
@@ -12,11 +14,12 @@ body {
         background-image: url("https://i.ibb.co/pjqYcbn/logo.png");
         background-position: 20px;
         background-repeat: no-repeat;
-        background-color: #212529;
+        // background-color: #212529;
+        background-color: #192025;
         height: 83px;
       }
       .p-panel-content {
-        background-color: #212529;
+        background-color: #192025;
         padding: 0px;
         border: 0px;
       }
