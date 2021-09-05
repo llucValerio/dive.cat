@@ -10,6 +10,11 @@ import {PanelModule} from 'primeng/panel';
 import {ToolbarModule} from 'primeng/toolbar';
 import {SplitButtonModule} from 'primeng/splitbutton';
 
+import { CardModule } from 'primeng/card';
+import {InputTextModule} from 'primeng/inputtext';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -40,7 +45,11 @@ import { ProfileComponent } from './profile/profile.component';
     ButtonModule, 
     PanelModule,
     ToolbarModule, 
-    SplitButtonModule
+    SplitButtonModule,
+    CardModule, 
+    InputTextModule, 
+    MessagesModule,
+    MessageModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
