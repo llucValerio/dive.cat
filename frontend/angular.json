@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend": {
+    "dive-cat": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend",
+            "outputPath": "dist/dive-cat",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,15 +74,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "frontend:build",
-            "proxyConfig": "src/proxy.conf.js"
+            "browserTarget": "dive-cat:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "dive-cat:build:production"
             },
             "development": {
-              "browserTarget": "frontend:build:development"
+              "browserTarget": "dive-cat:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "dive-cat:build"
           }
         },
         "test": {
@@ -114,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "frontend"
+  "defaultProject": "dive-cat"
 }

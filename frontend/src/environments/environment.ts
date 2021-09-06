@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  pokeUrl: 'https://pokeapi.co/api/v2/pokemon/',
-  loginUrl: 'http://localhost:5015/auth/login/'
+  apiUrl: 'http://localhost:5015'
 };
 
 /*

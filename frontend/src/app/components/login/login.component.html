@@ -10,12 +10,19 @@
   styleClass="p-card-shadow"
 >
   <section class="login">
-    <form class="login__form" method="post">
+    <!-- <form class="login__form" method="post"> -->
+    <form
+      class="login__form"
+      method="post"
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+    >
       <span class="p-float-label">
         <input
-          type="email"
-          [(ngModel)]="user.email"
-          name="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          type="text"
           required="required"
           id="input_email"
           pInputText
@@ -25,8 +32,9 @@
       <span class="p-float-label">
         <input
           type="password"
-          [(ngModel)]="user.password"
-          name="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
           required="required"
           id="input_pass"
           pInputText
@@ -39,7 +47,6 @@
         type="submit"
         label="Log in"
         class="menu-mobile__plink"
-        (click)="login()"
       ></button>
     </form>
   </section>

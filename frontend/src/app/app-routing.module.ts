@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EquipmentComponent } from './equipment/equipment.component';
-import { ImmersionsComponent } from './immersions/immersions.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EquipmentComponent } from './components/equipment/equipment.component';
+import { ImmersionsComponent } from './components/immersions/immersions.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './helpers';
 
 const routes: Routes = [
-  {path:'', component: DashboardComponent, pathMatch: 'full'},
-  {path:'equipment', component: EquipmentComponent, pathMatch: 'full'},
-  {path:'immersions', component: ImmersionsComponent, pathMatch: 'full'},
-  {path:'profile', component: ProfileComponent, pathMatch: 'full'},
-  {path:'login', component: LoginComponent, pathMatch: 'full'},
-  {path:'register', component: RegisterComponent, pathMatch: 'full'}
+  {path:'', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path:'equipment', component: EquipmentComponent, canActivate: [AuthGuard]},
+  {path:'immersions', component: ImmersionsComponent, canActivate: [AuthGuard]},
+  {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path:'login', component: LoginComponent},
+  {path:'register', component: RegisterComponent},
+   // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
