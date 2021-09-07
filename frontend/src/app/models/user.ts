@@ -13,7 +13,8 @@ export class User {
         latitude: number;
         longitude: number;
     };
-    buddies!: [];
+    // buddies!: [];
+    buddies!: any;
     equipment!: [];
     immersions!: [];
     token!: string;

@@ -1,0 +1,45 @@
+.profile {
+  width: 80%;
+  margin: 40px auto;
+  .profile_avatar {
+    width: 25%;
+    float: right;
+    margin: 5% 5% 0 0;
+  }
+  clear: both;
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    .profile__label {
+      color: #617ae5;
+    }
+    .profile__data {
+      margin-left: 10px;
+    }
+    .profile__buddy {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      .profile__buddy-avatar {
+        width: 15%;
+        margin: 5px 10px;
+      }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .profile {
+    margin: 40px auto;
+    .profile_avatar {
+      max-width: 256px;
+      max-height: 256px;
+      margin: 1% 1% 0 0;
+    }
+    .profile__info {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

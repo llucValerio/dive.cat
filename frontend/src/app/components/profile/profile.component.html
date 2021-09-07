@@ -1,2 +1,91 @@
 <app-header></app-header>
-<p>profile works!</p>
+
+<section class="profile">
+  <img
+    *ngIf="user"
+    src="{{ user.picture }}"
+    alt="{{ user.name }} {{ user.surnames }}"
+    class="profile_avatar"
+  />
+  <p-card
+    *ngIf="user"
+    header="{{ user.name }} {{ user.surnames }}"
+    subheader="Profile"
+    styleClass="p-card-shadow"
+  >
+    <div *ngIf="user" class="profile__info">
+      <div>
+        <p class="profile__label">E-mail</p>
+        <p class="profile__data">{{ user.email }}</p>
+      </div>
+      <div>
+        <p class="profile__label">Dive Center</p>
+        <p class="profile__data">{{ user.center.name }}</p>
+      </div>
+      <div>
+        <p class="profile__label">License Number</p>
+        <p class="profile__data">{{ user.licenseNumber }}</p>
+      </div>
+      <div>
+        <p class="profile__label">License Expedition Date</p>
+        <p class="profile__data">{{ user.licenseExpeditionDate }}</p>
+      </div>
+      <div>
+        <p class="profile__label">Certifications</p>
+        <p class="profile__data">- no data-</p>
+      </div>
+      <div>
+        <p class="profile__label">Medical Check Date</p>
+        <p class="profile__data">{{ user.medicalCheckDate }}</p>
+      </div>
+      <div>
+        <p class="profile__label">Immersions Number</p>
+        <p class="profile__data">{{ user.equipment.length }}</p>
+      </div>
+      <div>
+        <p class="profile__label">Buddies</p>
+        <div *ngFor="let buddie of user.buddies">
+          <div class="profile__buddy">
+            <img
+              src="{{ buddie.picture }}"
+              alt="{{ buddie.name }} {{ buddie.surnames }}"
+              class="profile__buddy-avatar"
+            />
+            {{ buddie.name }}
+            {{ buddie.surnames }}
+          </div>
+        </div>
+        <!-- <p class="profile__data">- no data-</p> -->
+      </div>
+      <!-- <li>
+        certifications
+        <ul>
+          <li *ngFor="let certif of user.certifications">{{ certif.name }}</li>
+        </ul>
+      </li> -->
+      <!-- <li>
+        buddies
+        <ul>
+          <li *ngFor="let buddie of user.buddies">{{ buddie.name }}</li>
+        </ul>
+      </li> -->
+    </div>
+    <div *ngIf="!user">
+      A problem loading data has occured. Restart the applpication.
+    </div>
+
+    <ng-template pTemplate="footer">
+      <p-button
+        label="{{ updating() }}"
+        icon="pi pi-check"
+        (click)="toUpdate()"
+      ></p-button>
+      <p-button
+        label="Cancel"
+        icon="pi pi-times"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.5em' }"
+      ></p-button>
+    </ng-template>
+  </p-card>
+</section>
