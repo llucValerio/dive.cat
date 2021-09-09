@@ -1,23 +1,71 @@
-.register {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 200px;
-  .register__form {
-    display: flex;
-    flex-direction: column;
-    input {
-      margin: 5px 0px;
-    }
-    button {
-      margin-top: 20px;
-    }
-  }
-  .register__login-link {
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
+.login_header {
+  width: 100%;
+  background-color: #212529;
+  height: 81px;
+  padding-left: 20px;
+  h1 {
+    margin: 0px;
   }
 }
+.p-card-register {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  .p-card-body {
+    width: 80%;
+  }
+  .register {
+    .register__form {
+      display: flex;
+      flex-direction: column;
+      .p-float-label {
+        margin: 15px 0px;
+        input {
+          width: 100%;
+        }
+      }
+      .menu-mobile__plink {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+  .login__register-link {
+    width: 100%;
+    text-align: center;
+    .login__register-link__btn {
+      background-color: #e28c0b;
+      color: #fff;
+      width: 100%;
+      text-decoration: none;
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+    }
+  }
+}
+// .register {
+//   width: 80%;
+//   margin: 0 auto;
+
+//   .register__form {
+//     display: flex;
+//     flex-direction: column;
+//     input {
+//       margin: 5px 0px;
+//     }
+//     button {
+//       margin-top: 20px;
+//     }
+//   }
+//   .register__login-link {
+//     margin-top: 20px;
+//     width: 100%;
+//     text-align: center;
+//   }
+// }
 @media (min-width: 600px) {
   .register {
     max-width: 500px;

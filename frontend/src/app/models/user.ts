@@ -1,4 +1,5 @@
 export class User {
+    _id!: number;
     name!: string;
     surnames!: string;
     email!: string;
@@ -7,20 +8,15 @@ export class User {
     licenseNumber!: string;
     medicalCheckDate!: Date;
     licenseExpeditionDate!: Date;
-    certifications!: [];
+    certifications!: any;
     center!: {
         name: string;
         latitude: number;
         longitude: number;
     };
-    buddies!: [];
-    equipment!: [];
-    immersions!: [];
+    buddies!: any;
+    equipment!: any;
+    immersions!: any;
     token!: string;
     refreshToken?: string;
-    // id: number;
-    // username: string;
-    // firstName: string;
-    // lastName: string;
-    // token?: string;
 }

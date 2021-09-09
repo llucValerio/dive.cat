@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import {Message,MessageService} from 'primeng/api';
 
 import { UserService } from '../../services/user.service';
 
@@ -17,6 +18,8 @@ export class RegisterComponent implements OnInit {
     password: '',
     confirmPassword: ''
   }
+
+  msgs1: Message[] = [];
 
   constructor(
     private userService: UserService,

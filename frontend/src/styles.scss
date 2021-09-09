@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
 
 html {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -20,8 +20,6 @@ body {
     );
   background-repeat: no-repeat;
   background-position: bottom;
-  height: 100%;
-  min-height: 812px;
   //Panel component for menu-mobile
   .p-component {
     font-family: "Fjalla One", sans-serif;
@@ -29,7 +27,7 @@ body {
   .menu-mobile {
     .p-panel {
       .p-panel-header {
-        background-image: url("https://i.ibb.co/pjqYcbn/logo.png");
+        background-image: url("https://i.ibb.co/HND73YY/logoV3.png");
         background-position: 20px;
         background-repeat: no-repeat;
         background-color: #212529;
@@ -41,8 +39,27 @@ body {
         border: 0px;
       }
     }
+    // Action Button
+    .menu-mobile__plink {
+      width: 100%;
+      height: 50px;
+      background-color: #617ae5;
+      border: 0px;
+      border-radius: 0px;
+      color: #fff;
+      font-size: 20px;
+    }
+    .orange {
+      background-color: #e28c0b;
+    }
+  }
+  .messages-popup {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
   }
 }
+
 @media (min-width: 600px) {
   body {
     background-size: contain;

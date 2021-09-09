@@ -1,0 +1,87 @@
+.profile {
+  width: 80%;
+  margin: 40px auto;
+  .profile_avatar {
+    width: 25%;
+    float: right;
+    margin: 5% 5% 0 0;
+  }
+  .profile__card {
+    clear: both;
+    margin-bottom: 100px;
+    .profile__info {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      // flex-wrap: wrap;
+      .profile__label {
+        color: #617ae5;
+      }
+      .profile__data {
+        margin-left: 10px;
+      }
+      .profile__buddy {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        .profile__buddy-avatar {
+          width: 15%;
+          margin: 5px 10px;
+        }
+      }
+      .form-control {
+        width: 100%;
+        span {
+          width: 100%;
+        }
+      }
+    }
+    .profile__button {
+      margin: 5px 0;
+    }
+    .p-float-label {
+      margin: 15px 0;
+      .arrayAdd {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        button {
+          height: 30px;
+        }
+        .p-dialog-footer {
+          .p-button-popUp {
+            .p-button {
+              margin: 5px;
+            }
+          }
+        }
+      }
+      .arrayItem {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        button {
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .profile {
+    margin: 40px auto;
+    .profile_avatar {
+      max-width: 256px;
+      max-height: 256px;
+      margin: 1% 1% 0 0;
+    }
+    .profile__info {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

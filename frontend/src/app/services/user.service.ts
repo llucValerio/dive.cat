@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import {environment} from '../../environments/environment'
 import {User} from '../models'
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 
@@ -12,8 +13,19 @@ export class UserService {
   constructor(
     private httpClient: HttpClient
     ) { }
-
-    getAll() {
+    
+    getUserByEmail(): Observable<any> {
       return this.httpClient.get<User>(`/dive/user?email=lluc.valerio@gmail.com`);
-  }
+    }
+
+    getAllUsers(): Observable<any> {
+      return this.httpClient.get<User>(`/dive/user`);
+    }
+
+    updateUserById(user: object, userId: number): Observable<any> {
+      return this.httpClient.put<User>(`/dive/user/${userId}`,user );
+    }
+
+  
+
 }

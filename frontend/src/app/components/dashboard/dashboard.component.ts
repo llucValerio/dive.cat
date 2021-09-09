@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe((user: any) => {
+    this.userService.getUserByEmail().pipe(first()).subscribe((user: any) => {
       this.loading = false;
       // console.log(user)
       this.user = user[0];

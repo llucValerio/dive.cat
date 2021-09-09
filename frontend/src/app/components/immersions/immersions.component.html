@@ -1,2 +1,63 @@
 <app-header></app-header>
-<p>immersions works!</p>
+<p-card
+  class="p-card-login"
+  [style]="{ width: '90%' }"
+  styleClass="p-card-shadow"
+  (click)="showCertificationModalDialog()"
+>
+  <div class="p-card__title">
+    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
+  </div>
+  <div class="p-card__title__content">
+    <img src="{{ picture }}" />
+    <ul class="info">
+      <li>Visibility: <span class="blue">Good</span></li>
+      <li>Bottom time: <span class="blue">5 mins</span></li>
+      <li>Depth: <span class="blue">40 m</span></li>
+      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
+      <li>Validated by: <span class="blue">David</span></li>
+    </ul>
+  </div>
+</p-card>
+<p-card
+  class="p-card-login"
+  [style]="{ width: '90%' }"
+  styleClass="p-card-shadow"
+>
+  <div class="p-card__title">
+    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
+  </div>
+  <div class="p-card__title__content">
+    <img src="{{ picture }}" />
+    <ul class="info">
+      <li>Visibility: <span class="blue">Good</span></li>
+      <li>Bottom time: <span class="blue">5 mins</span></li>
+      <li>Depth: <span class="blue">40 m</span></li>
+      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
+      <li>Validated by: <span class="blue">David</span></li>
+    </ul>
+  </div>
+</p-card>
+<p-dialog
+  [(visible)]="certificationModal"
+  [modal]="true"
+  [style]="{ width: '90%' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+  class="p-card-item"
+>
+  <div class="p-dialog__title">
+    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
+  </div>
+  <div class="p-card__title__content">
+    <img src="{{ picture }}" />
+    <ul class="info">
+      <li>Visibility: <span class="blue">Good</span></li>
+      <li>Bottom time: <span class="blue">5 mins</span></li>
+      <li>Depth: <span class="blue">40 m</span></li>
+      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
+      <li>Validated by: <span class="blue">David</span></li>
+    </ul>
+  </div>
+</p-dialog>
