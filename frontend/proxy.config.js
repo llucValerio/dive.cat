@@ -2,7 +2,8 @@ const PROXY_CONFIG = [
     {
         context: [
             "/auth/*",
-            "/dive/*"
+            "/dive/*",
+            "/dive/user/*"
         ],
         target: "http://localhost:5015",
         secure: false,

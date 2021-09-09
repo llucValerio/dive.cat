@@ -12,8 +12,9 @@
     header="{{ user.name }} {{ user.surnames }}"
     subheader="Profile"
     styleClass="p-card-shadow"
+    class="profile__card"
   >
-    <div *ngIf="user" class="profile__info">
+    <div *ngIf="user && !updatingState" class="profile__info">
       <div>
         <p class="profile__label">E-mail</p>
         <p class="profile__data">{{ user.email }}</p>
@@ -28,19 +29,28 @@
       </div>
       <div>
         <p class="profile__label">License Expedition Date</p>
-        <p class="profile__data">{{ user.licenseExpeditionDate }}</p>
+        <p class="profile__data">
+          {{ user.licenseExpeditionDate | date: "dd-MM-yy" }}
+        </p>
       </div>
       <div>
         <p class="profile__label">Certifications</p>
-        <p class="profile__data">- no data-</p>
+        <p *ngFor="let certif of user.certifications" class="profile__data">
+          {{ certif.name }} ({{ certif.certifyingEntity }})
+        </p>
       </div>
       <div>
         <p class="profile__label">Medical Check Date</p>
-        <p class="profile__data">{{ user.medicalCheckDate }}</p>
+        <p class="profile__data">
+          <!-- {{
+            stringAsDate(user.medicalCheckDate.toString()) | date: "dd-MM-yy"
+          }} -->
+          {{ user.medicalCheckDate | date: "dd-MM-yy" }}
+        </p>
       </div>
       <div>
         <p class="profile__label">Immersions Number</p>
-        <p class="profile__data">{{ user.equipment.length }}</p>
+        <p class="profile__data">{{ user.immersions.length }}</p>
       </div>
       <div>
         <p class="profile__label">Buddies</p>
@@ -55,37 +65,299 @@
             {{ buddie.surnames }}
           </div>
         </div>
-        <!-- <p class="profile__data">- no data-</p> -->
       </div>
-      <!-- <li>
-        certifications
-        <ul>
-          <li *ngFor="let certif of user.certifications">{{ certif.name }}</li>
-        </ul>
-      </li> -->
-      <!-- <li>
-        buddies
-        <ul>
-          <li *ngFor="let buddie of user.buddies">{{ buddie.name }}</li>
-        </ul>
-      </li> -->
+    </div>
+    <div class="profile__form" *ngIf="user && updatingState">
+      <form
+        class="profile__info form"
+        method="POST"
+        [formGroup]="updateForm"
+        (ngSubmit)="updateProfile()"
+      >
+        <span class="p-float-label">
+          <input
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.name.errors
+            }"
+            type="text"
+            required="required"
+            id="input_name"
+            pInputText
+          />
+          <label for="input_name">Name</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            formControlName="surnames"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.surnames.errors
+            }"
+            type="text"
+            required="required"
+            id="input_surnames"
+            pInputText
+          />
+          <label for="input_surnames">Surnames</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.email.errors
+            }"
+            type="text"
+            required="required"
+            id="input_email"
+            pInputText
+          />
+          <label for="input_email">E-mail</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            formControlName="licenseNumber"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.licenseNumber.errors
+            }"
+            type="text"
+            required="required"
+            id="input_licenseNumber"
+            pInputText
+          />
+          <label for="input_licenseNumber">License Number</label>
+        </span>
+        <span class="p-float-label">
+          <p-calendar
+            class="form-control"
+            formControlName="medicalCheckDate"
+            inputId="basic"
+            dateFormat="dd.mm.yy"
+            [readonlyInput]="true"
+            [touchUI]="true"
+            [showButtonBar]="true"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2020:2022"
+          ></p-calendar>
+          <label for="medicalCheckDate">Medical Check Date</label>
+        </span>
+        <span class="p-float-label">
+          <p-calendar
+            class="form-control"
+            formControlName="licenseExpeditionDate"
+            inputId="basic"
+            dateFormat="dd.mm.yy"
+            [readonlyInput]="true"
+            [touchUI]="true"
+            [showButtonBar]="true"
+            [monthNavigator]="true"
+            [yearNavigator]="true"
+            yearRange="2020:2022"
+          ></p-calendar>
+          <label for="licenseExpeditionDate">License Expediton Date</label>
+        </span>
+        <span class="p-float-label">
+          <div class="arrayAdd">
+            <p class="profile__label">Certifications</p>
+            <p-button
+              (click)="showCertificationModalDialog()"
+              icon="pi pi-external-link"
+              label="Add"
+            ></p-button>
+            <p-dialog
+              header="New Certification"
+              [(visible)]="certificationModal"
+              [modal]="true"
+              [style]="{ width: '80%' }"
+              [baseZIndex]="10000"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <p class="p-m-0">
+                <span class="p-float-label">
+                  <input
+                    formControlName="certificationName"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && formControlData.certificationName.errors
+                    }"
+                    type="text"
+                    required="required"
+                    id="input_certificationName"
+                    pInputText
+                  />
+                  <label for="input_certificationName">Name</label>
+                </span>
+                <span class="p-float-label">
+                  <input
+                    formControlName="certifyingEntity"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && formControlData.certifyingEntity.errors
+                    }"
+                    type="text"
+                    required="required"
+                    id="input_certifyingEntity"
+                    pInputText
+                  />
+                  <label for="input_certifyingEntity">Entity</label>
+                </span>
+              </p>
+              <ng-template pTemplate="footer">
+                <p-button
+                  icon="pi pi-check"
+                  (click)="addCertification()"
+                  label="Add"
+                  class="p-button-popUp"
+                ></p-button>
+                <p-button
+                  icon="pi pi-times"
+                  (click)="certificationModal = false"
+                  label="Cancel"
+                  class="p-button-popUp"
+                ></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+          <div
+            *ngFor="
+              let certif of formControlData.certifications.value;
+              let i = index
+            "
+            class="arrayItem"
+          >
+            <p class="profile__data">
+              {{ certif.name }} ({{ certif.certifyingEntity }})
+            </p>
+            <button (click)="deleteCertification(i)" type="button">X</button>
+          </div>
+        </span>
+        <span class="p-float-label">
+          <div class="arrayAdd">
+            <p class="profile__label">Buddies</p>
+            <p-button
+              (click)="showBuddiesModalDialog()"
+              icon="pi pi-external-link"
+              label="Add"
+            ></p-button>
+            <p-dialog
+              header="New Buddie"
+              [(visible)]="buddieModal"
+              [modal]="true"
+              [style]="{ width: '80%' }"
+              [baseZIndex]="10000"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <div
+                *ngFor="let buddie of allUsers | buddies: formControlData"
+                class="arrayItem"
+              >
+                <!-- ;let addedBuddie = buddie -->
+                <div class="profile__buddy">
+                  <img
+                    src="{{ buddie.picture }}"
+                    alt="{{ buddie.name }} {{ buddie.surnames }}"
+                    class="profile__buddy-avatar"
+                  />
+                  {{ buddie.name }}
+                  {{ buddie.surnames }}
+                </div>
+                <button (click)="addBuddie(buddie)" type="button">Add</button>
+              </div>
+              <ng-template pTemplate="footer">
+                <p-button
+                  icon="pi pi-times"
+                  (click)="buddieModal = false"
+                  label="Cancel"
+                  class="p-button-popUp"
+                ></p-button>
+              </ng-template>
+            </p-dialog>
+          </div>
+          <div
+            *ngFor="let buddie of formControlData.buddies.value; let i = index"
+            class="arrayItem"
+          >
+            <div class="profile__buddy">
+              <img
+                src="{{ buddie.picture }}"
+                alt="{{ buddie.name }} {{ buddie.surnames }}"
+                class="profile__buddy-avatar"
+              />
+              {{ buddie.name }}
+              {{ buddie.surnames }}
+            </div>
+            <button (click)="deleteBuddie(i)" type="button">X</button>
+          </div>
+        </span>
+        <!-- <span class="p-float-label">
+          <input
+            formControlName="newPassword"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.newPassword.errors
+            }"
+            type="text"
+            required="required"
+            id="input_newPassword"
+            pInputText
+          />
+          <label for="input_password">Password</label>
+        </span>
+        <span class="p-float-label">
+          <input
+            formControlName="repeatPassword"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && formControlData.repeatPassword.errors
+            }"
+            type="text"
+            required="required"
+            id="input_repeatPassword"
+            pInputText
+          />
+          <label for="input_repeatPassword">Repeat Password</label>
+        </span> -->
+        <button
+          pButton
+          pRipple
+          type="submit"
+          label="Save"
+          class="menu-mobile__plink"
+        ></button>
+      </form>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Cancel"
+        class="menu-mobile__plink profile__button"
+        (click)="cancelFormEnable()"
+      ></button>
     </div>
     <div *ngIf="!user">
-      A problem loading data has occured. Restart the applpication.
+      A problem loading data has occured. Restart the aplication.
     </div>
-
-    <ng-template pTemplate="footer">
-      <p-button
-        label="{{ updating() }}"
-        icon="pi pi-check"
-        (click)="toUpdate()"
-      ></p-button>
-      <p-button
-        label="Cancel"
-        icon="pi pi-times"
-        styleClass="p-button-secondary"
-        [style]="{ 'margin-left': '.5em' }"
-      ></p-button>
-    </ng-template>
+    <button
+      *ngIf="user && !updatingState"
+      pButton
+      pRipple
+      type="button"
+      label="Update"
+      class="menu-mobile__plink"
+      (click)="updateFormEnable()"
+    ></button>
   </p-card>
+  <p-messages
+    class="messages-popup"
+    [(value)]="msgs1"
+    [enableService]="false"
+  ></p-messages>
 </section>

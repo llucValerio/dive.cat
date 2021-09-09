@@ -13,6 +13,8 @@ import { CardModule } from 'primeng/card';
 import {InputTextModule} from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {CalendarModule} from 'primeng/calendar';
+import {DialogModule} from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +27,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { EquipmentComponent } from './components/equipment/equipment.component';
 import { ImmersionsComponent } from './components/immersions/immersions.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { BuddiesPipe } from './pipes/buddies.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HeaderComponent,
     EquipmentComponent,
     ImmersionsComponent,
-    ProfileComponent
+    ProfileComponent,
+    BuddiesPipe
   ],
   imports: [
     BrowserModule,
@@ -51,12 +55,17 @@ import { ProfileComponent } from './components/profile/profile.component';
     CardModule, 
     InputTextModule, 
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CalendarModule,
+    DialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    BuddiesPipe
+  ]
 })
 export class AppModule { }

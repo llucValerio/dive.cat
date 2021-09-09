@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   error = '';
  
   // View details about managins messages in https://www.primefaces.org/primeng/showcase/#/messages
-  msgs1: Message[];
+  msgs1: Message[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +29,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    this.msgs1 = [
-      {severity:'success', summary:'Success', detail:'Message Content'},
-      {severity:'error', summary:'Error', detail:'Message Content'}
-    ];
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) { 
       this.router.navigate(['/']);
