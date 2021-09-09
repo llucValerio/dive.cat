@@ -12,19 +12,19 @@
   styleClass="p-card-shadow"
 >
   <section class="register">
-    <form class="register__form" method="post">
-      <!-- <input
-        type="text"
-        [(ngModel)]="user.name"
-        name="name"
-        placeholder="name"
-        required="required"
-      /> -->
+    <form
+      class="register__form"
+      method="post"
+      [formGroup]="registerForm"
+      (ngSubmit)="registerUser()"
+    >
       <span class="p-float-label">
         <input
-          name="name"
+          formControlName="name"
           class="form-control"
-          [(ngModel)]="user.name"
+          [ngClass]="{
+            'is-invalid': submitted && formControlData.name.errors
+          }"
           type="text"
           required="required"
           id="input_name"
@@ -32,19 +32,13 @@
         />
         <label for="input_name">Name</label>
       </span>
-
-      <!-- <input
-        type="text"
-        [(ngModel)]="user.surnames"
-        name="surnames"
-        placeholder="surnames"
-        required="required"
-      /> -->
       <span class="p-float-label">
         <input
-          name="surnames"
+          formControlName="surnames"
           class="form-control"
-          [(ngModel)]="user.surnames"
+          [ngClass]="{
+            'is-invalid': submitted && formControlData.surnames.errors
+          }"
           type="text"
           required="required"
           id="input_surnames"
@@ -52,18 +46,13 @@
         />
         <label for="input_surnames">Surnames</label>
       </span>
-      <!-- <input
-        type="email"
-        [(ngModel)]="user.email"
-        name="email"
-        placeholder="Email"
-        required="required"
-      /> -->
       <span class="p-float-label">
         <input
-          name="email"
+          formControlName="email"
           class="form-control"
-          [(ngModel)]="user.email"
+          [ngClass]="{
+            'is-invalid': submitted && formControlData.email.errors
+          }"
           type="text"
           required="required"
           id="input_email"
@@ -71,57 +60,42 @@
         />
         <label for="input_email">E-mail</label>
       </span>
-      <!-- <input
-        type="password"
-        [(ngModel)]="user.password"
-        name="password"
-        placeholder="Password"
-        required="required"
-      /> -->
       <span class="p-float-label">
         <input
-          name="password"
+          formControlName="password"
           class="form-control"
-          [(ngModel)]="user.password"
-          type="password"
+          [ngClass]="{
+            'is-invalid': submitted && formControlData.password.errors
+          }"
+          type="text"
           required="required"
           id="input_password"
           pInputText
         />
         <label for="input_password">Password</label>
       </span>
-      <!-- <input
-        type="password"
-        [(ngModel)]="user.confirmPassword"
-        name="password"
-        placeholder="Repeat the password"
-        required="required"
-      /> -->
       <span class="p-float-label">
         <input
-          name="password"
+          formControlName="confirmPassword"
           class="form-control"
-          [(ngModel)]="user.confirmPassword"
-          type="password"
+          [ngClass]="{
+            'is-invalid': submitted && formControlData.confirmPassword.errors
+          }"
+          type="text"
           required="required"
           id="input_confirmPassword"
           pInputText
         />
         <label for="input_confirmPassword">Repeat the password</label>
       </span>
-      <!-- <button type="submit" (click)="register()">Register</button> -->
       <button
         pButton
         pRipple
         type="submit"
         label="Register"
         class="menu-mobile__plink"
-        (click)="register()"
       ></button>
     </form>
-    <!-- <div class="register__login-link">
-      <a routerLink="/login">Login</a>
-    </div> -->
   </section>
   <ng-template pTemplate="footer">
     <div class="login__register-link">

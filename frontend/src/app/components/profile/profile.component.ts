@@ -8,9 +8,7 @@ import { take } from 'rxjs/operators';
 import { User } from '../../models'
 import { UserService } from '../../services/user.service';
 
-import {Message,MessageService} from 'primeng/api';
-import { disableDebugTools } from '@angular/platform-browser';
-import { ReturnStatement } from '@angular/compiler';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-profile',
