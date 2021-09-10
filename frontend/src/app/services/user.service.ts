@@ -12,20 +12,21 @@ export class UserService {
   
   constructor(
     private httpClient: HttpClient
-    ) { }
-    
-    getUserByEmail(): Observable<any> {
-      return this.httpClient.get<User>(`/dive/user?email=lluc.valerio@gmail.com`);
-    }
+  ) { }
 
-    getAllUsers(): Observable<any> {
-      return this.httpClient.get<User>(`/dive/user`);
-    }
+  getUserByEmail(): Observable<Object> {
+    return this.httpClient.get<User>(`/dive/user?email=lluc.valerio@gmail.com`);
+  }
 
-    updateUserById(user: object, userId: number): Observable<any> {
-      return this.httpClient.put<User>(`/dive/user/${userId}`,user );
-    }
+  getAllUsers(): Observable<Object> {
+    return this.httpClient.get<User>(`/dive/user`);
+  }
 
-  
+  updateUserById(user: object, userId: number): Observable<Object> {
+    return this.httpClient.put<User>(`/dive/user/${userId}`,user );
+  }
 
+  registerUser(userRegisterData: Object): Observable<Object> {
+    return this.httpClient.post<Object>('auth/register', userRegisterData)
+  }
 }
