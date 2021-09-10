@@ -54,12 +54,17 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     // this.userService.getAll().pipe(first()).subscribe((user: any) => {
     // this.userService.getAll().subscribe((user: any) => {
-    this.userService.getUserByEmail().pipe(take(1)).subscribe((user: any) => {
-      this.loading = false;
-      this.user = user[0];
-      this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
-      this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
-      this.primengConfig.ripple = true;
+    this.userService.getUserByEmail().pipe(take(1)).subscribe({
+      next: (user: any) => {
+        this.loading = false;
+        this.user = user[0];
+        this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
+        this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
+        this.primengConfig.ripple = true;
+      },
+      error: (error) => {
+        this.setError(error)
+      } 
     });
   }
 
@@ -72,6 +77,20 @@ export class ProfileComponent implements OnInit {
       ...this.msgs1,
       {severity, summary, detail}
     ]
+  }
+
+  setError(error: any) {
+    switch (error.status) {
+      case 401:
+      this.setMessage('error','Error','Unauthorized. Password is wrong.')
+        break;
+      case 404:
+        this.setMessage('error','Error','Not Found. This user does not exist.')
+        break;
+      default:
+        this.setMessage(`error`,`Error`, `${error.status} - ${error.statusText}`)
+      break;
+    }
   }
 
   updateProfile() { 
@@ -180,12 +199,17 @@ export class ProfileComponent implements OnInit {
     }
     if (updateOk && touched){
       this.loading = true;
-      this.userService.updateUserById(updatedUser,this.user._id).subscribe((user: any) => {
-        this.loading = false;
-        this.user = user;
-        this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
-        this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
-        this.primengConfig.ripple = true;
+      this.userService.updateUserById(updatedUser,this.user._id).subscribe({
+        next: (user: any) => {
+          this.loading = false;
+          this.user = user;
+          this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
+          this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
+          this.primengConfig.ripple = true;
+        },
+        error: (error) => {
+          this.setError(error)
+        }
       });
       this.updatingState = false;
     }
@@ -263,10 +287,16 @@ export class ProfileComponent implements OnInit {
 
   showBuddiesModalDialog() {
     this.loading = true;
-    this.userService.getAllUsers().pipe(take(1)).subscribe((users: any) => {
-      this.loading = false;
-      this.allUsers = users;
+    this.userService.getAllUsers().pipe(take(1)).subscribe({
+      next: (users: any) => {
+        this.loading = false;
+        this.allUsers = users;
+      },
+      error: (error) => {
+        this.setError(error)
+      }
     });
     this.buddieModal = true;
   }
 }
+
