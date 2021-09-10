@@ -1,0 +1,944 @@
+{
+	"info": {
+		"_postman_id": "96b7d5b3-6f59-4d53-a2bf-04116e81f9d3",
+		"name": "0.DIVE.cat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dive/user",
+			"item": [
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjMwNTAxNjg5LCJleHAiOjE2MzA1MDE3NDl9.wZ59WOtk90XnLyZxWeVXWAxSCRcWO4Txq57gt2kx0YA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsersByQuery",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/user?name=Jana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"user"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Jana"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjMwNjIyMjU5LCJleHAiOjE2MzA2MjIzMTl9.kxnSAHb7U7qpxCrOSbZj3OSjLSAB7hC2wzKt9ZWVUd4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/user/612f9267114dc7afd1dd3fe5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"user",
+								"612f9267114dc7afd1dd3fe5"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "33",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNjMwNjIxODY1LCJleHAiOjE2MzA2MjE5MjV9.9y_9_kGuliOmm27oIKSufhfIA2LcilLIhevlbyJnCNg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"buddies\": [\r\n        {\r\n            \"0\":\"612f9286114dc7afd1dd3fe9\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/user/612e2f13760aab248e3a0d08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"user",
+								"612e2f13760aab248e3a0d08"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "33",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/user/612e2f13760aab248e3a0d08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"user",
+								"612e2f13760aab248e3a0d08"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "33",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dive/immersion",
+			"item": [
+				{
+					"name": "getImmersion",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getImmersionByQuery",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion?waterType=sea water",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion"
+							],
+							"query": [
+								{
+									"key": "waterType",
+									"value": "sea water"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setImmersion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seaConditions\": \"good\",\r\n    \"waterType\": \"sea water\",\r\n    \"place\": {\r\n        \"name\": \"Cala Norfeu\"\r\n    }\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion?userId=612f9267114dc7afd1dd3fe5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "612f9267114dc7afd1dd3fe5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateImmersionById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airTemperature\": 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion/6131271689fc9f71724143f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion",
+								"6131271689fc9f71724143f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getImmersionById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion/6131271689fc9f71724143f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion",
+								"6131271689fc9f71724143f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteImmersionById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MTk0MzAsImV4cCI6MTYzMDYyMDMzMH0.CLr2OX2Vd9iGd9EbO9OIv4D4DsQhs3k0jMtIF_hiTe0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":  \"612f9267114dc7afd1dd3fe5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/immersion/61312abbf42ff07360573cd7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"immersion",
+								"61312abbf42ff07360573cd7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dive/equipment",
+			"item": [
+				{
+					"name": "getEquipment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1Njk5MTgsImV4cCI6MTYzMDU3MDgxOH0.oI7mjPt0bLlEvA_rSibHpq_JD-SrwcDjHFdbOO-Hgm0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEquipmentByQuery",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzA1NDgsImV4cCI6MTYzMDU3MTQ0OH0.nSP4Sel_QDMgQT-07IMZRJS9W2D8oB0ZvJOqeOe618M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment?name=Fins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fins"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setEquipment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MDY5MjQsImV4cCI6MTYzMDYwNzgyNH0.BpHCt9rjYo8KpO73cZedcKzfSyuJklNQmnKWPosVCpc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"item\": \"613085fefd039671671b36a8\",\r\n  \"purchaseDate\": \"2021-09-01\",\r\n  \"numberOfImmersions\": 1,\r\n  \"maintenanceCheckDate\": \"2021-09-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment?userId=612f9267114dc7afd1dd3fe5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "612f9267114dc7afd1dd3fe5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEquipmentById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MDYyNDIsImV4cCI6MTYzMDYwNzE0Mn0.pSt_DoZboLTH-0q5hCQQLbZKE_mpYWBIrRngM-3JF-c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberOfImmersions\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment/613099f2a2856526ab8e2684",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment",
+								"613099f2a2856526ab8e2684"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEquipmentById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MDYyNDIsImV4cCI6MTYzMDYwNzE0Mn0.pSt_DoZboLTH-0q5hCQQLbZKE_mpYWBIrRngM-3JF-c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment/613099f2a2856526ab8e2684",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment",
+								"613099f2a2856526ab8e2684"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEquipmentById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MDc3NjYsImV4cCI6MTYzMDYwODY2Nn0.tHKh82KiPPKXfD9SYhryxxsw-iplejimtkJaRD0fkKg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":  \"612f9267114dc7afd1dd3fe5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/equipment/61310bb20df73a86ff41434a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"equipment",
+								"61310bb20df73a86ff41434a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/dive/item",
+			"item": [
+				{
+					"name": "getItems",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1Njk5MTgsImV4cCI6MTYzMDU3MDgxOH0.oI7mjPt0bLlEvA_rSibHpq_JD-SrwcDjHFdbOO-Hgm0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getItemsByQuery",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzA1NDgsImV4cCI6MTYzMDU3MTQ0OH0.nSP4Sel_QDMgQT-07IMZRJS9W2D8oB0ZvJOqeOe618M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/item?name=Fins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fins"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setItem",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzEwMTMsImV4cCI6MTYzMDU3MTkxM30.uJMS_isMVWimGMqAymdpEF0hYq1X-pcMofM_2I63d1o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Manomsssssssseter\",\r\n    \"brand\": \"SubAcuqa\",\r\n    \"brandModel\": \"Compact 400 BAR\",\r\n    \"picture\": \"https://i.ibb.co/LPrZdVQ/manometro-compact-400-bar-new.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getItemById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzEwMTMsImV4cCI6MTYzMDU3MTkxM30.uJMS_isMVWimGMqAymdpEF0hYq1X-pcMofM_2I63d1o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5015/dive/item/613085fefd039671671b36a8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item",
+								"613085fefd039671671b36a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateItemById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzEwMTMsImV4cCI6MTYzMDU3MTkxM30.uJMS_isMVWimGMqAymdpEF0hYq1X-pcMofM_2I63d1o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fins\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/item/613085fefd039671671b36a8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item",
+								"613085fefd039671671b36a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteItemById",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA1NzEwMTMsImV4cCI6MTYzMDU3MTkxM30.uJMS_isMVWimGMqAymdpEF0hYq1X-pcMofM_2I63d1o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/dive/item/61308ade71d53f0ed05ca52c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"dive",
+								"item",
+								"61308ade71d53f0ed05ca52c"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "33",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Marc\",\n  \"surnames\": \"Valério Brau\",\n  \"email\": \"ddddddddd@gmail.com\",\n  \"password\": \"1234\",\n  \"picture\": \"https://i.ibb.co/kgqwWHz/240px-No-image-available.png\",\n  \"licenseNumber\": \"ESP/F01/P1/19/0900184\",\n  \"medicalCheckDate\": \"2019-06-20\",\n  \"licenseExpeditionDate\": \"2019-06-27\",\n  \"certifications\": [{\n    \"name\": \"Aficionat\",\n    \"certifyingEntity\": \"FECDAS\"\n  }],\n  \"center\": {\n    \"name\": \"CIR Roses\",\n    \"latitude\": 0,\n    \"longitude\": 0\n  },\n  \"buddies\": [],\n  \"equipment\": [],\n  \"immersions\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lluc.valerio@gmail.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmY5MjY3MTE0ZGM3YWZkMWRkM2ZlNSIsImVtYWlsIjoibGx1Yy52YWxlcmlvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzA2MjEzNDZ9.QrmOKUZyzQc4VEFpPlO9VUEI68A5fPVoyj1w4Etp5IE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/auth/refreshToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"auth",
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxMmYzY2JjYTMyOGY3ZDljZmUxODFlNSIsImVtYWlsIjoibmFjaG9AZ21haWwuY29tIn0sImlhdCI6MTYzMDQ4ODMwNn0.0-niFvWeVDQgeYZkD2KTL5lBf-HqwJu4fYZ-Rx0uSlo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5015/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5015",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

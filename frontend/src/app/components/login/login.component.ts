@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading = false;
   submitted = false;
-  error = '';
  
   // View details about managins messages in https://www.primefaces.org/primeng/showcase/#/messages
   msgs1: Message[] = [];
@@ -46,12 +45,20 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
+  setMessage(severity: string, summary: string, detail:string): void{
+    this.msgs1 = [
+      ...this.msgs1,
+      {severity, summary, detail}
+    ]
+  }
+
   login(): void {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-        return;
+      this.setMessage('error','Error','Form can not have empty fields.')
+      return;
     }
 
     this.loading = true;
@@ -59,13 +66,24 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe({
             next: () => {
-                // get return url from route parameters or default to '/'
-                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                this.router.navigate([returnUrl]);
+              // get return url from route parameters or default to '/'
+              const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+              this.router.navigate([returnUrl]);
             },
             error: error => {
-                this.error = error;
-                this.loading = false;
+              debugger  
+              switch (error.status) {
+                case 401:
+                this.setMessage('error','Error','Unauthorized. Password is wrong.')
+                  break;
+                case 404:
+                  this.setMessage('error','Error','Not Found. This user does not exist.')
+                  break;
+                default:
+                  this.setMessage(`error`,`Error`, `${error.status} - ${error.statusText}`)
+                break;
+              }
+              this.loading = false;
             }
         });
   }
