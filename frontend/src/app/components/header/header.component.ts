@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router'
 
+import { AuthenticationService } from 'src/app/services';
+ 
 import {MessageService} from 'primeng/api';
 import {MenuItem} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
@@ -10,9 +13,16 @@ import {ButtonModule} from 'primeng/button';
   styleUrls: ['./header.component.scss'],
   providers: [MessageService]
 })
+
 export class HeaderComponent implements OnInit {
 items: MenuItem[]=[];
-  constructor(private messageServices: MessageService) {}
+
+  constructor(
+    private messageServices: MessageService,
+    private authenticationService: AuthenticationService,
+    private router: Router,
+
+    ) { }
 
   ngOnInit(): void {
     this.items = [
@@ -37,4 +47,8 @@ items: MenuItem[]=[];
   ];
   }
 
+  logout() {
+    this.router.navigate(['/login']);
+    this.authenticationService.logout()
+  }
 }
