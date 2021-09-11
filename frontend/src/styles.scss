@@ -97,7 +97,7 @@ body {
 
 /*Custom buttons of form immersions*/
 
-.p-card-immersion__detall {
+.p-card-login {
   .p-button {
     margin-top: 10px;
     background-color: #617ae5;
@@ -109,6 +109,37 @@ body {
   }
 }
 
+/*Custom styles for dashboard*/
+.p-card-small {
+  width: 45%;
+  .p-card {
+    height: 150px;
+    text-align: center;
+    margin: 15px 0px;
+    .p-card-title {
+      font-size: 18px;
+    }
+    .big_blue {
+      font-size: 35px;
+      color: #617ae5;
+    }
+    .extraBig_blue {
+      font-size: 40px;
+      color: #617ae5;
+    }
+  }
+}
+.p-card-big {
+  .p-card {
+    text-align: center;
+    margin: 15px 0px;
+    .p-card-title {
+      font-size: 18px;
+    }
+  }
+}
+
+/*Custom buttons of form login*/
 @media (min-width: 600px) {
   body {
     background-size: contain;

@@ -1,0 +1,36 @@
+.dashboard {
+  padding-top: 50px;
+  .twoCardsRow {
+    display: flex;
+    justify-content: space-around;
+    .p-card-small {
+      width: 45%;
+      .p-card {
+        .p-card-title {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .oneCardsRow {
+    display: flex;
+    justify-content: space-around;
+    .p-card-big {
+      width: 95%;
+      ul {
+        list-style: none;
+        text-align: left;
+        font-size: 18px;
+        li {
+          margin-bottom: 10px;
+        }
+        .big_blue {
+          color: #617ae5;
+        }
+        .alert {
+          color: #e28c0b;
+        }
+      }
+    }
+  }
+}

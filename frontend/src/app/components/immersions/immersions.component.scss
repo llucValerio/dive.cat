@@ -54,12 +54,23 @@
       margin-top: 10px;
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       .info {
         width: 50%;
+        margin: 0px;
       }
       .map {
-        width: 50%;
+        width: 180px;
+      }
+    }
+    .p-card__content__oneColumnsRow {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      .info {
+        margin: 0px;
       }
     }
     .menu-mobile__plink {

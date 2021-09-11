@@ -14,8 +14,8 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  getUserByEmail(): Observable<Object> {
-    return this.httpClient.get<User>(`/dive/user?email=lluc.valerio@gmail.com`);
+  getUserByEmail(userEmail: string): Observable<Object> {
+    return this.httpClient.get<User>(`/dive/user?email=${userEmail}`);
   }
 
   getAllUsers(): Observable<Object> {

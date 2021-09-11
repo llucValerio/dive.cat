@@ -1,32 +1,43 @@
 <app-header></app-header>
 <section *ngIf="user" class="immersion">
-  <article *ngFor="let immersion of user.immersions" class="immersion__cart">
-    <p-card
-      class="p-card-login"
-      [style]="{ width: '90%' }"
-      styleClass="p-card-shadow"
-    >
-      <div class="p-card__title">
-        {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-      </div>
-      <div class="p-card__content">
-        <img src="{{ picture }}" />
-        <ul class="info">
-          <li>Visibility: <span class="blue">Good</span></li>
-          <li>Bottom time: <span class="blue">5 mins</span></li>
-          <li>Depth: <span class="blue">40 m</span></li>
-          <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-          <li>Validated by: <span class="blue">David</span></li>
-        </ul>
-      </div>
-    </p-card>
-  </article>
+  <p-card
+    class="p-card-login"
+    [style]="{ width: '90%' }"
+    styleClass="p-card-shadow"
+    *ngFor="let immersion of user.immersions; let i = index"
+  >
+    <div class="p-card__title">
+      {{ setNumberCard(i) }} -
+      <span class="blue">{{ immersion.place.name }}</span> -
+      {{ setDateCard(i) | date: "dd-MM-yy" }}
+    </div>
+    <div class="p-card__content">
+      <img src="{{ immersion.pictures[0] }}" />
+      <ul class="info">
+        <li>
+          Visibility: <span class="blue">{{ immersion.visibility }}</span>
+        </li>
+        <li>
+          Bottom time: <span class="blue">{{ setBottomTimeCard(i) }}</span>
+        </li>
+        <li>
+          Depth: <span class="blue">{{ setDepthCard(i) }}</span>
+        </li>
+        <li *ngFor="let buddy of immersion.buddies">
+          Buddy: <span class="blue">{{ buddy.name }}</span>
+        </li>
+        <li>
+          Validated by: <span class="blue">{{ setValidatorCard(i) }}</span>
+        </li>
+      </ul>
+    </div>
+  </p-card>
 </section>
 <section *ngIf="!user" class="immersion-cards">
   No immersions data of this user.
 </section>
 
-<--! *************** detail page -->
+<!-- *************** detail page -->
 
 <!-- <p-card
   class="p-card-immersion__detall p-card-login"
@@ -37,6 +48,7 @@
     {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
   </div>
   <div class="p-card__content">
+    
     <p-carousel [value]="pictures" [numVisible]="1" [numScroll]="1">
       <ng-template let-car pTemplate="item">
         <img src="{{ pictures[1] }}" />
@@ -44,27 +56,44 @@
     </p-carousel>
     <div class="p-card__content__twoColumnsRow">
       <ul class="info">
-        <li>Visibility: <span class="blue">Good</span></li>
-        <li>Bottom time: <span class="blue">5 mins</span></li>
+        <li>Start Hour: <span class="blue">20:45</span></li>
+        <li>End Hour: <span class="blue">21:30</span></li>
         <li>Depth: <span class="blue">40 m</span></li>
-        <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-        <li>Validated by: <span class="blue">David</span></li>
+        <li>Air consume: <span class="blue">5 l</span></li>
+        <li>Weight: <span class="blue">5 kg</span></li>
+        <li>Neoprene: <span class="blue">5 mm</span></li>
+        <li>Air type: <span class="blue">Mix</span></li>
+        <li>Nitrox %: <span class="blue">5 %</span></li>
+        <li>Air Liters: <span class="blue">8 l</span></li>
+        <li>Water temp.: <span class="blue">28º</span></li>
+        <li>Buddys: <span class="blue">David, Paco</span></li>
+        <li>Validator: <span class="blue">David</span></li>
       </ul>
       <div class="map">
-        <img src="https://i.ibb.co/F0xNBDQ/map.jpg" />
-         <p-gmap #gmap [style]="{'width':'100%','height':'320px', 'margin-bottom': '1em'}" [options]="options" [overlays]="overlays"></p-gmap> 
+        
+        <p-gmap #gmap [style]="{'width':'100%','height':' 200px'}" [options]="map_options" [overlays]="map_overlays" (onOverlayClick)="handleOverlayClick($event)"></p-gmap>
       </div>
-    </div>
-    <div class="p-card__content__graphic"></div>
+    </div> -->
+<!-- <div class="p-card__content__oneColumnsRow">
+      <ul class="info">
+        <li>Air Liters: <span class="blue">8 l</span></li>
+        <li>Water temp.: <span class="blue">28º</span></li>
+        <li>Buddys: <span class="blue">David, Paco</span></li>
+        <li>Validator: <span class="blue">David</span></li>
+      </ul>
+      
+    </div> -->
+
+<!-- <div class="p-card__content__graphic"></div>
   </div>
   <button
-    pButton
-    pRipple
-    type="button"
-    label="Update"
-    class="menu-mobile__plink"
-  ></button>
-  <button
+      pButton
+      pRipple
+      type="button"
+      label="Update"
+      class="menu-mobile__plink"
+    ></button>
+    <button
     pButton
     pRipple
     type="button"
@@ -72,12 +101,12 @@
     class="menu-mobile__plink"
   ></button>
   <button
-    pButton
-    pRipple
-    type="button"
-    label="Delete"
-    class="menu-mobile__plink orange"
-  ></button>
+  pButton
+  pRipple
+  type="button"
+  label="Delete"
+  class="menu-mobile__plink orange"
+></button>
 </p-card> -->
 
 <!-- <p-dialog

@@ -17,6 +17,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {DialogModule} from 'primeng/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
+import {ChartModule} from 'primeng/chart';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +42,7 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     EquipmentComponent,
     ImmersionsComponent,
     ProfileComponent,
-    BuddiesPipe
+    BuddiesPipe,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,8 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     CalendarModule,
     DialogModule,
     CarouselModule, 
-    GMapModule
+    GMapModule,
+    ChartModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
