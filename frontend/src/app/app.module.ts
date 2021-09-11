@@ -15,6 +15,8 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {CalendarModule} from 'primeng/calendar';
 import {DialogModule} from 'primeng/dialog';
+import {CarouselModule} from 'primeng/carousel';
+import {GMapModule} from 'primeng/gmap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +59,9 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     MessagesModule,
     MessageModule,
     CalendarModule,
-    DialogModule
+    DialogModule,
+    CarouselModule, 
+    GMapModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -20,7 +20,7 @@ export class AuthenticationService {
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
-    }
+    }   
 
     login(email: string, password: string) {
         return this.http.post<any>(`auth/login`, { email: email, password: password })
@@ -35,7 +35,8 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('userData');
         this.currentUserSubject.next(null);
-        // this.currentUserSubject.next(this.nullUser);
+        // this.currentUserSubject.next(this.nullUser);+
     }
 }

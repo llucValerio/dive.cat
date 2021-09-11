@@ -52,20 +52,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // this.userService.getAll().pipe(first()).subscribe((user: any) => {
-    // this.userService.getAll().subscribe((user: any) => {
-    this.userService.getUserByEmail().pipe(take(1)).subscribe({
-      next: (user: any) => {
-        this.loading = false;
-        this.user = user[0];
-        this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
-        this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
-        this.primengConfig.ripple = true;
-      },
-      error: (error) => {
-        this.setError(error)
-      } 
-    });
+    this.user = JSON.parse(localStorage.getItem('userData') || '')[0]
+    this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
+    this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
+    this.loading = false;
   }
 
   // convenience getter for easy access to form fields
@@ -203,6 +193,7 @@ export class ProfileComponent implements OnInit {
         next: (user: any) => {
           this.loading = false;
           this.user = user;
+          localStorage.setItem('userData', JSON.stringify(user));
           this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
           this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
           this.primengConfig.ripple = true;
@@ -287,7 +278,7 @@ export class ProfileComponent implements OnInit {
 
   showBuddiesModalDialog() {
     this.loading = true;
-    this.userService.getAllUsers().pipe(take(1)).subscribe({
+    this.userService.getAllUsers().subscribe({
       next: (users: any) => {
         this.loading = false;
         this.allUsers = users;

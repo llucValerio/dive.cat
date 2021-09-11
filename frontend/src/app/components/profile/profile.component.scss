@@ -37,35 +37,49 @@
           width: 100%;
         }
       }
+      .separator {
+        border-top: 1px solid #617ae578;
+        padding-top: 10px;
+      }
     }
-    .profile__button {
-      margin: 5px 0;
+    .profile__form {
+      .profile_save_btn {
+        width: 100%;
+        background-color: #617ae5;
+        border-color: #617ae5;
+      }
+      .profile_cancel_btn {
+        width: 100%;
+        background-color: #e28c0b;
+        border-color: #e28c0b;
+      }
     }
+
     .p-float-label {
-      margin: 15px 0;
+      margin: 20px 0;
+
       .arrayAdd {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        button {
-          height: 30px;
-        }
-        .p-dialog-footer {
-          .p-button-popUp {
-            .p-button {
-              margin: 5px;
-            }
-          }
-        }
       }
       .arrayItem {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        button {
-          height: 30px;
+      }
+      .certification_Modal {
+        .p-float-label {
+          margin-top: 30px;
+        }
+        .p-float-label:first-child {
+          margin-top: 40px;
+        }
+        .certification_Modal__footer {
+          display: flex;
+          justify-content: space-around;
         }
       }
     }

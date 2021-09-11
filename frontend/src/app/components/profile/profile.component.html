@@ -160,56 +160,60 @@
           ></p-calendar>
           <label for="licenseExpeditionDate">License Expediton Date</label>
         </span>
-        <span class="p-float-label">
+        <span class="p-float-label separator">
           <div class="arrayAdd">
             <p class="profile__label">Certifications</p>
             <p-button
               (click)="showCertificationModalDialog()"
               icon="pi pi-external-link"
-              label="Add"
+              label="Add New"
+              class="p-button-addNew"
             ></p-button>
-            <p-dialog
-              header="New Certification"
-              [(visible)]="certificationModal"
-              [modal]="true"
-              [style]="{ width: '80%' }"
-              [baseZIndex]="10000"
-              [draggable]="false"
-              [resizable]="false"
-            >
-              <p class="p-m-0">
-                <span class="p-float-label">
-                  <input
-                    formControlName="certificationName"
-                    class="form-control"
-                    [ngClass]="{
-                      'is-invalid':
-                        submitted && formControlData.certificationName.errors
-                    }"
-                    type="text"
-                    required="required"
-                    id="input_certificationName"
-                    pInputText
-                  />
-                  <label for="input_certificationName">Name</label>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    formControlName="certifyingEntity"
-                    class="form-control"
-                    [ngClass]="{
-                      'is-invalid':
-                        submitted && formControlData.certifyingEntity.errors
-                    }"
-                    type="text"
-                    required="required"
-                    id="input_certifyingEntity"
-                    pInputText
-                  />
-                  <label for="input_certifyingEntity">Entity</label>
-                </span>
-              </p>
-              <ng-template pTemplate="footer">
+          </div>
+          <p-dialog
+            header="New Certification"
+            [(visible)]="certificationModal"
+            [modal]="true"
+            [style]="{ width: '80%' }"
+            [baseZIndex]="10000"
+            [draggable]="false"
+            [resizable]="false"
+            class="certification_Modal"
+          >
+            <p class="p-m-0">
+              <span class="p-float-label">
+                <input
+                  formControlName="certificationName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && formControlData.certificationName.errors
+                  }"
+                  type="text"
+                  required="required"
+                  id="input_certificationName"
+                  pInputText
+                />
+                <label for="input_certificationName">Name</label>
+              </span>
+              <span class="p-float-label">
+                <input
+                  formControlName="certifyingEntity"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && formControlData.certifyingEntity.errors
+                  }"
+                  type="text"
+                  required="required"
+                  id="input_certifyingEntity"
+                  pInputText
+                />
+                <label for="input_certifyingEntity">Entity</label>
+              </span>
+            </p>
+            <ng-template pTemplate="footer">
+              <div class="certification_Modal__footer">
                 <p-button
                   icon="pi pi-check"
                   (click)="addCertification()"
@@ -220,11 +224,11 @@
                   icon="pi pi-times"
                   (click)="certificationModal = false"
                   label="Cancel"
-                  class="p-button-popUp"
+                  class="p-button-popUp modal_cancel_btn"
                 ></p-button>
-              </ng-template>
-            </p-dialog>
-          </div>
+              </div>
+            </ng-template>
+          </p-dialog>
           <div
             *ngFor="
               let certif of formControlData.certifications.value;
@@ -235,52 +239,64 @@
             <p class="profile__data">
               {{ certif.name }} ({{ certif.certifyingEntity }})
             </p>
-            <button (click)="deleteCertification(i)" type="button">X</button>
+            <!-- <button (click)="deleteCertification(i)" class="delete_btn" type="button">Delete</button> -->
+            <p-button
+              (click)="deleteCertification(i)"
+              label="Delete"
+              class="p-button-delete"
+            ></p-button>
           </div>
         </span>
-        <span class="p-float-label">
+        <span class="p-float-label separator">
           <div class="arrayAdd">
             <p class="profile__label">Buddies</p>
             <p-button
               (click)="showBuddiesModalDialog()"
               icon="pi pi-external-link"
-              label="Add"
+              label="Add New"
+              class="p-button-addNew"
             ></p-button>
-            <p-dialog
-              header="New Buddie"
-              [(visible)]="buddieModal"
-              [modal]="true"
-              [style]="{ width: '80%' }"
-              [baseZIndex]="10000"
-              [draggable]="false"
-              [resizable]="false"
-            >
-              <div
-                *ngFor="let buddie of allUsers | buddies: formControlData"
-                class="arrayItem"
-              >
-                <!-- ;let addedBuddie = buddie -->
-                <div class="profile__buddy">
-                  <img
-                    src="{{ buddie.picture }}"
-                    alt="{{ buddie.name }} {{ buddie.surnames }}"
-                    class="profile__buddy-avatar"
-                  />
-                  {{ buddie.name }}
-                  {{ buddie.surnames }}
-                </div>
-                <button (click)="addBuddie(buddie)" type="button">Add</button>
-              </div>
-              <ng-template pTemplate="footer">
-                <p-button
-                  icon="pi pi-times"
-                  (click)="buddieModal = false"
-                  label="Cancel"
-                  class="p-button-popUp"
-                ></p-button>
-              </ng-template>
-            </p-dialog>
           </div>
+          <p-dialog
+            header="New Buddie"
+            [(visible)]="buddieModal"
+            [modal]="true"
+            [style]="{ width: '80%' }"
+            [baseZIndex]="10000"
+            [draggable]="false"
+            [resizable]="false"
+          >
+            <div
+              *ngFor="let buddie of allUsers | buddies: formControlData"
+              class="arrayItem"
+            >
+              <!-- ;let addedBuddie = buddie -->
+              <div class="profile__buddy">
+                <img
+                  src="{{ buddie.picture }}"
+                  alt="{{ buddie.name }} {{ buddie.surnames }}"
+                  class="profile__buddy-avatar"
+                />
+                {{ buddie.name }}
+                {{ buddie.surnames }}
+              </div>
+              <!-- <button (click)="addBuddie(buddie)" type="button" class="p-button-addNew">Add</button> -->
+              <p-button
+                icon="pi pi-external-link"
+                (click)="addBuddie(buddie)"
+                label="Add"
+                class="p-button-addNew"
+              ></p-button>
+            </div>
+            <ng-template pTemplate="footer">
+              <p-button
+                icon="pi pi-times"
+                (click)="buddieModal = false"
+                label="Cancel"
+                class="modal_cancel_btn"
+              ></p-button>
+            </ng-template>
+          </p-dialog>
           <div
             *ngFor="let buddie of formControlData.buddies.value; let i = index"
             class="arrayItem"
@@ -294,7 +310,12 @@
               {{ buddie.name }}
               {{ buddie.surnames }}
             </div>
-            <button (click)="deleteBuddie(i)" type="button">X</button>
+            <!-- <button (click)="deleteBuddie(i)" type="button">X</button> -->
+            <p-button
+              (click)="deleteBuddie(i)"
+              label="Delete"
+              class="p-button-delete"
+            ></p-button>
           </div>
         </span>
         <!-- <span class="p-float-label">
@@ -330,7 +351,7 @@
           pRipple
           type="submit"
           label="Save"
-          class="menu-mobile__plink"
+          class="profile_save_btn"
         ></button>
       </form>
       <button
@@ -338,7 +359,7 @@
         pRipple
         type="button"
         label="Cancel"
-        class="menu-mobile__plink profile__button"
+        class="profile_cancel_btn"
         (click)="cancelFormEnable()"
       ></button>
     </div>
