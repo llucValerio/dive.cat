@@ -8,14 +8,34 @@ async function getUsers(req, res) {
       debug('getUsers');
       allUsers = await User.find()
         .populate('buddies', 'name surnames picture')
-        .populate('equipment')
-        .populate('immersions');
+        .populate({
+          path: 'equipment',
+          populate: { path: 'item' }
+        })
+        .populate({
+          path: 'immersions',
+          select: 'name surnames picture',
+          populate: {
+            path: 'buddies.buddie',
+            select: 'name surnames picture'
+          }
+        });
     } else {
       debug('getUsersByQuery');
       allUsers = await User.find(req.query)
         .populate('buddies', 'name surnames picture')
-        .populate('equipment')
-        .populate('immersions');
+        .populate({
+          path: 'equipment',
+          populate: { path: 'item' }
+        })
+        .populate({
+          path: 'immersions',
+          select: 'name surnames picture',
+          populate: {
+            path: 'buddies.buddie',
+            select: 'name surnames picture'
+          }
+        });
     }
     res.status(200);
     return res.json(allUsers);
@@ -30,8 +50,18 @@ async function getUserById(req, res) {
     debug('getUserById');
     const userById = await User.findById(req.params.userId)
       .populate('buddies', 'name surnames picture')
-      .populate('equipment')
-      .populate('immersions');
+      .populate({
+        path: 'equipment',
+        populate: { path: 'item' }
+      })
+      .populate({
+        path: 'immersions',
+        select: 'name surnames picture',
+        populate: {
+          path: 'buddies.buddie',
+          select: 'name surnames picture'
+        }
+      });
     res.status(200);
     return res.json(userById);
   } catch (error) {
@@ -49,8 +79,18 @@ async function updateUserById(req, res) {
       { new: true }
     )
       .populate('buddies', 'name surnames picture')
-      .populate('equipment')
-      .populate('immersions');
+      .populate({
+        path: 'equipment',
+        populate: { path: 'item' }
+      })
+      .populate({
+        path: 'immersions',
+        select: 'name surnames picture',
+        populate: {
+          path: 'buddies.buddie',
+          select: 'name surnames picture'
+        }
+      });
     res.status(200);
     return res.json(updatedUser);
   } catch (error) {
