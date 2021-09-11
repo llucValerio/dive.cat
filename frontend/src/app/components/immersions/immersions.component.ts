@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { UserService, ImmersionsService } from 'src/app/services';
-import { User, Immersion } from 'src/app/models';
+import { User } from 'src/app/models';
 
 import { Message } from 'primeng/api';
-
-
-
-import { Message } from 'primeng/api';
-import { Immersion } from 'src/app/models/immersion';
 
 @Component({
   selector: 'app-immersions',
@@ -17,39 +10,16 @@ import { Immersion } from 'src/app/models/immersion';
   styleUrls: ['./immersions.component.scss']
 })
 
-
 export class ImmersionsComponent implements OnInit {
-
-  userImmersions!: Immersion
   user: User = JSON.parse(localStorage.getItem('currentUser') || '');
-
-
   // vars used to control data load on display component
   loading = false;
   // messages array
   msgs1: Message[] = [];
 
-  constructor(
-    private userService: UserService,
-    private immerService: ImmersionsService,
-    ) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.loading = true;
-    this.immerService.subscribe({
-
-      next: (user: any) => {
-        this.loading = false;
-        this.user = user[0];
-        this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
-        this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
-        this.primengConfig.ripple = true;
-      },
-      error: (error) => {
-        this.setError(error)
-      } 
-    });
-  }
+  ngOnInit(): void { }
 
   setMessage(severity: string, summary: string, detail:string): void{
     this.msgs1 = [
@@ -70,11 +40,5 @@ export class ImmersionsComponent implements OnInit {
         this.setMessage(`error`,`Error`, `${error.status} - ${error.statusText}`)
       break;
     }
-  }
-
-  showCertificationModalDialog() {
-    // this.formControlData.certificationName.setValue('')
-    // this.formControlData.certifyingEntity.setValue('')
-    this.certificationModal = true;
   }
 }

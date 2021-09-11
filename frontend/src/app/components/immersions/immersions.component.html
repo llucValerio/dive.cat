@@ -1,47 +1,34 @@
 <app-header></app-header>
-<p-card
-  class="p-card-login"
-  [style]="{ width: '90%' }"
-  styleClass="p-card-shadow"
-  (click)="showCertificationModalDialog()"
->
-  <div class="p-card__title">
-    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-  </div>
-  <div class="p-card__content">
-    <img src="{{ picture }}" />
-    <ul class="info">
-      <li>Visibility: <span class="blue">Good</span></li>
-      <li>Bottom time: <span class="blue">5 mins</span></li>
-      <li>Depth: <span class="blue">40 m</span></li>
-      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-      <li>Validated by: <span class="blue">David</span></li>
-    </ul>
-  </div>
-</p-card>
+<section *ngIf="user" class="immersion">
+  <article *ngFor="let immersion of user.immersions" class="immersion__cart">
+    <p-card
+      class="p-card-login"
+      [style]="{ width: '90%' }"
+      styleClass="p-card-shadow"
+    >
+      <div class="p-card__title">
+        {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
+      </div>
+      <div class="p-card__content">
+        <img src="{{ picture }}" />
+        <ul class="info">
+          <li>Visibility: <span class="blue">Good</span></li>
+          <li>Bottom time: <span class="blue">5 mins</span></li>
+          <li>Depth: <span class="blue">40 m</span></li>
+          <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
+          <li>Validated by: <span class="blue">David</span></li>
+        </ul>
+      </div>
+    </p-card>
+  </article>
+</section>
+<section *ngIf="!user" class="immersion-cards">
+  No immersions data of this user.
+</section>
+
+<--! *************** detail page -->
 
 <!-- <p-card
-  class="p-card-login"
-  [style]="{ width: '90%' }"
-  styleClass="p-card-shadow"
-  (click)="showCertificationModalDialog()"
->
-  <div class="p-card__title">
-    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-  </div>
-  <div class="p-card__content">
-    <img src="{{ picture[0] }}" />
-    <ul class="info">
-      <li>Visibility: <span class="blue">Good</span></li>
-      <li>Bottom time: <span class="blue">5 mins</span></li>
-      <li>Depth: <span class="blue">40 m</span></li>
-      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-      <li>Validated by: <span class="blue">David</span></li>
-    </ul>
-  </div>
-</p-card> -->
-
-<p-card
   class="p-card-immersion__detall p-card-login"
   [style]="{ width: '90%' }"
   styleClass="p-card-shadow"
@@ -65,7 +52,7 @@
       </ul>
       <div class="map">
         <img src="https://i.ibb.co/F0xNBDQ/map.jpg" />
-        <!-- <p-gmap #gmap [style]="{'width':'100%','height':'320px', 'margin-bottom': '1em'}" [options]="options" [overlays]="overlays"></p-gmap> -->
+         <p-gmap #gmap [style]="{'width':'100%','height':'320px', 'margin-bottom': '1em'}" [options]="options" [overlays]="overlays"></p-gmap> 
       </div>
     </div>
     <div class="p-card__content__graphic"></div>
@@ -91,7 +78,7 @@
     label="Delete"
     class="menu-mobile__plink orange"
   ></button>
-</p-card>
+</p-card> -->
 
 <!-- <p-dialog
   [(visible)]="certificationModal"
