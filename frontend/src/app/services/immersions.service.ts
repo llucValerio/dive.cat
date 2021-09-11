@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 
 import { Immersion } from '../models';
@@ -14,4 +15,5 @@ export class ImmersionsService {
   getAllUserImmersions() {
     return this.httpClient.get<Immersion>('')
   }
+
 }

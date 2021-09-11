@@ -6,6 +6,11 @@ import { User, Immersion } from 'src/app/models';
 
 import { Message } from 'primeng/api';
 
+
+
+import { Message } from 'primeng/api';
+import { Immersion } from 'src/app/models/immersion';
+
 @Component({
   selector: 'app-immersions',
   templateUrl: './immersions.component.html',
@@ -14,8 +19,10 @@ import { Message } from 'primeng/api';
 
 
 export class ImmersionsComponent implements OnInit {
+
   userImmersions!: Immersion
   user: User = JSON.parse(localStorage.getItem('currentUser') || '');
+
 
   // vars used to control data load on display component
   loading = false;
@@ -30,6 +37,7 @@ export class ImmersionsComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.immerService.subscribe({
+
       next: (user: any) => {
         this.loading = false;
         this.user = user[0];
