@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { take } from 'rxjs/operators';
-
-import { ImmersionsService } from '../../services/immersions.service';
-import { UserService } from '../../services/user.service';
+import { UserService, ImmersionsService } from 'src/app/services';
+import { Immersion } from 'src/app/models';
 
 import { Message } from 'primeng/api';
-import { Immersion } from 'src/app/models/immersion';
+import { User } from 'src/app/models';
 
 @Component({
   selector: 'app-immersions',
@@ -18,6 +16,7 @@ import { Immersion } from 'src/app/models/immersion';
 
 export class ImmersionsComponent implements OnInit {
   userImmersions = Immersion
+  user: User = JSON.parse(localStorage.getItem('currentUser') || '');
 
   // modal vars for popup
   certificationModal: boolean = false;
@@ -35,7 +34,7 @@ export class ImmersionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.userService.getUserByEmail().pipe(take(1)).subscribe({
+    this.immerService.subscribe({
       next: (user: any) => {
         this.loading = false;
         this.user = user[0];
