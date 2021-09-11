@@ -20,6 +20,7 @@ body {
     );
   background-repeat: no-repeat;
   background-position: bottom;
+
   //Panel component for menu-mobile
   .p-component {
     font-family: "Fjalla One", sans-serif;
@@ -57,6 +58,54 @@ body {
     position: fixed;
     bottom: 0;
     left: 20px;
+  }
+}
+/*Custom buttons of form profile*/
+.menu-mobile__plink {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #617ae5;
+  border-color: #617ae5;
+}
+.profile {
+  .p-button {
+    background-color: #617ae5;
+    border-color: #617ae5;
+  }
+}
+
+.p-button-addNew {
+  .p-button {
+    height: 30px;
+  }
+}
+.p-button-delete {
+  .p-button {
+    height: 30px;
+    background-color: #e28c0b;
+    border-color: #e28c0b;
+  }
+}
+.modal_cancel_btn {
+  display: flex;
+  justify-content: center;
+  .p-button {
+    background-color: #e28c0b;
+    border-color: #e28c0b;
+  }
+}
+
+/*Custom buttons of form immersions*/
+
+.p-card-immersion__detall {
+  .p-button {
+    margin-top: 10px;
+    background-color: #617ae5;
+    border-color: #617ae5;
+  }
+  .orange {
+    background-color: #e28c0b;
+    border-color: #e28c0b;
   }
 }
 
