@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Immersion } from '../models';
+
+@Injectable({ providedIn: 'root' })
+
 export class ImmersionsService {
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  getAllUserImmersions() {
+    return this.httpClient.get<Immersion>('')
+  }
 }

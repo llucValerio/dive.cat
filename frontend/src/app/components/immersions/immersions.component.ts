@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService, ImmersionsService } from 'src/app/services';
-import { Immersion } from 'src/app/models';
+import { User, Immersion } from 'src/app/models';
 
 import { Message } from 'primeng/api';
-import { User } from 'src/app/models';
 
 @Component({
   selector: 'app-immersions',
@@ -15,13 +14,9 @@ import { User } from 'src/app/models';
 
 
 export class ImmersionsComponent implements OnInit {
-  userImmersions = Immersion
+  userImmersions!: Immersion
   user: User = JSON.parse(localStorage.getItem('currentUser') || '');
 
-  // modal vars for popup
-  certificationModal: boolean = false;
-  displayPosition: boolean = false;
-  position: string= '';
   // vars used to control data load on display component
   loading = false;
   // messages array
