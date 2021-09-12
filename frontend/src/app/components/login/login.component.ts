@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     ]
   }
 
-  login(): void {
+  login() {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -81,8 +81,12 @@ export class LoginComponent implements OnInit {
           } 
         });
         // get return url from route parameters or default to '/'
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigate([returnUrl]);
+        // timeout to give time to localStorage to loadInfo... not very proud...
+        // delete when ngrx redux is implemented
+        setTimeout (() => {
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigate([returnUrl]);
+       }, 500);
       },
       error: error => {
         switch (error.status) {

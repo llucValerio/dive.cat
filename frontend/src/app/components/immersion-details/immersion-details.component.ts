@@ -147,4 +147,7 @@ export class ImmersionDetailsComponent implements OnInit {
         event.map.setCenter(event.overlay.getPosition());
     }
   }
+  goBacktoList():void {
+    this.router.navigateByUrl('/immersions');
+  }
 }

@@ -2,26 +2,34 @@
 <div class="dashboard">
   <div class="twoCardsRow">
     <p-card
-      header="#1 - Llicència"
+      header="License"
       subheader=""
       class="p-card-small"
       styleClass="p-card-shadow"
     >
-      <span class="big_blue">120 dies </span> per que caduqui
+      <!--  -->
+      <span
+        class="big_blue"
+        [ngClass]="{
+          big_blue: restDaysCalc(user.licenseExpeditionDate) > 0,
+          alert: restDaysCalc(user.licenseExpeditionDate) <= 0
+        }"
+      >
+        {{ restDaysCalc(user.licenseExpeditionDate) }} days
+      </span>
     </p-card>
     <p-card
-      header="#2 - Immersions"
+      header="Immersions"
       subheader=""
       class="p-card-small"
       styleClass="p-card-shadow"
     >
-      <span class="extraBig_blue">153 </span><br />
-      immersions done
+      <span class="extraBig_blue">{{ immersions.length }} </span><br />
     </p-card>
   </div>
   <div class="oneCardsRow">
     <p-card
-      header="#3 - Immersions als últims anys"
+      header="Immersions als últims anys"
       subheader=""
       class="p-card-big"
       styleClass="p-card-shadow"
@@ -37,26 +45,26 @@
   </div>
   <div class="twoCardsRow">
     <p-card
-      header="#4 - Temps mig"
+      header="Average dive time"
       subheader=""
       class="p-card-small"
       styleClass="p-card-shadow"
     >
-      <span class="extraBig_blue">40 </span><br />
+      <span class="extraBig_blue">{{ averageDiveTime() }} </span><br />
       minutes
     </p-card>
     <p-card
-      header="#5 - Max Depth"
+      header="Max Depth"
       subheader=""
       class="p-card-small"
       styleClass="p-card-shadow"
     >
-      <span class="extraBig_blue">35 </span><br />metres
+      <span class="extraBig_blue">{{ maxDepth() }} </span><br />metres
     </p-card>
   </div>
   <div class="oneCardsRow">
     <p-card
-      header="#6 - Consum d'aire per immersió"
+      header="Immersion air consumption (RMV)"
       subheader=""
       class="p-card-big"
       styleClass="p-card-shadow"
@@ -70,9 +78,9 @@
       ></p-chart>
     </p-card>
   </div>
-  <div class="oneCardsRow">
+  <!-- <div class="oneCardsRow">
     <p-card
-      header="#7 - Revisións del Equip"
+      header="Revisións del Equip"
       subheader=""
       class="p-card-big"
       styleClass="p-card-shadow"
@@ -87,10 +95,10 @@
         </li>
       </ul>
     </p-card>
-  </div>
+  </div> -->
   <div class="oneCardsRow">
     <p-card
-      header="#8 - Locations"
+      header="Locations"
       subheader=""
       class="p-card-big"
       styleClass="p-card-shadow"

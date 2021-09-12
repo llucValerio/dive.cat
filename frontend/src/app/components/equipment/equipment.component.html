@@ -1,2 +1,35 @@
 <app-header></app-header>
-<p>equipment works!</p>
+<section *ngIf="immersions.length > 0; else noData" class="equipment">
+  <p-card
+    class="p-card-login"
+    styleClass="p-card-shadow"
+    *ngFor="let imm of immersions; let i = index"
+  >
+    <div class="p-card__title">
+      <span class="blue">{{ imm.place.name }}</span>
+    </div>
+    <div class="p-card__content">
+      <img src="{{ imm.pictures[0].url }}" />
+      <ul class="info">
+        <li>
+          Purchase date: <span class="blue">{{ imm.visibility }}</span>
+        </li>
+        <li>
+          Number of immersions:
+          <span class="blue">{{ setBottomTimeCard(i) }}</span>
+        </li>
+        <li>
+          Maintenance check date:
+          <span class="blue">
+            {{ setDepthCard(i) }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </p-card>
+</section>
+<ng-template #noData>
+  <p-card class="immersion-cards" styleClass="p-card-shadow">
+    No equipments data for this user.
+  </p-card>
+</ng-template>
