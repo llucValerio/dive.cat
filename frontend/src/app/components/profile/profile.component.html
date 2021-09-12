@@ -30,7 +30,7 @@
       <div>
         <p class="profile__label">License Expedition Date</p>
         <p class="profile__data">
-          {{ user.licenseExpeditionDate | date: "dd-MM-yy" }}
+          {{ user.licenseExpeditionDate | date: "dd/MM/yy" }}
         </p>
       </div>
       <div>
@@ -42,10 +42,7 @@
       <div>
         <p class="profile__label">Medical Check Date</p>
         <p class="profile__data">
-          <!-- {{
-            stringAsDate(user.medicalCheckDate.toString()) | date: "dd-MM-yy"
-          }} -->
-          {{ user.medicalCheckDate | date: "dd-MM-yy" }}
+          {{ user.medicalCheckDate | date: "dd/MM/yy" }}
         </p>
       </div>
       <div>
@@ -174,7 +171,7 @@
             header="New Certification"
             [(visible)]="certificationModal"
             [modal]="true"
-            [style]="{ width: '80%' }"
+            [style]="{ width: '340px' }"
             [baseZIndex]="10000"
             [draggable]="false"
             [resizable]="false"
@@ -239,7 +236,6 @@
             <p class="profile__data">
               {{ certif.name }} ({{ certif.certifyingEntity }})
             </p>
-            <!-- <button (click)="deleteCertification(i)" class="delete_btn" type="button">Delete</button> -->
             <p-button
               (click)="deleteCertification(i)"
               label="Delete"
@@ -261,7 +257,7 @@
             header="New Buddie"
             [(visible)]="buddieModal"
             [modal]="true"
-            [style]="{ width: '80%' }"
+            [style]="{ width: '340px' }"
             [baseZIndex]="10000"
             [draggable]="false"
             [resizable]="false"
@@ -270,7 +266,6 @@
               *ngFor="let buddie of allUsers | buddies: formControlData"
               class="arrayItem"
             >
-              <!-- ;let addedBuddie = buddie -->
               <div class="profile__buddy">
                 <img
                   src="{{ buddie.picture }}"
@@ -280,7 +275,6 @@
                 {{ buddie.name }}
                 {{ buddie.surnames }}
               </div>
-              <!-- <button (click)="addBuddie(buddie)" type="button" class="p-button-addNew">Add</button> -->
               <p-button
                 icon="pi pi-external-link"
                 (click)="addBuddie(buddie)"
@@ -310,7 +304,6 @@
               {{ buddie.name }}
               {{ buddie.surnames }}
             </div>
-            <!-- <button (click)="deleteBuddie(i)" type="button">X</button> -->
             <p-button
               (click)="deleteBuddie(i)"
               label="Delete"

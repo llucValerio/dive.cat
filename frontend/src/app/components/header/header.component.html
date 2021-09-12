@@ -33,13 +33,41 @@
   </nav>
 </p-panel>
 <!-- Desktop menu-->
-<!-- <p-toolbar>
-<div class="p-toolbar-group-left">
-    <h1>LOGO</h1>
+<div class="menu-desktop">
+  <header class="login_header">
+    <h1>
+      <img src="https://i.ibb.co/HND73YY/logoV3.png" alt="logo" border="0" />
+    </h1>
+    <div class="menu-desktop__links">
+      <a routerLink="/" class="menu-desktop__hlink">
+        <img src="https://i.ibb.co/Q9LQs47/dashboard-icon.png" />Dashboard</a
+      >
+      <a routerLink="/equipment" class="menu-desktop__hlink"
+        ><img src="https://i.ibb.co/WDXnHN6/equipment-icon.png" /> Equipment</a
+      >
+      <a routerLink="/immersions" class="menu-desktop__hlink"
+        ><img src="https://i.ibb.co/72L54dc/immersion-icon.png" /> Immersions</a
+      >
+      <a routerLink="/profile" class="menu-desktop__hlink"
+        ><img src="https://i.ibb.co/9txc5Rf/profile-icon.png" />Profile</a
+      >
+      <div class="btn_content">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Add new dive"
+          class="menu-dektop__plink"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Log out"
+          class="menu-dektop__plink orange"
+          (click)="logout()"
+        ></button>
+      </div>
+    </div>
+  </header>
 </div>
-<div class="p-toolbar-group-right">
-    <p-button icon="pi pi-search"></p-button>
-    <p-button icon="pi pi-calendar" styleClass="p-button-success"></p-button>
-    <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
-</div>
-</p-toolbar> -->

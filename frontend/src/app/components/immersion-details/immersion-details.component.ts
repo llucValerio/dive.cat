@@ -28,7 +28,17 @@ export class ImmersionDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const user: User = JSON.parse(localStorage.getItem('userData') || '')[0];
-    this.immersionsNumber = user.immersions.length;
+    const immersions  = user.immersions.sort((a:any,b:any)=>{
+      if (a.date>b.date){
+        return -1
+      }
+      if (a.date<b.date){
+        return 1
+      }
+      return 0
+    })
+    
+    this.immersionsNumber = immersions.length;
 
     this.immersionId = Number(this.route.snapshot.paramMap.get('immersionId'));
     if (isNaN(this.immersionId)) {
@@ -40,15 +50,20 @@ export class ImmersionDetailsComponent implements OnInit {
     : this.immersionData = true;
 
     (this.immersionData)
-    ? this.immersion = user.immersions[this.immersionsNumber-1]
+    ? this.immersion = immersions[this.immersionsNumber - this.immersionId]
     : this.router.navigate(['notFound'])
 
     // google maps start
+    console.log(this.immersion.place.latitude)
+    console.log(this.immersion.place.longitude)
     this.map_options = {
-      center: {lat: 36.890257, lng: 30.707417},
-      zoom: 10
+      center: {lat: this.immersion.place.latitude, lng: this.immersion.place.longitude},
+      zoom: 8
       };
     this.infoWindow = new google.maps.InfoWindow();
+    this.initOverlays();
+
+    // debugger
   }
 
   getDepthImmersion(): number {
@@ -113,7 +128,11 @@ export class ImmersionDetailsComponent implements OnInit {
   initOverlays() {
     if (!this.map_overlays||!this.map_overlays.length) {
         this.map_overlays = [
-            new google.maps.Marker({position: {lat: 36.879466, lng: 30.667648}, title:"Roses", data:'25/05/09'}),
+            new google.maps.Marker({position: {
+              lat: this.immersion.place.latitude, 
+              lng: this.immersion.place.longitude}, 
+              title:this.immersion.place.name
+            }),
         ];
     }
   }
@@ -123,7 +142,7 @@ export class ImmersionDetailsComponent implements OnInit {
 
     if (isMarker) {
         let title = event.overlay.getTitle();
-        this.infoWindow.setContent('' + title + ''+ '</br> sdasdasd');
+        this.infoWindow.setContent('' + title);
         this.infoWindow.open(event.map, event.overlay);
         event.map.setCenter(event.overlay.getPosition());
     }

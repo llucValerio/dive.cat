@@ -34,3 +34,11 @@
     }
   }
 }
+
+/*+1024px*/
+@media (min-width: 1024px) {
+  .dashboard {
+    width: 1024px;
+    margin: 0 auto;
+  }
+}

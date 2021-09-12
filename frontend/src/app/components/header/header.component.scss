@@ -16,3 +16,63 @@
     color: #617ae5;
   }
 }
+
+.menu-desktop {
+  .login_header {
+    width: 100%;
+    background-color: #212529;
+    height: 81px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      margin: 0px;
+    }
+    .menu-desktop__links {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 600px;
+
+      .menu-desktop__hlink {
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        text-decoration: none;
+        margin-bottom: 5px;
+      }
+      .btn_content {
+        height: 100%;
+        .menu-dektop__plink {
+          width: 100px;
+          padding: 0px;
+          height: 100%;
+          border-radius: 0px;
+          background-color: #617ae5;
+          border: 0px;
+        }
+        .orange {
+          background-color: #e28c0b;
+          border-color: #e28c0b;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-mobile {
+    display: none;
+  }
+  .menu-desktop {
+    display: true;
+  }
+}
+@media (max-width: 1024px) {
+  .menu-mobile {
+    display: true;
+  }
+  .menu-desktop {
+    display: none;
+  }
+}
