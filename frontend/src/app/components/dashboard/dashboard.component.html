@@ -1,2 +1,107 @@
 <app-header></app-header>
-<div>dashboard works!</div>
+<div class="dashboard">
+  <div class="twoCardsRow">
+    <p-card
+      header="#1 - Llicència"
+      subheader=""
+      class="p-card-small"
+      styleClass="p-card-shadow"
+    >
+      <span class="big_blue">120 dies </span> per que caduqui
+    </p-card>
+    <p-card
+      header="#2 - Immersions"
+      subheader=""
+      class="p-card-small"
+      styleClass="p-card-shadow"
+    >
+      <span class="extraBig_blue">153 </span><br />
+      immersions done
+    </p-card>
+  </div>
+  <div class="oneCardsRow">
+    <p-card
+      header="#3 - Immersions als últims anys"
+      subheader=""
+      class="p-card-big"
+      styleClass="p-card-shadow"
+    >
+      <p-chart
+        type="bar"
+        [data]="dataNumImmersions"
+        [options]="chartBar_options"
+        width="100%"
+        height="200px"
+      ></p-chart>
+    </p-card>
+  </div>
+  <div class="twoCardsRow">
+    <p-card
+      header="#4 - Temps mig"
+      subheader=""
+      class="p-card-small"
+      styleClass="p-card-shadow"
+    >
+      <span class="extraBig_blue">40 </span><br />
+      minutes
+    </p-card>
+    <p-card
+      header="#5 - Max Depth"
+      subheader=""
+      class="p-card-small"
+      styleClass="p-card-shadow"
+    >
+      <span class="extraBig_blue">35 </span><br />metres
+    </p-card>
+  </div>
+  <div class="oneCardsRow">
+    <p-card
+      header="#6 - Consum d'aire per immersió"
+      subheader=""
+      class="p-card-big"
+      styleClass="p-card-shadow"
+    >
+      <p-chart
+        type="line"
+        [data]="dataConsumInfo"
+        [options]="chartBar_options"
+        width="100%"
+        height="200px"
+      ></p-chart>
+    </p-card>
+  </div>
+  <div class="oneCardsRow">
+    <p-card
+      header="#7 - Revisións del Equip"
+      subheader=""
+      class="p-card-big"
+      styleClass="p-card-shadow"
+    >
+      <ul>
+        <li><span class="big_blue">Regulador</span> - 29/08/2023</li>
+        <li><span class="big_blue">Primera etapa</span> - 29/08/2023</li>
+        <li><span class="big_blue">Segona etapa</span> - 29/08/2023</li>
+        <li>
+          <span class="big_blue">Jacket</span> -
+          <span class="alert">29/08/2021</span>
+        </li>
+      </ul>
+    </p-card>
+  </div>
+  <div class="oneCardsRow">
+    <p-card
+      header="#8 - Locations"
+      subheader=""
+      class="p-card-big"
+      styleClass="p-card-shadow"
+    >
+      <p-gmap
+        #gmap
+        [style]="{ width: '100%', height: ' 200px' }"
+        [options]="map_options"
+        [overlays]="map_overlays"
+        (onOverlayClick)="handleOverlayClick($event)"
+      ></p-gmap>
+    </p-card>
+  </div>
+</div>

@@ -17,6 +17,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {DialogModule} from 'primeng/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
+import {ChartModule} from 'primeng/chart';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,8 @@ import { EquipmentComponent } from './components/equipment/equipment.component';
 import { ImmersionsComponent } from './components/immersions/immersions.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BuddiesPipe } from './pipes/buddies.pipe';
+import { ImmersionDetailsComponent } from './components/immersion-details/immersion-details.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     EquipmentComponent,
     ImmersionsComponent,
     ProfileComponent,
-    BuddiesPipe
+    BuddiesPipe,
+    ImmersionDetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     CalendarModule,
     DialogModule,
     CarouselModule, 
-    GMapModule
+    GMapModule,
+    ChartModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { UserService } from '../../services/user.service';
+import { Immersion, User } from 'src/app/models';
+
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-immersions',
@@ -9,33 +10,70 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./immersions.component.scss']
 })
 
-
 export class ImmersionsComponent implements OnInit {
-  id: string= '';
-  name:string= '';
-  date:string= '';
-  picture:string= '';
+  user!: User;
+  immersions!: [Immersion];
+  // vars used to control data load on display component
+  loading = false;
+  // messages array
+  msgs1: Message[] = [];
 
-  // modal vars for popup
-  certificationModal: boolean = false;
-  displayPosition: boolean = false;
-  position: string= '';
+  constructor() { }
 
-  constructor(
-  ) {
-    this.id="#1";
-    this.name="Roses";
-    this.date="15/08/2021";
-    this.picture="https://i.ibb.co/j4wZDmK/immarsion-picture.jpg";
-
+  ngOnInit(): void { 
+    // order immersions by date
+    this.user = JSON.parse(localStorage.getItem('userData') || '')[0];
+    this.immersions  = this.user.immersions.sort((a:any,b:any)=>{
+      if (a.date>b.date){
+        return -1
+      }
+      if (a.date<b.date){
+        return 1
+      }
+      return 0
+    })
   }
 
-  ngOnInit(): void {
-    
+  setMessage(severity: string, summary: string, detail:string): void{
+    this.msgs1 = [
+      ...this.msgs1,
+      {severity, summary, detail}
+    ]
   }
-  showCertificationModalDialog() {
-    // this.formControlData.certificationName.setValue('')
-    // this.formControlData.certifyingEntity.setValue('')
-    this.certificationModal = true;
+
+  setError(error: any) {
+    switch (error.status) {
+      case 401:
+      this.setMessage('error','Error','Unauthorized.')
+        break;
+      case 404:
+        this.setMessage('error','Error','Not Found. This does not exist.')
+        break;
+      default:
+        this.setMessage(`error`,`Error`, `${error.status} - ${error.statusText}`)
+      break;
+    }
+  }
+
+  setBottomTimeCard(immersionIndex:number): number {
+    if (this.immersions[immersionIndex].endHour === this.immersions[immersionIndex].startHour) {
+      return (this.immersions[immersionIndex].endMinut - this.immersions[immersionIndex].startMinut);  
+     } else{
+       return (this.immersions[immersionIndex].endMinut+(60-this.immersions[immersionIndex].startMinut));  
+     }
+  }
+
+  setDepthCard(immersionIndex:number): number {
+    return this.immersions[immersionIndex].immersionStages.
+    reduce((acc, immersion) => acc = acc > immersion.deep ? acc : immersion.deep, 0);
+  }
+
+  setValidatorCard(immersionIndex:number): string {
+    for (let index:number=0; index<this.immersions[immersionIndex].buddies.length; index++){
+      if (this.immersions[immersionIndex].buddies[index].supervisor) {
+        return this.immersions[immersionIndex].buddies[index].buddie.name;
+      }
+    }
+    return 'not validated'
   }
 }

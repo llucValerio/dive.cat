@@ -1,63 +1,43 @@
 <app-header></app-header>
-<p-card
-  class="p-card-login"
-  [style]="{ width: '90%' }"
-  styleClass="p-card-shadow"
-  (click)="showCertificationModalDialog()"
->
-  <div class="p-card__title">
-    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-  </div>
-  <div class="p-card__title__content">
-    <img src="{{ picture }}" />
-    <ul class="info">
-      <li>Visibility: <span class="blue">Good</span></li>
-      <li>Bottom time: <span class="blue">5 mins</span></li>
-      <li>Depth: <span class="blue">40 m</span></li>
-      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-      <li>Validated by: <span class="blue">David</span></li>
-    </ul>
-  </div>
-</p-card>
-<p-card
-  class="p-card-login"
-  [style]="{ width: '90%' }"
-  styleClass="p-card-shadow"
->
-  <div class="p-card__title">
-    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-  </div>
-  <div class="p-card__title__content">
-    <img src="{{ picture }}" />
-    <ul class="info">
-      <li>Visibility: <span class="blue">Good</span></li>
-      <li>Bottom time: <span class="blue">5 mins</span></li>
-      <li>Depth: <span class="blue">40 m</span></li>
-      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-      <li>Validated by: <span class="blue">David</span></li>
-    </ul>
-  </div>
-</p-card>
-<p-dialog
-  [(visible)]="certificationModal"
-  [modal]="true"
-  [style]="{ width: '90%' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
-  class="p-card-item"
->
-  <div class="p-dialog__title">
-    {{ id }}- <span class="blue">{{ name }}</span> - {{ date }}
-  </div>
-  <div class="p-card__title__content">
-    <img src="{{ picture }}" />
-    <ul class="info">
-      <li>Visibility: <span class="blue">Good</span></li>
-      <li>Bottom time: <span class="blue">5 mins</span></li>
-      <li>Depth: <span class="blue">40 m</span></li>
-      <li>Buddy: <span class="blue">Paco, Cecilio</span></li>
-      <li>Validated by: <span class="blue">David</span></li>
-    </ul>
-  </div>
-</p-dialog>
+<section *ngIf="immersions.length > 0; else noData" class="immersion">
+  <p-card
+    class="p-card-login"
+    [style]="{ width: '90%' }"
+    styleClass="p-card-shadow"
+    *ngFor="let imm of immersions; let i = index"
+  >
+    <a [routerLink]="['/immersions', immersions.length - i]">
+      <div class="p-card__title">
+        {{ immersions.length - i }} -
+        <span class="blue">{{ imm.place.name }}</span> -
+        {{ imm.date | date: "dd-MM-yy" }}
+      </div>
+      <div class="p-card__content">
+        <img src="{{ imm.pictures[0].url }}" />
+        <ul class="info">
+          <li>
+            Visibility: <span class="blue">{{ imm.visibility }}</span>
+          </li>
+          <li>
+            Bottom time: <span class="blue">{{ setBottomTimeCard(i) }}</span>
+          </li>
+          <li>
+            Depth:
+            <span class="blue">
+              {{ setDepthCard(i) }}
+            </span>
+          </li>
+          <li *ngFor="let buddy of imm.buddies">
+            Buddy: <span class="blue">{{ buddy.buddie.name }}</span>
+          </li>
+          <li>
+            Validated by: <span class="blue">{{ setValidatorCard(i) }}</span>
+          </li>
+        </ul>
+      </div>
+    </a>
+  </p-card>
+</section>
+<ng-template #noData class="immersion-cards">
+  No immersions data of this user.
+</ng-template>

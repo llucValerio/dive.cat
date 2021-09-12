@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 // import { Observable } from 'rxjs';
 
 import {environment} from '../../environments/environment'
-import {User} from '../models'
+import { User } from '../models'
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -14,8 +14,8 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  getUserByEmail(): Observable<Object> {
-    return this.httpClient.get<User>(`/dive/user?email=lluc.valerio@gmail.com`);
+  getUserByEmail(userEmail: string): Observable<Object> {
+    return this.httpClient.get<User>(`/dive/user?email=${userEmail}`);
   }
 
   getAllUsers(): Observable<Object> {

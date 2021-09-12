@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.f.email.value, this.f.password.value).subscribe({
       next: () => {
         // add user to localStorage
-        this.userService.getUserByEmail().subscribe({
+        this.userService.getUserByEmail(this.f.email.value).subscribe({
           next: (user: any) => {
             this.user = user[0];
             this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)

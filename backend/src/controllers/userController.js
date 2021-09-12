@@ -14,7 +14,6 @@ async function getUsers(req, res) {
         })
         .populate({
           path: 'immersions',
-          select: 'name surnames picture',
           populate: {
             path: 'buddies.buddie',
             select: 'name surnames picture'
@@ -30,7 +29,6 @@ async function getUsers(req, res) {
         })
         .populate({
           path: 'immersions',
-          select: 'name surnames picture',
           populate: {
             path: 'buddies.buddie',
             select: 'name surnames picture'
@@ -56,7 +54,6 @@ async function getUserById(req, res) {
       })
       .populate({
         path: 'immersions',
-        select: 'name surnames picture',
         populate: {
           path: 'buddies.buddie',
           select: 'name surnames picture'
@@ -85,7 +82,6 @@ async function updateUserById(req, res) {
       })
       .populate({
         path: 'immersions',
-        select: 'name surnames picture',
         populate: {
           path: 'buddies.buddie',
           select: 'name surnames picture'
