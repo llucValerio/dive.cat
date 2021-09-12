@@ -46,28 +46,20 @@
     }
   }
 }
-// .register {
-//   width: 80%;
-//   margin: 0 auto;
-
-//   .register__form {
-//     display: flex;
-//     flex-direction: column;
-//     input {
-//       margin: 5px 0px;
-//     }
-//     button {
-//       margin-top: 20px;
-//     }
-//   }
-//   .register__login-link {
-//     margin-top: 20px;
-//     width: 100%;
-//     text-align: center;
-//   }
-// }
 @media (min-width: 600px) {
   .register {
     max-width: 500px;
+  }
+}
+/*+1024px*/
+@media (min-width: 1024px) {
+  .p-card-register {
+    width: 600px;
+    margin: 40px auto;
+    .register {
+      .p-card-content {
+        text-align: center;
+      }
+    }
   }
 }
