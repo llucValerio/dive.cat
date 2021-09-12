@@ -14,7 +14,7 @@ body {
     linear-gradient(
       180deg,
       rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 1) 27%,
+      rgba(255, 255, 255, 1) 10%,
       rgba(97, 122, 229, 1) 51%,
       rgba(38, 48, 92, 1) 100%
     );
@@ -123,6 +123,10 @@ body {
       font-size: 35px;
       color: #617ae5;
     }
+    .alert {
+      font-size: 35px;
+      color: #e28c0b;
+    }
     .extraBig_blue {
       font-size: 40px;
       color: #617ae5;
@@ -138,10 +142,31 @@ body {
     }
   }
 }
+//adapt no immersion card
+.immersion-cards {
+  .p-card {
+    width: 340px;
+    margin: 40px auto;
+    text-align: center;
+  }
+}
+//adapt no immersion card
+.equipment-cards {
+  .p-card {
+    width: 340px;
+    margin: 40px auto;
+    text-align: center;
+  }
+}
 
 /*Custom buttons of form login*/
 @media (min-width: 600px) {
   body {
     background-size: contain;
+  }
+  .equipment-cards {
+    .p-card-login {
+      width: 325px;
+    }
   }
 }

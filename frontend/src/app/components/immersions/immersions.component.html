@@ -2,13 +2,12 @@
 <section *ngIf="immersions.length > 0; else noData" class="immersion">
   <p-card
     class="p-card-login"
-    [style]="{ width: '90%' }"
     styleClass="p-card-shadow"
     *ngFor="let imm of immersions; let i = index"
   >
     <a [routerLink]="['/immersions', immersions.length - i]">
       <div class="p-card__title">
-        {{ immersions.length - i }} -
+        #{{ immersions.length - i }} -
         <span class="blue">{{ imm.place.name }}</span> -
         {{ imm.date | date: "dd/MM/yy" }}
       </div>
@@ -38,6 +37,8 @@
     </a>
   </p-card>
 </section>
-<ng-template #noData class="immersion-cards">
-  No immersions data of this user.
+<ng-template #noData>
+  <p-card class="immersion-cards" styleClass="p-card-shadow">
+    No immersions data for this user.
+  </p-card>
 </ng-template>
