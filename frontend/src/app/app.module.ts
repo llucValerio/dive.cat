@@ -31,6 +31,8 @@ import { EquipmentComponent } from './components/equipment/equipment.component';
 import { ImmersionsComponent } from './components/immersions/immersions.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BuddiesPipe } from './pipes/buddies.pipe';
+import { ImmersionDetailsComponent } from './components/immersion-details/immersion-details.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
     ImmersionsComponent,
     ProfileComponent,
     BuddiesPipe,
+    ImmersionDetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

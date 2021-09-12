@@ -14,31 +14,26 @@ export class Immersion {
       latitude: number;
       longitude: number;
     };
-    date!: { 
-        type: Date;
-    }
+    date!: Date;
     inicialBar!: number;
     finalBar!: number;
     weight!: number;
     neopreneThickness!: number;
-    air!: { 
-        type: Boolean;
-        default: true; 
-    };
+    air!: Boolean;
     nitroxPercentage!: number;
     tankAirLiters!: number;
     waterTemperature!: number;
     airTemperature!: number;
-    immersionStages!:Object []
+    immersionStages!: [any]
     // {
     //     deep: number,,
     //     bottomMinuts: number,
     // }
-    buddies!: Object []
+    buddies!: [any]
     // {
     //     buddie: number;
     //     supervisor: Boolean; 
     // }
-    pictures!: Object [];
+    pictures!: [any];
     // { url: string }]
 }
