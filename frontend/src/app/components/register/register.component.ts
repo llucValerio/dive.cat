@@ -83,7 +83,6 @@ export class RegisterComponent implements OnInit {
         } 
       }
     }
-    // debugger
     if(this.formControlData.password.value.trim().length<=0 
     || this.formControlData.confirmPassword.value.trim().length<=0) {
       this.setMessage('error', 'Error', 'Password fields can not be empty.')
