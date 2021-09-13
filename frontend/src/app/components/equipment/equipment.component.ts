@@ -23,7 +23,7 @@ export class EquipmentComponent implements OnInit {
   ngOnInit(): void { 
     // debugger
     // order immersions by date
-    this.user = JSON.parse(localStorage.getItem('userData') || '')[0];
+    this.user = JSON.parse(localStorage.getItem('userData') || '');
     this.immersions  = this.user.immersions.sort((a:any,b:any)=>{
       if (a.date>b.date){
         return -1

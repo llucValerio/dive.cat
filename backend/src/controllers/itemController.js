@@ -6,10 +6,10 @@ async function getItems(req, res) {
     let allItems = 0;
     if (Object.keys(req.query).length <= 0) {
       debug('getItems');
-      allItems = await Item.find();
+      allItems = await Item.find().exec();
     } else {
       debug('getItemsByQuery');
-      allItems = await Item.find(req.query);
+      allItems = await Item.find(req.query).exec();
     }
     res.status(200);
     return res.json(allItems);
@@ -22,7 +22,7 @@ async function getItems(req, res) {
 async function setItem(req, res) {
   try {
     debug('setItem');
-    const newItem = await Item.create(req.body);
+    const newItem = await Item.create(req.body).exec();
     res.status(201);
     return res.json(newItem);
   } catch (error) {
@@ -36,7 +36,7 @@ async function getItemById(req, res) {
     debug('getItemById');
     debug(req.params.itemId);
 
-    const itemById = await Item.findById(req.params.itemId);
+    const itemById = await Item.findById(req.params.itemId).exec();
     res.status(200);
     return res.json(itemById);
   } catch (error) {
@@ -52,7 +52,8 @@ async function updateItemById(req, res) {
       req.params.itemId,
       req.body,
       { new: true }
-    );
+    )
+      .exec();
     res.status(200);
     return res.json(updatedItem);
   } catch (error) {
@@ -64,7 +65,7 @@ async function updateItemById(req, res) {
 async function deleteItemById(req, res) {
   try {
     debug('deleteItemById');
-    const deletedItem = await Item.findByIdAndRemove(req.params.itemId);
+    const deletedItem = await Item.findByIdAndRemove(req.params.itemId).exec();
     res.status(200);
     return res.json(deletedItem);
   } catch (error) {

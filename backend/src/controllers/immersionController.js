@@ -5,9 +5,9 @@ const User = require('../models/userModel');
 async function updateUserImmersion(immersionID, { userId }) {
   try {
     debug('updateUserImmersion');
-    const currentUser = await User.findById(userId);
+    const currentUser = await User.findById(userId).exec();
     if (Object.keys(currentUser).length > 0) {
-      await User.findByIdAndUpdate(userId, { $addToSet: { immersions: immersionID } });
+      await User.findByIdAndUpdate(userId, { $addToSet: { immersions: immersionID } }).exec();
       return true;
     }
     return false;
@@ -19,9 +19,10 @@ async function updateUserImmersion(immersionID, { userId }) {
 async function deleteUserImmersion(immersionID, { userId }) {
   try {
     debug('deleteUserImmersion');
-    const currentUser = await User.findById(userId);
+    const currentUser = await User.findById(userId).exec();
     if (Object.keys(currentUser).length > 0) {
-      await User.findByIdAndUpdate(userId, { $pull: { immersions: { $in: [immersionID] } } });
+      await User.findByIdAndUpdate(userId, { $pull: { immersions: { $in: [immersionID] } } })
+        .exec();
       return true;
     }
     return false;
@@ -39,14 +40,16 @@ async function getImmersions(req, res) {
         .populate({
           path: 'buddies.buddie',
           select: 'name surnames picture'
-        });
+        })
+        .exec();
     } else {
       debug('getImmersionsByQuery');
       allImmersions = await Immersion.find(req.query)
         .populate({
           path: 'buddies.buddie',
           select: 'name surnames picture'
-        });
+        })
+        .exec();
     }
     res.status(200);
     return res.json(allImmersions);
@@ -63,9 +66,9 @@ async function setImmersion(req, res) {
       res.status(400);
       return res.send({ message: 'No user on query' });
     }
-    const newImmersion = await Immersion.create(req.body);
+    const newImmersion = await Immersion.create(req.body).exec();
     // eslint-disable-next-line no-underscore-dangle
-    const updateUser = updateUserImmersion(newImmersion._id, req.query);
+    const updateUser = updateUserImmersion(newImmersion._id, req.query).exec();
     if (updateUser) {
       res.status(201);
     } else {
@@ -85,7 +88,8 @@ async function getImmersionById(req, res) {
       .populate({
         path: 'buddies.buddie',
         select: 'name surnames picture'
-      });
+      })
+      .exec();
     res.status(200);
     return res.json(immersionById);
   } catch (error) {
@@ -105,7 +109,8 @@ async function updateImmersionById(req, res) {
       .populate({
         path: 'buddies.buddie',
         select: 'name surnames picture'
-      });
+      })
+      .exec();
     res.status(200);
     return res.json(updatedImmersion);
   } catch (error) {
@@ -121,9 +126,9 @@ async function deleteImmersionById(req, res) {
       res.status(400);
       return res.send({ message: 'No user on body' });
     }
-    const deletedImmersion = await Immersion.findByIdAndRemove(req.params.immersionId);
+    const deletedImmersion = await Immersion.findByIdAndRemove(req.params.immersionId).exec();
     // eslint-disable-next-line no-underscore-dangle
-    const updateUser = deleteUserImmersion(req.params.immersionId, req.body);
+    const updateUser = deleteUserImmersion(req.params.immersionId, req.body).exec();
     if (updateUser) {
       res.status(200);
     } else {

@@ -52,9 +52,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.user = JSON.parse(localStorage.getItem('userData') || '')[0]
-    this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
-    this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
+    this.user = JSON.parse(localStorage.getItem('userData') || '');
+    this.user.medicalCheckDate = new Date(this.user.medicalCheckDate);
+    this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate);
     this.loading = false;
   }
 

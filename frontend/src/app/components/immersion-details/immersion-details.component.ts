@@ -27,7 +27,7 @@ export class ImmersionDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const user: User = JSON.parse(localStorage.getItem('userData') || '')[0];
+    const user: User = JSON.parse(localStorage.getItem('userData') || '');
     const immersions  = user.immersions.sort((a:any,b:any)=>{
       if (a.date>b.date){
         return -1

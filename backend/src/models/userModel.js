@@ -25,8 +25,4 @@ const cartSchema = mongoose.Schema({
   immersions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Immersion' }]
 });
 
-// cartSchema.methods.isValidPassword = function isValidPassword(password) {
-//   return password === this.password;
-// };
-
 module.exports = mongoose.model('User', cartSchema);
