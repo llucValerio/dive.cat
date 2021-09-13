@@ -1,7 +1,9 @@
 const Immersion = require('../models/immersionModel');
+const User = require('../models/userModel');
 const immersionController = require('./immersionController');
 
 jest.mock('../models/immersionModel');
+jest.mock('../models/userModel');
 
 describe('Given a getImmersions function', () => {
   describe('When is invoked', () => {
@@ -219,7 +221,7 @@ describe('Given a deleteImmersionById function', () => {
     });
     describe('And Immersion.findByIdAndDelete resolves', () => {
       test('Then res.json must be called', async () => {
-        Immersion.findByIdAndRemove.mockResolvedValue({});
+        Immersion.findByIdAndRemove.mockResolvedValue();
 
         await immersionController.deleteImmersionById(req, res);
 
@@ -228,7 +230,7 @@ describe('Given a deleteImmersionById function', () => {
     });
     describe('And Immersion.findByIdAndDelete rejects', () => {
       test('Then res.send must be called', async () => {
-        Immersion.findByIdAndRemove.mockRejectedValue({});
+        Immersion.findByIdAndRemove.mockRejectedValue();
 
         await immersionController.deleteImmersionById(req, res);
 
@@ -249,6 +251,26 @@ describe('Given a deleteImmersionById function', () => {
 
         expect(res.send).toHaveBeenCalled();
       });
+    });
+  });
+});
+
+describe('Given a updateUserImmersion', () => {
+  const userId = 1;
+  const immersionId = 1;
+  describe('And ddbb user has data', () => {
+    test('Then should return true', async () => {
+      // const currentUser = { name: 'Luke' };
+      // const currentUser = { };
+      // User.findById.mockResolvedValue();
+      User.findById.mockRejectedValue();
+      // User.findByIdAndUpdate.mockResolvedValue();
+      User.findByIdAndUpdate.mockRejectedValue();
+
+      await immersionController.updateUserImmersion(immersionId, userId);
+      // immersionController.updateUserImmersion(immersionId, userId);
+
+      expect(immersionController.updateUserImmersion(immersionId, userId)).toBeTruthy();
     });
   });
 });

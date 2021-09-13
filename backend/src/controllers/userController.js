@@ -18,8 +18,7 @@ async function getUsers(req, res) {
             path: 'buddies.buddie',
             select: 'name surnames picture'
           }
-        })
-        .exec();
+        });
     } else {
       debug('getUsersByQuery');
       allUsers = await User.find(req.query)
@@ -34,8 +33,7 @@ async function getUsers(req, res) {
             path: 'buddies.buddie',
             select: 'name surnames picture'
           }
-        })
-        .exec();
+        });
     }
     res.status(200);
     return res.json(allUsers);
@@ -60,8 +58,7 @@ async function getUserById(req, res) {
           path: 'buddies.buddie',
           select: 'name surnames picture'
         }
-      })
-      .exec();
+      });
     res.status(200);
     return res.json(userById);
   } catch (error) {
@@ -89,8 +86,7 @@ async function updateUserById(req, res) {
           path: 'buddies.buddie',
           select: 'name surnames picture'
         }
-      })
-      .exec();
+      });
     res.status(200);
     return res.json(updatedUser);
   } catch (error) {
@@ -102,7 +98,7 @@ async function updateUserById(req, res) {
 async function deleteUserById(req, res) {
   try {
     debug('deleteUserById');
-    const deletedUser = await User.findByIdAndRemove(req.params.userId).exec();
+    const deletedUser = await User.findByIdAndRemove(req.params.userId);
     res.status(200);
     return res.json(deletedUser);
   } catch (error) {

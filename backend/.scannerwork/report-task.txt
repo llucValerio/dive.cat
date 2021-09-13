@@ -2,5 +2,5 @@ projectKey=dive-cat-backend
 serverUrl=http://127.0.0.1:9000
 serverVersion=8.9.1.44547
 dashboardUrl=http://127.0.0.1:9000/dashboard?id=dive-cat-backend
-ceTaskId=AXvgfK8DPTP8FI7GD7xN
-ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=AXvgfK8DPTP8FI7GD7xN
+ceTaskId=AXvhLsqPPTP8FI7GD73E
+ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=AXvhLsqPPTP8FI7GD73E

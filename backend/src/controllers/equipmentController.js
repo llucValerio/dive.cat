@@ -5,9 +5,9 @@ const User = require('../models/userModel');
 async function updateUserEquipment(equipmentID, { userId }) {
   try {
     debug('updateUserEquipment');
-    const currentUser = await User.findById(userId).exec();
+    const currentUser = await User.findById(userId);
     if (Object.keys(currentUser).length > 0) {
-      await User.findByIdAndUpdate(userId, { $addToSet: { equipment: equipmentID } }).exec();
+      await User.findByIdAndUpdate(userId, { $addToSet: { equipment: equipmentID } });
       return true;
     }
     return false;
@@ -19,9 +19,9 @@ async function updateUserEquipment(equipmentID, { userId }) {
 async function deleteUserEquipment(equipmentID, { userId }) {
   try {
     debug('deleteUserEquipment');
-    const currentUser = await User.findById(userId).exec();
+    const currentUser = await User.findById(userId);
     if (Object.keys(currentUser).length > 0) {
-      await User.findByIdAndUpdate(userId, { $pull: { equipment: { $in: [equipmentID] } } }).exec();
+      await User.findByIdAndUpdate(userId, { $pull: { equipment: { $in: [equipmentID] } } });
       return true;
     }
     return false;
@@ -36,13 +36,11 @@ async function getEquipment(req, res) {
     if (Object.keys(req.query).length <= 0) {
       debug('getEquipment');
       allEquipment = await Equipment.find()
-        .populate('item')
-        .exec();
+        .populate('item');
     } else {
       debug('getEquipmentByQuery');
       allEquipment = await Equipment.find(req.query)
-        .populate('item')
-        .exec();
+        .populate('item');
     }
     res.status(200);
     return res.json(allEquipment);
@@ -59,9 +57,9 @@ async function setEquipment(req, res) {
       res.status(400);
       return res.send({ message: 'No user on query' });
     }
-    const newEquipment = await Equipment.create(req.body).exec();
+    const newEquipment = await Equipment.create(req.body);
     // eslint-disable-next-line no-underscore-dangle
-    const updateUser = updateUserEquipment(newEquipment._id, req.query).exec();
+    const updateUser = updateUserEquipment(newEquipment._id, req.query);
     if (updateUser) {
       res.status(201);
     } else {
@@ -78,8 +76,7 @@ async function getEquipmentById(req, res) {
   try {
     debug('getEquipmentById');
     const equipmentById = await Equipment.findById(req.params.equipmentId)
-      .populate('item')
-      .exec();
+      .populate('item');
     res.status(200);
     return res.json(equipmentById);
   } catch (error) {
@@ -96,8 +93,7 @@ async function updateEquipmentById(req, res) {
       req.body,
       { new: true }
     )
-      .populate('item')
-      .exec();
+      .populate('item');
     res.status(200);
     return res.json(updatedEquipment);
   } catch (error) {
@@ -113,9 +109,9 @@ async function deleteEquipmentById(req, res) {
       res.status(400);
       return res.send({ message: 'No user on body' });
     }
-    const deletedEquipment = await Equipment.findByIdAndRemove(req.params.equipmentId).exec();
+    const deletedEquipment = await Equipment.findByIdAndRemove(req.params.equipmentId);
     // eslint-disable-next-line no-underscore-dangle
-    const updateUser = deleteUserEquipment(req.params.equipmentId, req.body).exec();
+    const updateUser = deleteUserEquipment(req.params.equipmentId, req.body);
     if (updateUser) {
       res.status(200);
     } else {
