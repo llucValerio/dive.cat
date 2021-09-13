@@ -12,7 +12,10 @@
         {{ imm.date | date: "dd/MM/yy" }}
       </div>
       <div class="p-card__content">
-        <img src="{{ imm.pictures[0].url }}" />
+        <img
+          alt="Immersion {{ immersions.length - i }} picture"
+          src="{{ imm.pictures[0].url }}"
+        />
         <ul class="info">
           <li>
             Visibility: <span class="blue">{{ imm.visibility }}</span>

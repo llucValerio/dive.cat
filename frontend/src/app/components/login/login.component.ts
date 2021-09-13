@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {first} from 'rxjs/operators'
-
-// import { UserService } from '../../services/user.service';
 import { AuthenticationService, UserService } from 'src/app/services';
 import { User } from 'src/app/models';
 
-import {Message,MessageService} from 'primeng/api';
-// import { PrimeNGConfig } from 'primeng/api';
+import {Message} from 'primeng/api';
 
 @Component({
   selector: 'app-login',

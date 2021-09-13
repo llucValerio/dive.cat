@@ -18,7 +18,9 @@ export class ImmersionsComponent implements OnInit {
   // messages array
   msgs1: Message[] = [];
 
-  constructor() { }
+  constructor() {
+    // This is intentional
+   }
 
   ngOnInit(): void { 
     // order immersions by date
@@ -65,13 +67,13 @@ export class ImmersionsComponent implements OnInit {
 
   setDepthCard(immersionIndex:number): number {
     return this.immersions[immersionIndex].immersionStages.
-    reduce((acc, immersion) => acc = acc > immersion.deep ? acc : immersion.deep, 0);
+    reduce((acc, immersion) => acc > immersion.deep ? acc : immersion.deep, 0);
   }
 
   setValidatorCard(immersionIndex:number): string {
-    for (let index:number=0; index<this.immersions[immersionIndex].buddies.length; index++){
-      if (this.immersions[immersionIndex].buddies[index].supervisor) {
-        return this.immersions[immersionIndex].buddies[index].buddie.name;
+    for (let buddie of this.immersions[immersionIndex].buddies) {
+      if (buddie.supervisor) {
+        return buddie.buddie.name;
       }
     }
     return 'not validated'
