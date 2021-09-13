@@ -64,7 +64,10 @@ describe('Given a setImmersion function', () => {
     let res = {};
     beforeEach(() => {
       req = {
-        body: {}
+        body: {},
+        query: {
+          email: ''
+        }
       };
       res = {
         status: jest.fn(),
@@ -83,6 +86,29 @@ describe('Given a setImmersion function', () => {
     });
     describe('And Immersion.create rejects', () => {
       test('Then res.send must be called', async () => {
+        Immersion.create.mockRejectedValue({});
+
+        await immersionController.setImmersion(req, res);
+
+        expect(res.send).toHaveBeenCalled();
+      });
+    });
+    // describe('And the immersion could not been pushed into user', () => {
+    //   test('Then res.status must be 404', async () => {
+    //     Immersion.create.mockRejectedValue({});
+
+    //     await immersionController.setImmersion(req, res);
+
+    //     expect(res.json).toHaveBeenCalledWith(404);
+    //   });
+    // });
+    describe('And there is no user on this function', () => {
+      test('Then res.send must be called', async () => {
+        req = {
+          query: {
+          }
+        };
+
         Immersion.create.mockRejectedValue({});
 
         await immersionController.setImmersion(req, res);
@@ -180,6 +206,9 @@ describe('Given a deleteImmersionById function', () => {
       req = {
         params: {
           equipmentId: {}
+        },
+        body: {
+          userId: '345'
         }
       };
       res = {
@@ -200,6 +229,21 @@ describe('Given a deleteImmersionById function', () => {
     describe('And Immersion.findByIdAndDelete rejects', () => {
       test('Then res.send must be called', async () => {
         Immersion.findByIdAndRemove.mockRejectedValue({});
+
+        await immersionController.deleteImmersionById(req, res);
+
+        expect(res.send).toHaveBeenCalled();
+      });
+    });
+    describe('And no userId is included on body', () => {
+      test('Then res.send must be called', async () => {
+        req = {
+          body: {
+            userId: undefined
+          }
+        };
+
+        Immersion.findByIdAndRemove.mockResolvedValue({});
 
         await immersionController.deleteImmersionById(req, res);
 

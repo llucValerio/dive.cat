@@ -18,7 +18,7 @@ passport.use(
       try {
         const newUser = req.body;
         bcrypt.hash(newUser.password, saltRounds, async (err, hash) => {
-          let user = await User.findOne({ email });
+          let user = await User.findOne({ email }).exec();
           if (user) {
             // return next(null, false, { message: 'User already registered.' });
             return next(null, { message: 'User already registered.' });
