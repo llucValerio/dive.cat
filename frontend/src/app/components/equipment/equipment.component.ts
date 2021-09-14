@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Immersion, User } from 'src/app/models';
 
-import { Message } from 'primeng/api';;
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-equipment',
@@ -10,7 +10,6 @@ import { Message } from 'primeng/api';;
   styleUrls: ['./equipment.component.scss']
 })
 export class EquipmentComponent implements OnInit {
-
   user!: User;
   immersions!: [Immersion];
   // vars used to control data load on display component
@@ -18,7 +17,9 @@ export class EquipmentComponent implements OnInit {
   // messages array
   msgs1: Message[] = [];
 
-  constructor() { }
+  constructor() {
+    // This is intentional
+  }
 
   ngOnInit(): void { 
     // debugger
@@ -66,13 +67,13 @@ export class EquipmentComponent implements OnInit {
 
   setDepthCard(immersionIndex:number): number {
     return this.immersions[immersionIndex].immersionStages.
-    reduce((acc, immersion) => acc = acc > immersion.deep ? acc : immersion.deep, 0);
+    reduce((acc, immersion) => acc > immersion.deep ? acc : immersion.deep, 0);
   }
 
   setValidatorCard(immersionIndex:number): string {
-    for (let index:number=0; index<this.immersions[immersionIndex].buddies.length; index++){
-      if (this.immersions[immersionIndex].buddies[index].supervisor) {
-        return this.immersions[immersionIndex].buddies[index].buddie.name;
+    for (let buddie of this.immersions[immersionIndex].buddies) {
+      if (buddie.supervisor) {
+        return buddie.buddie.name;
       }
     }
     return 'not validated'
