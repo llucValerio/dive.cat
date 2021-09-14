@@ -11,8 +11,8 @@ export class Immersion {
     waterType!: string;
     place!: {
       name: string;
-      latitude: number;
-      longitude: number;
+      latitude: any;
+      longitude: any;
     };
     date!: Date;
     inicialBar!: number;
