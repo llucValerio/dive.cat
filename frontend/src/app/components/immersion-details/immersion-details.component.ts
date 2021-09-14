@@ -54,10 +54,11 @@ export class ImmersionDetailsComponent implements OnInit {
     : this.router.navigate(['notFound'])
 
     // google maps start
-    console.log(this.immersion.place.latitude)
-    console.log(this.immersion.place.longitude)
     this.map_options = {
-      center: {lat: this.immersion.place.latitude, lng: this.immersion.place.longitude},
+      center: {
+        lat: parseFloat(this.immersion.place.latitude.$numberDecimal),
+        lng: parseFloat(this.immersion.place.longitude.$numberDecimal)
+      },
       zoom: 8
       };
     this.infoWindow = new google.maps.InfoWindow();
@@ -127,8 +128,9 @@ export class ImmersionDetailsComponent implements OnInit {
     if (!this.map_overlays||!this.map_overlays.length) {
         this.map_overlays = [
             new google.maps.Marker({position: {
-              lat: this.immersion.place.latitude, 
-              lng: this.immersion.place.longitude}, 
+              lat: parseFloat(this.immersion.place.latitude.$numberDecimal), 
+              lng: parseFloat(this.immersion.place.longitude.$numberDecimal)}, 
+
               title:this.immersion.place.name
             }),
         ];

@@ -14,8 +14,8 @@ const cartSchema = mongoose.Schema({
   waterType: String,
   place: {
     name: String,
-    latitude: { type: Number, default: 0 },
-    longitude: { type: Number, default: 0 }
+    latitude: { type: mongoose.Schema.Types.Decimal128, default: 0 },
+    longitude: { type: mongoose.Schema.Types.Decimal128, default: 0 }
   },
   date: { type: Date, default: Date.now },
   inicialBar: { type: Number, default: 0 },

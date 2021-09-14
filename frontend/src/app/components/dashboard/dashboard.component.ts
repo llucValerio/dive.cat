@@ -217,8 +217,9 @@ export class DashboardComponent implements OnInit {
       for (let immersion of this.immersions) {
         this.map_overlays.push(
           new google.maps.Marker({position: {
-            lat: immersion.place.latitude,
-            lng: immersion.place.longitude},
+            lat: parseFloat(immersion.place.latitude.$numberDecimal),
+            lng: parseFloat(immersion.place.longitude.$numberDecimal)
+          },
             title:immersion.place.name,
             data:immersion.date
           }),

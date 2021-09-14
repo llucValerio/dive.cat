@@ -22,7 +22,7 @@ export class EquipmentComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.user = JSON.parse(localStorage.getItem('userData') || '')[0];
+    this.user = JSON.parse(localStorage.getItem('userData') || '');
     this.equipment  = this.user.equipment;
   }
 
@@ -46,3 +46,4 @@ export class EquipmentComponent implements OnInit {
       break;
     }
   }
+}

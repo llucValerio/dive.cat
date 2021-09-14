@@ -11,8 +11,8 @@ export class User {
     certifications!: any;
     center!: {
         name: string;
-        latitude: number;
-        longitude: number;
+        latitude: any;
+        longitude: any;
     };
     buddies!: any;
     equipment!: any;
