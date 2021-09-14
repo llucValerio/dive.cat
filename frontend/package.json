@@ -6,7 +6,7 @@
     "start": "ng serve --proxy-config proxy.config.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test  --watchAll --collect--coverage"
+    "test": "ng test --watch --code-coverage"
   },
   "private": true,
   "dependencies": {
