@@ -1,27 +1,36 @@
 <app-header></app-header>
-<section *ngIf="immersions.length > 0; else noData" class="equipment">
+<section *ngIf="equipment.length > 0; else noData" class="equipment">
   <p-card
     class="p-card-login"
     styleClass="p-card-shadow"
-    *ngFor="let imm of immersions; let i = index"
+    *ngFor="let element of equipment"
   >
     <div class="p-card__title">
-      <span class="blue">{{ imm.place.name }}</span>
+      <span class="blue">{{ element.item.name }}</span>
     </div>
     <div class="p-card__content">
-      <img src="{{ imm.pictures[0].url }}" />
+      <img src="{{ element.item.picture }}" />
       <ul class="info">
         <li>
-          Purchase date: <span class="blue">{{ imm.visibility }}</span>
+          Brand: <span class="blue">{{ element.item.brand }}</span>
+        </li>
+        <li>
+          Model: <span class="blue">{{ element.item.brandModel }}</span>
+        </li>
+        <li>
+          Purchase date:
+          <span class="blue">{{
+            element.purchaseDate | date: "dd/MM/yy"
+          }}</span>
         </li>
         <li>
           Number of immersions:
-          <span class="blue">{{ setBottomTimeCard(i) }}</span>
+          <span class="blue">{{ element.numberOfImmersions }}</span>
         </li>
         <li>
           Maintenance check date:
           <span class="blue">
-            {{ setDepthCard(i) }}
+            {{ element.maintenanceCheckDate | date: "dd/MM/yy" }}
           </span>
         </li>
       </ul>
@@ -30,6 +39,6 @@
 </section>
 <ng-template #noData>
   <p-card class="immersion-cards" styleClass="p-card-shadow">
-    No equipments data for this user.
+    No equipments for this user.
   </p-card>
 </ng-template>
