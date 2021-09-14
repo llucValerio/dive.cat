@@ -27,7 +27,7 @@ export class ImmersionDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const user: User = JSON.parse(localStorage.getItem('userData') || '')[0];
+    const user: User = JSON.parse(localStorage.getItem('userData') || '');
     const immersions  = user.immersions.sort((a:any,b:any)=>{
       if (a.date>b.date){
         return -1
@@ -62,13 +62,11 @@ export class ImmersionDetailsComponent implements OnInit {
       };
     this.infoWindow = new google.maps.InfoWindow();
     this.initOverlays();
-
-    // debugger
   }
 
   getDepthImmersion(): number {
     return this.immersion.immersionStages.
-    reduce((acc, stage) => acc = acc > stage.deep ? acc : stage.deep, 0);
+    reduce((acc, stage) => acc > stage.deep ? acc : stage.deep, 0);
   }
 
   getAirType() {
@@ -77,8 +75,8 @@ export class ImmersionDetailsComponent implements OnInit {
 
   immersionMinutes() {
     let immMinutes:number = 0;
-    for (let index=0;index<this.immersion.immersionStages.length;index++) {
-      immMinutes = immMinutes + this.immersion.immersionStages[index].bottomMinuts;
+    for (let stage of this.immersion.immersionStages) {
+      immMinutes = immMinutes + stage.bottomMinuts;
     }
     return immMinutes;
   }
@@ -116,9 +114,9 @@ export class ImmersionDetailsComponent implements OnInit {
   }
 
   getValidator(): string {
-    for (let index:number=0; index<this.immersion.buddies.length; index++){
-      if (this.immersion.buddies[index].supervisor) {
-        return this.immersion.buddies[index].buddie.name;
+    for (let buddie of this.immersion.buddies) {
+      if (buddie.supervisor) {
+        return buddie.buddie.name;
       }
     }
     return 'not validated'

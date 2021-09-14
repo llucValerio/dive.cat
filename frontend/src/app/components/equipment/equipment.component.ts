@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Equipment, User } from 'src/app/models';
 
-import { Message } from 'primeng/api';;
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-equipment',
@@ -17,7 +17,9 @@ export class EquipmentComponent implements OnInit {
   // messages array
   msgs1: Message[] = [];
 
-  constructor() { }
+  constructor() {
+    // This is intentional
+  }
 
   ngOnInit(): void { 
     this.user = JSON.parse(localStorage.getItem('userData') || '')[0];
@@ -44,4 +46,3 @@ export class EquipmentComponent implements OnInit {
       break;
     }
   }
-}

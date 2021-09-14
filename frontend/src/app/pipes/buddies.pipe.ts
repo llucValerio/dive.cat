@@ -14,8 +14,8 @@ export class BuddiesPipe implements PipeTransform {
     return buddies.filter(buddie => {
       userExists = false
       if (buddie._id !== user._id.value) {
-        for (let index:number=0;index<user.buddies.value.length;index++){
-          if (buddie._id === user.buddies.value[index]._id) {
+        for (let userBuddie of user.buddies.value) {
+          if (buddie._id === userBuddie._id) {
             userExists = true
           }
         }

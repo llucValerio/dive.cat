@@ -22,6 +22,7 @@ async function deleteUserImmersion(immersionID, { userId }) {
     const currentUser = await User.findById(userId);
     if (Object.keys(currentUser).length > 0) {
       await User.findByIdAndUpdate(userId, { $pull: { immersions: { $in: [immersionID] } } });
+
       return true;
     }
     return false;
@@ -141,5 +142,7 @@ module.exports = {
   setImmersion,
   getImmersionById,
   updateImmersionById,
-  deleteImmersionById
+  deleteImmersionById,
+  updateUserImmersion,
+  deleteUserImmersion
 };

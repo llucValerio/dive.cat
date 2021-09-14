@@ -19,21 +19,12 @@ export class Immersion {
     finalBar!: number;
     weight!: number;
     neopreneThickness!: number;
-    air!: Boolean;
+    air!: boolean;
     nitroxPercentage!: number;
     tankAirLiters!: number;
     waterTemperature!: number;
     airTemperature!: number;
     immersionStages!: [any]
-    // {
-    //     deep: number,,
-    //     bottomMinuts: number,
-    // }
     buddies!: [any]
-    // {
-    //     buddie: number;
-    //     supervisor: Boolean; 
-    // }
     pictures!: [any];
-    // { url: string }]
 }

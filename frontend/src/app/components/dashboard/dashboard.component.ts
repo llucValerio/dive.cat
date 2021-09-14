@@ -24,11 +24,13 @@ export class DashboardComponent implements OnInit {
    infoWindow: any=[];
 
   constructor(
-  ) {}
+  ) {
+    // This is intentional
+  }
 
   ngOnInit(): void {
     this.loading = true;
-    this.user = JSON.parse(localStorage.getItem('userData') || '')[0];
+    this.user = JSON.parse(localStorage.getItem('userData') || '');
     this.immersions  = this.user.immersions.sort((a:any,b:any)=>{
       if (a.date>b.date){
         return -1
@@ -105,10 +107,9 @@ export class DashboardComponent implements OnInit {
     this.dataNumImmersions.datasets[0].label = actualYear.toString();
     this.dataNumImmersions.datasets[1].label = lastYear.toString();
 
-    for (let immIndex=0;immIndex < this.immersions.length; immIndex++) {
-      let immersionDate = new Date(this.immersions[immIndex].date)
+    for (let immersion of this.immersions) {
+      let immersionDate = new Date(immersion.date)
       if (immersionDate.getFullYear()<lastYear){
-        console.log('going to break')
         break;
       } else {
         if (immersionDate.getFullYear() === actualYear ) {
@@ -141,10 +142,8 @@ export class DashboardComponent implements OnInit {
     for(let immIndex=0;immIndex<immDescendant.length;immIndex++) {
       let immersionDate = new Date(this.immersions[immIndex].date)
       this.dataConsumInfo.labels.push(`${immersionDate.getMonth()+1}/${immersionDate.getFullYear()}`)
-      // debugger
-      const caca: any = this.airConsumed(immDescendant[immIndex])
-      // debugger
-      this.dataConsumInfo.datasets[0].data.push(caca)
+      const airConsumed: number = this.airConsumed(immDescendant[immIndex])
+      this.dataConsumInfo.datasets[0].data.push(airConsumed)
     }
   }
 
@@ -152,13 +151,12 @@ export class DashboardComponent implements OnInit {
     const itemDate: Date = new Date(stringDate)
     const todayDate: Date = new Date()
     itemDate.setFullYear(itemDate.getFullYear()+1)
-    const daysUntilEnd: number = Math.round(((((itemDate.getTime()-todayDate.getTime())/1000)/60)/60)/24)
-    return daysUntilEnd;
+    return (Math.round(((((itemDate.getTime()-todayDate.getTime())/1000)/60)/60)/24))
   }
 
   getImmersionDepth(immersionIndex:number): number {
     return this.immersions[immersionIndex].immersionStages.
-    reduce((acc, immersion) => acc = acc > immersion.deep ? acc : immersion.deep, 0);
+    reduce((acc, immersion) => acc > immersion.deep ? acc : immersion.deep, 0);
   }
 
   maxDepth(): number {
@@ -172,12 +170,11 @@ export class DashboardComponent implements OnInit {
   }
 
   averageDiveTime():number {
-    // debugger
     let totalAverage:number = 0;
-    for(let immIndex=0;immIndex<this.immersions.length; immIndex++){
+    for (let immersion of this.immersions ) {
       let average:number = 0
-      for(let stageIndex=0;stageIndex<this.immersions[immIndex].immersionStages.length; stageIndex++){
-        average = average + this.immersions[immIndex].immersionStages[stageIndex].bottomMinuts;
+      for (let stage of immersion.immersionStages){
+        average = average + stage.bottomMinuts;
       }
       totalAverage = totalAverage + average
     }
@@ -187,15 +184,15 @@ export class DashboardComponent implements OnInit {
 
   immersionMinutes(immersion: Immersion) {
     let immMinutes:number = 0;
-    for (let index=0;index<immersion.immersionStages.length;index++) {
-      immMinutes = immMinutes + immersion.immersionStages[index].bottomMinuts;
+    for (let stage of immersion.immersionStages) {
+      immMinutes = immMinutes + stage.bottomMinuts;
     }
     return immMinutes;
   }
 
   getDepthImmersion(immersion: Immersion): number {
     return immersion.immersionStages.
-    reduce((acc, stage) => acc = acc > stage.deep ? acc : stage.deep, 0);
+    reduce((acc, stage) => acc > stage.deep ? acc : stage.deep, 0);
   }
 
   atmCalculation(immersion: Immersion) {
@@ -217,9 +214,14 @@ export class DashboardComponent implements OnInit {
   initOverlays() {
     if (!this.map_overlays||!this.map_overlays.length) {
 
-      for (let immIndex=0;immIndex<this.immersions.length;immIndex++){
+      for (let immersion of this.immersions) {
         this.map_overlays.push(
-          new google.maps.Marker({position: {lat: this.immersions[immIndex].place.latitude, lng: this.immersions[immIndex].place.longitude}, title:this.immersions[immIndex].place.name, data:this.immersions[immIndex].date}),
+          new google.maps.Marker({position: {
+            lat: immersion.place.latitude,
+            lng: immersion.place.longitude},
+            title:immersion.place.name,
+            data:immersion.date
+          }),
         )
       }
     }

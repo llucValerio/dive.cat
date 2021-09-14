@@ -18,9 +18,8 @@ passport.use(
       try {
         const newUser = req.body;
         bcrypt.hash(newUser.password, saltRounds, async (err, hash) => {
-          let user = await User.findOne({ email });
+          let user = await User.findOne({ email }).exec();
           if (user) {
-            // return next(null, false, { message: 'User already registered.' });
             return next(null, { message: 'User already registered.' });
           }
 
@@ -30,7 +29,7 @@ passport.use(
           user = await User.create(newUser);
           return next(null, user);
         });
-        // return next(null, user);
+        return next(null, { message: 'empty object' });
       } catch (error) {
         return next(error);
       }
@@ -47,19 +46,15 @@ passport.use(
     },
     async (email, password, next) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).exec();
 
         if (!user) {
-          // return next(null, false, { message: 'User not found' });
           return next(null, { message: 'User not found' });
         }
 
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-          // if (!user.isValidPassword(password)) {
-          // return next(null, false, { message: 'Wrong Password' });
           return next(null, { message: 'Wrong Password' });
-          // }
         }
 
         return next(null, user, { message: 'Logged in Successfully' });

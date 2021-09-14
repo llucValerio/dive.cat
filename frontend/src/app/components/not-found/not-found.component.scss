@@ -1,0 +1,22 @@
+.dashboard-not-found {
+  margin: 300px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .dashboard-not-found__button {
+    width: 200px;
+    text-align: center;
+    .dashboard-not-found__link {
+      background-color: #e28c0b;
+      color: #fff;
+      width: 100%;
+      text-decoration: none;
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+    }
+  }
+}
