@@ -64,7 +64,10 @@ describe('Given a setEquipment function', () => {
     let res = {};
     beforeEach(() => {
       req = {
-        body: {}
+        body: {},
+        query: {
+          email: ''
+        }
       };
       res = {
         status: jest.fn(),
@@ -83,6 +86,29 @@ describe('Given a setEquipment function', () => {
     });
     describe('And Equipment.create rejects', () => {
       test('Then res.send must be called', async () => {
+        Equipment.create.mockRejectedValue({});
+
+        await equipmentController.setEquipment(req, res);
+
+        expect(res.send).toHaveBeenCalled();
+      });
+    });
+    // describe('And the equipment could not been pushed into user', () => {
+    //   test('Then res.status must be 404', async () => {
+    //     Equipment.create.mockRejectedValue({});
+
+    //     await equipmentController.setEquipment(req, res);
+
+    //     expect(res.json).toHaveBeenCalledWith(404);
+    //   });
+    // });
+    describe('And there is no user on this function', () => {
+      test('Then res.send must be called', async () => {
+        req = {
+          query: {
+          }
+        };
+
         Equipment.create.mockRejectedValue({});
 
         await equipmentController.setEquipment(req, res);
@@ -180,6 +206,9 @@ describe('Given a deleteEquipmentById function', () => {
       req = {
         params: {
           equipmentId: {}
+        },
+        body: {
+          userId: '345'
         }
       };
       res = {
@@ -200,6 +229,21 @@ describe('Given a deleteEquipmentById function', () => {
     describe('And Equipment.findByIdAndDelete rejects', () => {
       test('Then res.send must be called', async () => {
         Equipment.findByIdAndRemove.mockRejectedValue({});
+
+        await equipmentController.deleteEquipmentById(req, res);
+
+        expect(res.send).toHaveBeenCalled();
+      });
+    });
+    describe('And no userId is included on body', () => {
+      test('Then res.send must be called', async () => {
+        req = {
+          body: {
+            userId: undefined
+          }
+        };
+
+        Equipment.findByIdAndRemove.mockResolvedValue({});
 
         await equipmentController.deleteEquipmentById(req, res);
 

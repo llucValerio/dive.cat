@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
             this.user = user[0];
             this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
             this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
-            localStorage.setItem('userData', JSON.stringify(user));
+            localStorage.setItem('userData', JSON.stringify(this.user));
           },
           error: (error) => {
             this.setMessage(`error`,`Error`, `${error.status} - ${error.statusText}`)
