@@ -9,7 +9,10 @@
       <span class="blue">{{ element.item.name }}</span>
     </div>
     <div class="p-card__content">
-      <img src="{{ element.item.picture }}" />
+      <img
+        alt="{{ element.item.name }} - {{ element.item.brand }}"
+        src="{{ element.item.picture }}"
+      />
       <ul class="info">
         <li>
           Brand: <span class="blue">{{ element.item.brand }}</span>

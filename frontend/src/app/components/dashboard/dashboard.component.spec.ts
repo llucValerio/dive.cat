@@ -1,14 +1,43 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { User } from 'src/app/models';
+import { HeaderComponent } from '../header/header.component';
 
 import { DashboardComponent } from './dashboard.component';
+
+declare var google: any;  
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
+    spyOn(JSON, 'parse').and.callFake(() => {
+      return {
+        name:'Luke',
+        equipment: [
+          {
+            name: 'fins',
+            brand: 'Cressi'
+          }
+        ],
+        immersions: [
+          {date: '2020/09/01'},
+          {date: '2019/09/01'}
+        ]
+      }
+    })
+
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ DashboardComponent, HeaderComponent ],
+      providers:[
+        {
+          provide: User,
+          useValue: {
+            name: 'Luke'
+          }
+        }, 
+        google
+      ]
     })
     .compileComponents();
   });
@@ -17,33 +46,10 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    let store: any = {};
-    const mockLocalStorage = {
-      getItem: (key: string): string => {
-        return key in store ? store[key] : null;
-      },
-      setItem: (key: string, value: string) => {
-        store[key] = `${value}`;
-      },
-      removeItem: (key: string) => {
-        delete store[key];
-      },
-      clear: () => {
-        store = {};
-      }
-    };  spyOn(localStorage, 'getItem')
-      .and.callFake(mockLocalStorage.getItem);
-    spyOn(localStorage, 'setItem')
-      .and.callFake(mockLocalStorage.setItem);
-    spyOn(localStorage, 'removeItem')
-      .and.callFake(mockLocalStorage.removeItem);
-    spyOn(localStorage, 'clear')
-      .and.callFake(mockLocalStorage.clear);
-
   });
 
-  it('should createssss', () => {
+    
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
