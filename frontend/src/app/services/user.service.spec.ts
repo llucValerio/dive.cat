@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController  } from '@angular/common
 
 import { User } from '../models'
 import { UserService } from './user.service';
+import { of } from 'rxjs';
 
 describe('UserService Service', () => {
   let httpTestingController: HttpTestingController;
@@ -13,7 +14,10 @@ describe('UserService Service', () => {
       imports: [
         HttpClientTestingModule
       ],
-      providers: [User]
+      providers: [
+        {provide: User,
+          useValue: {name: 'Luke'}}
+      ]
     });
     service = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
