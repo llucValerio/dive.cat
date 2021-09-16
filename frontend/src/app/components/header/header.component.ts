@@ -25,4 +25,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
     this.authenticationService.logout()
   }
+
+  newDive() {
+    this.router.navigate(['/new-immersion']);
+  }
 }

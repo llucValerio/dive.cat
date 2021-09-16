@@ -37,7 +37,7 @@ const cartSchema = mongoose.Schema({
     buddie: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     supervisor: { type: Boolean, default: false }
   }],
-  pictures: [{ url: String }]
+  pictures: [{ url: { type: String, default: 'https://i.ibb.co/kgqwWHz/240px-No-image-available.png' } }]
 });
 
 module.exports = mongoose.model('Immersion', cartSchema);

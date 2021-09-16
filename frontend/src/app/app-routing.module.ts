@@ -9,14 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NewImmersionComponent } from './components/new-immersion/new-immersion.component';
 import { AuthGuard } from './helpers';
 
 const routes: Routes = [
   {path:'', component: DashboardComponent, canActivate: [AuthGuard]},
   {path:'equipment', component: EquipmentComponent, canActivate: [AuthGuard]},
   {path:'immersions', component: ImmersionsComponent, canActivate: [AuthGuard]},
-  // {path:'immersions/:immersionId', component: ImmersionDetailsComponent},
   {path:'immersions/:immersionId', component: ImmersionDetailsComponent, canActivate: [AuthGuard]},
+  {path:'new-immersion', component: NewImmersionComponent, canActivate: [AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},

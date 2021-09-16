@@ -20,6 +20,9 @@ export class ImmersionDetailsComponent implements OnInit {
   map_options: any=[];
   map_overlays: any=[];
   infoWindow: any=[];
+  // graph vars
+  chartBar_options:any=[];  
+  dataConsumInfo:any =[];
 
   constructor(
     private route: ActivatedRoute,
@@ -63,6 +66,38 @@ export class ImmersionDetailsComponent implements OnInit {
       };
     this.infoWindow = new google.maps.InfoWindow();
     this.initOverlays();
+     //Config Chart
+     this.chartBar_options = {
+      plugins: {
+        legend: {
+          labels: { color: '#000' }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#000' },
+          grid: { color: 'rgba(255,255,255,0.2)' }
+        },
+        y: {
+          ticks: { color: '#000' },
+          grid: { color: 'rgba(255,255,255,0.2)' }
+        }
+      }
+    };
+     //Consum Chart data
+     this.dataConsumInfo = {
+      labels: ["0"],
+      datasets: [
+        {
+          label: 'Inmersion Stage',
+          data: [0],
+          fill: false,
+          borderColor: '#617ae5',
+          tension: .0
+        }
+      ]
+    };
+    this.feedStageImmersion();
   }
 
   getDepthImmersion(): number {
@@ -147,7 +182,30 @@ export class ImmersionDetailsComponent implements OnInit {
         event.map.setCenter(event.overlay.getPosition());
     }
   }
+
   goBacktoList():void {
     this.router.navigateByUrl('/immersions');
+  }
+
+  feedStageImmersion() {
+    const stages = this.immersion.immersionStages;
+    
+    //sum all minutes immersion
+    const reducer = (previousValue:Number, currentValue:any) => previousValue + currentValue.bottomMinuts;
+    const numMinutes = stages.reduce(reducer, 0);
+    
+    //Generate X axis
+    for (let minIndex=0; minIndex<numMinutes; minIndex++){
+      this.dataConsumInfo.labels.push(minIndex+1);
+    }
+    //Generate Y axis
+    for (const stage of stages) {
+      for (let longIndex=0; longIndex<stage.bottomMinuts; longIndex++){
+        this.dataConsumInfo.datasets[0].data.push(stage.deep*-1);
+      }
+    }
+    //Add arraving point
+    this.dataConsumInfo.labels.push(numMinutes+1);
+    this.dataConsumInfo.datasets[0].data.push(0)
   }
 }

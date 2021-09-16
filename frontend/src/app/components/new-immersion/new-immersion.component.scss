@@ -1,0 +1,91 @@
+.new-immersion {
+  width: 80%;
+  margin: 40px auto;
+
+  .new-immersion__card {
+    clear: both;
+    margin-bottom: 100px;
+
+    .new-immersion__form {
+      hr {
+        border: 1px solid #6179e577;
+      }
+      .new-immersion_save_btn {
+        width: 100%;
+        background-color: #617ae5;
+        border-color: #617ae5;
+      }
+      .new-immersion_cancel_btn {
+        width: 100%;
+        background-color: #e28c0b;
+        border-color: #e28c0b;
+      }
+      .new-immersion__hourminute {
+        display: flex;
+        justify-content: space-around;
+        width: 293px;
+      }
+      .p-label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        label {
+          margin-bottom: 5px;
+        }
+      }
+    }
+    // .p-float-label {
+    //   margin: 20px 0;
+
+    .arrayAdd {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 271px;
+    }
+    .arrayItem {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .immersionStage_Modal {
+      .p-float-label {
+        margin-top: 30px;
+        .p-inputtext {
+          width: 100%;
+        }
+      }
+      .p-float-label:first-child {
+        margin-top: 40px;
+      }
+      .immersionStage_Modal__footer {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+    // }
+  }
+}
+
+/*+1024px*/
+@media (min-width: 1024px) {
+  .new-immersion {
+    width: 1024px;
+    margin: 40px auto;
+    .new-immersion__form {
+      .input_group {
+        display: flex;
+        flex-direction: column;
+        .input_group_row {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          border-bottom: 1px #617ae5 solid;
+        }
+      }
+    }
+  }
+}

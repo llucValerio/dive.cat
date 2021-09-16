@@ -1,0 +1,498 @@
+<app-header></app-header>
+<section class="new-immersion">
+  <p-card
+    header="Add new immersion"
+    styleClass="p-card-shadow"
+    class="new-immersion__card"
+  >
+    <div class="new-immersion__form" *ngIf="user">
+      <form class="profile__info form" method="POST" [formGroup]="addForm">
+        <span>Place</span>
+        <p-gmap
+          #gmap
+          [style]="{ width: '100%', height: '320px', 'margin-bottom': '1em' }"
+          [options]="options"
+          [overlays]="overlays"
+          (onMapClick)="handleMapClick($event)"
+        ></p-gmap>
+        <div class="input_group">
+          <div class="input_group_row">
+            <span class="p-label">
+              <label for="input_name">Date</label>
+              <p-calendar
+                class="form-control"
+                formControlName="date"
+                inputId="basic"
+                dateFormat="dd.mm.yy"
+                [readonlyInput]="true"
+                [touchUI]="true"
+                [showButtonBar]="true"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                yearRange="2020:2022"
+              ></p-calendar>
+            </span>
+            <div class="new-immersion__hourminute">
+              <span class="p-label">
+                <div class="p-field p-col-12 p-md-3">
+                  <label class="p-float-label__number">Start Hour</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="startHour"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="100"
+                  >
+                  </p-inputNumber>
+                </div>
+              </span>
+              <span class="p-label">
+                <div class="p-field p-col-12 p-md-3">
+                  <label class="p-float-label__number">Start Minut</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="startMinut"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="100"
+                  >
+                  </p-inputNumber>
+                </div>
+              </span>
+            </div>
+            <div class="new-immersion__hourminute">
+              <span class="p-label">
+                <div class="p-field p-col-12 p-md-3">
+                  <label class="p-float-label__number">End Hour</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="endHour"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="100"
+                  >
+                  </p-inputNumber>
+                </div>
+              </span>
+              <span class="p-label">
+                <div class="p-field p-col-12 p-md-3">
+                  <label class="p-float-label__number">End Minut</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="endMinut"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="100"
+                  >
+                  </p-inputNumber>
+                </div>
+              </span>
+            </div>
+          </div>
+          <hr />
+          <div class="input_group_row">
+            <div class="p-label temp">
+              <label class="p-float-label__number">Air Temperature</label>
+              <p-inputNumber
+                class="numberInput"
+                prefix="↑ "
+                formControlName="airTemperature"
+                inputId="temperature"
+                suffix="℃"
+                [min]="0"
+                [max]="40"
+              >
+              </p-inputNumber>
+            </div>
+            <div class="p-label">
+              <label class="p-float-label__number">Water Temperature</label>
+              <p-inputNumber
+                class="numberInput"
+                prefix="↑ "
+                inputId="temperature"
+                formControlName="waterTemperature"
+                suffix="℃"
+                [min]="0"
+                [max]="40"
+              >
+              </p-inputNumber>
+            </div>
+            <span class="p-label">
+              <label for="temperature">Visibility</label>
+              <p-dropdown
+                [options]="visibilityOptions"
+                formControlName="visibilitySelector"
+                placeholder=""
+                optionLabel="name"
+                [showClear]="true"
+                class="dropdown__input"
+              ></p-dropdown>
+            </span>
+            <span class="p-label">
+              <label for="temperature">Entrer from</label>
+              <p-dropdown
+                [options]="entryFromOptions"
+                formControlName="entryFromSelector"
+                placeholder=""
+                optionLabel="name"
+                [showClear]="true"
+                class="dropdown__input"
+              ></p-dropdown>
+            </span>
+            <span class="p-label">
+              <label for="temperature">Water type</label>
+              <p-dropdown
+                [options]="waterTypeOptions"
+                formControlName="waterTypeSelector"
+                placeholder=""
+                optionLabel="name"
+                [showClear]="true"
+                class="dropdown__input"
+              ></p-dropdown>
+            </span>
+            <span class="p-label">
+              <label for="temperature">Water condition</label>
+              <p-dropdown
+                [options]="waterCondiOptions"
+                formControlName="waterCondiSelector"
+                placeholder=""
+                optionLabel="name"
+                [showClear]="true"
+                class="dropdown__input"
+              ></p-dropdown>
+            </span>
+          </div>
+          <hr />
+          <div class="input_group_row">
+            <span class="p-label">
+              <label for="minmax-buttons">Neoprene Thickness</label>
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                formControlName="neopreneThickness"
+                inputId="minmax-buttons"
+                [min]="0"
+                [max]="100"
+                class="number__input"
+              >
+              </p-inputNumber>
+            </span>
+            <span class="p-label">
+              <label for="minmax-buttons">Weight</label>
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                formControlName="weight"
+                inputId="minmax-buttons"
+                [min]="0"
+                [max]="100"
+                class="number__input"
+              >
+              </p-inputNumber>
+            </span>
+          </div>
+          <hr />
+          <div class="input_group_row">
+            <span class="p-label">
+              <label for="minmax-buttons">Tank Air liters</label>
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                formControlName="tankAirLiters"
+                inputId="minmax-buttons"
+                [min]="0"
+                [max]="100"
+                class="number__input"
+              >
+              </p-inputNumber>
+            </span>
+            <span class="p-label">
+              <label for="temperature">Air type</label>
+              <p-inputSwitch formControlName="air"></p-inputSwitch>
+            </span>
+            <span class="p-label">
+              <label for="temperature">Nitrox Percentage</label>
+              <p-inputNumber
+                formControlName="nitroxPercentage"
+                inputId="percent"
+                prefix="%"
+                class="numberPercent__input"
+              ></p-inputNumber>
+            </span>
+            <span class="p-label">
+              <label for="minmax-buttons">initial presure bars</label>
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                formControlName="inicialBar"
+                inputId="minmax-buttons"
+                [min]="0"
+                [max]="250"
+                class="number__input"
+              >
+              </p-inputNumber>
+            </span>
+            <span class="p-label">
+              <label for="minmax-buttons">Final presure bars</label>
+              <p-inputNumber
+                mode="decimal"
+                [showButtons]="true"
+                formControlName="finalBar"
+                inputId="minmax-buttons"
+                [min]="0"
+                [max]="250"
+                class="number__input"
+              >
+              </p-inputNumber>
+            </span>
+          </div>
+          <hr />
+          <span class="separator">
+            <div class="arrayAdd">
+              <p class="profile__label">Immersion stage</p>
+              <p-button
+                (click)="showImmersionStageModalDialog()"
+                icon="pi pi-external-link"
+                label="Add New"
+                class="p-button-addNew"
+              ></p-button>
+            </div>
+            <p-dialog
+              header="New Stage"
+              [(visible)]="immersionStageModal"
+              [modal]="true"
+              [style]="{ width: '340px' }"
+              [baseZIndex]="10000"
+              [draggable]="false"
+              [resizable]="false"
+              class="immersionStage_Modal"
+            >
+              <p class="p-m-0">
+                <span class="p-label">
+                  <label for="input_stageDeep">Deep</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="stageDeep"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="250"
+                    class="number__input"
+                    id="input_stageDeep"
+                  >
+                  </p-inputNumber>
+                </span>
+                <span class="p-label">
+                  <label for="input_stageMinuts">Bottom minuts</label>
+                  <p-inputNumber
+                    mode="decimal"
+                    [showButtons]="true"
+                    formControlName="stageMinuts"
+                    inputId="minmax-buttons"
+                    [min]="0"
+                    [max]="250"
+                    class="number__input"
+                    id="input_stageMinuts"
+                  >
+                  </p-inputNumber>
+                </span>
+              </p>
+              <ng-template pTemplate="footer">
+                <div class="certification_Modal__footer">
+                  <p-button
+                    icon="pi pi-check"
+                    (click)="addStage()"
+                    label="Add"
+                    class="p-button-popUp"
+                  ></p-button>
+                  <p-button
+                    icon="pi pi-times"
+                    (click)="immersionStageModal = false"
+                    label="Cancel"
+                    class="p-button-popUp modal_cancel_btn"
+                  ></p-button>
+                </div>
+              </ng-template>
+            </p-dialog>
+            <div
+              *ngFor="let stage of formControlData.stages.value; let i = index"
+              class="arrayItem"
+            >
+              <p class="profile__data">
+                Deep: {{ stage.deep }} -- Bottom Time: {{ stage.bottomMinuts }}
+              </p>
+              <p-button
+                (click)="deleteStage(i)"
+                label="Delete"
+                class="p-button-delete"
+              ></p-button>
+            </div>
+          </span>
+          <hr />
+          <span class="separator">
+            <div class="arrayAdd">
+              <p class="profile__label">Buddies</p>
+              <p-button
+                (click)="showBuddiesModalDialog()"
+                icon="pi pi-external-link"
+                label="Add New"
+                class="p-button-addNew"
+              ></p-button>
+            </div>
+            <p-dialog
+              header="New Buddie"
+              [(visible)]="buddieModal"
+              [modal]="true"
+              [style]="{ width: '340px' }"
+              [baseZIndex]="10000"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <div
+                *ngFor="
+                  let buddie of user.buddies
+                    | immersionBuddies: formControlData.buddies.value
+                "
+                class="arrayItem"
+              >
+                <ng-container>
+                  <div class="profile__buddy">
+                    <img
+                      src="{{ buddie.picture }}"
+                      alt="{{ buddie.name }} {{ buddie.surnames }}"
+                      class="profile__buddy-avatar"
+                    />
+                    {{ buddie.name }}
+                    {{ buddie.surnames }}
+                  </div>
+                  <p-button
+                    icon="pi pi-external-link"
+                    (click)="addBuddie(buddie)"
+                    label="Add"
+                    class="p-button-addNew"
+                  ></p-button>
+                </ng-container>
+              </div>
+              <ng-template pTemplate="footer">
+                <p-button
+                  icon="pi pi-times"
+                  (click)="buddieModal = false"
+                  label="Cancel"
+                  class="modal_cancel_btn"
+                ></p-button>
+              </ng-template>
+            </p-dialog>
+            <div
+              *ngFor="
+                let buddie of formControlData.buddies.value;
+                let i = index
+              "
+              class="arrayItem"
+            >
+              <div class="profile__buddy">
+                <img
+                  src="{{ buddie.picture }}"
+                  alt="{{ buddie.name }} {{ buddie.surnames }}"
+                  class="profile__buddy-avatar"
+                />
+                {{ buddie.name }}
+                {{ buddie.surnames }}
+              </div>
+              <p-button
+                (click)="deleteBuddie(i)"
+                label="Delete"
+                class="p-button-delete"
+              ></p-button>
+            </div>
+          </span>
+          <hr />
+          <span class="p-float-label">
+            <textarea
+              formControlName="comments"
+              id="float-input"
+              rows="5"
+              cols="30"
+              pInputTextarea
+            ></textarea>
+            <label for="float-input">Comments</label>
+          </span>
+        </div>
+        <button
+          pButton
+          pRipple
+          type="submit"
+          label="Save"
+          class="new-immersion_save_btn"
+          (click)="addImmersion()"
+        ></button>
+      </form>
+      <p-dialog
+        showEffect="fade"
+        [(visible)]="dialogVisible"
+        header="New Location"
+        [style]="{ width: '300px' }"
+      >
+        <div class="p-grid p-fluid" *ngIf="selectedPosition">
+          <div class="p-col-2"><label for="title">Place Name</label></div>
+          <div class="p-col-10">
+            <input
+              type="text"
+              pInputText
+              id="title"
+              [(ngModel)]="markerTitle"
+            />
+          </div>
+          <div class="p-col-2"><label for="lat">Lat</label></div>
+          <div class="p-col-10">
+            <input
+              id="lat"
+              type="text"
+              readonly
+              pInputText
+              [ngModel]="selectedPosition.lat()"
+            />
+          </div>
+
+          <div class="p-col-2"><label for="lng">Lng</label></div>
+          <div class="p-col-10">
+            <input
+              id="lng"
+              type="text"
+              readonly
+              pInputText
+              [ngModel]="selectedPosition.lng()"
+            />
+          </div>
+        </div>
+        <ng-template pTemplate="footer">
+          <div>
+            <button
+              type="button"
+              pButton
+              label="Add Marker"
+              icon="pi-plus"
+              (click)="addMarker()"
+            ></button>
+          </div>
+        </ng-template>
+      </p-dialog>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Cancel"
+        class="new-immersion_cancel_btn"
+        (click)="cancelFormEnable()"
+      ></button>
+    </div>
+  </p-card>
+  <p-messages
+    class="messages-popup"
+    [(value)]="msgs1"
+    [enableService]="false"
+  ></p-messages>
+</section>

@@ -20,7 +20,7 @@ export class UserService {
     return this.httpClient.get<User>(`/dive/user`);
   }
 
-  updateUserById(user: object, userId: number): Observable<Object> {
+  updateUserById(user: object, userId: string): Observable<Object> {
     return this.httpClient.put<User>(`/dive/user/${userId}`,user );
   }
 
