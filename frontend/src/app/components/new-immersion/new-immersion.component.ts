@@ -5,6 +5,7 @@ import { PrimeNGConfig, Message } from 'primeng/api';
 
 import { User, Immersion } from '../../models'
 import { UserService, ImmersionsService } from 'src/app/services';
+import { Router } from '@angular/router';
 
 declare var google: any;  
 
@@ -72,7 +73,8 @@ export class NewImmersionComponent implements OnInit {
     private immService: ImmersionsService,
     private formBuilder: FormBuilder,
     private location: Location,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -240,7 +242,7 @@ export class NewImmersionComponent implements OnInit {
   addImmersion() { 
     let readyToInsert:boolean = false;
     let addOk:boolean = true;
-    let newImmersion! : Immersion
+    let newImmersion! : any
     
     newImmersion = {
       ...newImmersion,
@@ -320,8 +322,11 @@ export class NewImmersionComponent implements OnInit {
     } 
     newImmersion = {
       ...newImmersion,
-      buddies: this.formControlData.buddies.value
-    } 
+      buddies: []
+      }
+    for (let i=0; i< this.formControlData.buddies.value.length; i++) {
+        newImmersion.buddies[i]={buddie: this.formControlData.buddies.value[i]._id}
+      } 
     newImmersion = {
       ...newImmersion,
       comments: this.formControlData.comments.value
@@ -348,6 +353,7 @@ export class NewImmersionComponent implements OnInit {
               this.user.medicalCheckDate = new Date(this.user.medicalCheckDate)
               this.user.licenseExpeditionDate = new Date(this.user.licenseExpeditionDate)
               this.primengConfig.ripple = true;
+              this.router.navigateByUrl('/immersions');
             },
             error: (error) => {
               this.setError (error)
