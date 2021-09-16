@@ -44,7 +44,7 @@ describe('UserService Service', () => {
   });
 
   it ('#updateUserById should use PUT to retrieve data',()=>{
-    service.updateUserById({},1).subscribe()
+    service.updateUserById({},'1').subscribe()
 
     const testRequest = httpTestingController.expectOne('/dive/user/1');
 

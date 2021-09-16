@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common'
-import { PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, Message } from 'primeng/api';
 
 import { User, Immersion } from '../../models'
 import { UserService, ImmersionsService } from 'src/app/services';
-
-import { Message } from 'primeng/api';
 
 declare var google: any;  
 
@@ -91,7 +89,6 @@ export class NewImmersionComponent implements OnInit {
       },
       zoom: 7
     };
-    // this.initOverlays();
     this.infoWindow = new google.maps.InfoWindow();
     //Dropdown options
     this.loadDropDown();
