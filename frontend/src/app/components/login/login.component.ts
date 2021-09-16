@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
         setTimeout (() => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigate([returnUrl]);
-       }, 500);
+       }, 2000);
       },
       error: error => {
         switch (error.status) {
