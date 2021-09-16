@@ -61,6 +61,7 @@ body {
   }
 }
 /*Custom buttons of form profile*/
+
 .menu-mobile__plink {
   margin-top: 20px;
   width: 100%;
@@ -71,6 +72,44 @@ body {
   .p-button {
     background-color: #617ae5;
     border-color: #617ae5;
+  }
+}
+
+.p-label {
+  .p-calendar {
+    .p-inputtext {
+      width: 270px;
+    }
+  }
+  //Dropdown input
+  .dropdown__input {
+    .p-dropdown {
+      width: 270px;
+    }
+  }
+  //Number input
+  .number__input {
+    .p-inputnumber-buttons-stacked {
+      width: 270px;
+    }
+  }
+
+  //Revisar input por si duplicado
+  .p-inputnumber-buttons-stacked {
+    .p-inputnumber-input {
+      width: 90px;
+    }
+  }
+  //temperature input
+  .numberInput {
+    .p-inputnumber-input {
+      width: 270px;
+    }
+  }
+  .numberPercent__input {
+    .p-inputnumber-input {
+      width: 270px;
+    }
   }
 }
 

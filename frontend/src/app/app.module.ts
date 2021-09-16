@@ -18,6 +18,9 @@ import {DialogModule} from 'primeng/dialog';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
 import {ChartModule} from 'primeng/chart';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +37,7 @@ import { BuddiesPipe } from './pipes/buddies.pipe';
 import { ImmersionDetailsComponent } from './components/immersion-details/immersion-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NewImmersionComponent } from './components/new-immersion/new-immersion.component';
+import { ImmersionBuddiesPipe } from './pipes/immersion-buddies.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,7 @@ import { NewImmersionComponent } from './components/new-immersion/new-immersion.
     ImmersionDetailsComponent,
     NotFoundComponent,
     NewImmersionComponent,
+    ImmersionBuddiesPipe,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,10 @@ import { NewImmersionComponent } from './components/new-immersion/new-immersion.
     DialogModule,
     CarouselModule, 
     GMapModule,
-    ChartModule
+    ChartModule,
+    InputNumberModule, 
+    DropdownModule, 
+    InputSwitchModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

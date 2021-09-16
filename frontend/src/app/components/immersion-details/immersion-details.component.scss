@@ -28,6 +28,9 @@
         margin-top: 5px;
       }
     }
+    .p-card__content__graphic {
+      width: 90%;
+    }
   }
   .blue {
     color: #617ae5;
@@ -86,6 +89,7 @@
         }
         .p-card__content__oneColumnsRow {
           width: 90%;
+          margin: 0 40px;
           flex-direction: row;
           justify-content: space-around;
           margin: 40px 0px;

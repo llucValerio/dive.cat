@@ -126,8 +126,15 @@
           </ul>
         </div>
       </div>
-
-      <div class="p-card__content__graphic"></div>
+      <div class="p-card__content__graphic">
+        <p-chart
+          type="line"
+          [data]="dataConsumInfo"
+          [options]="chartBar_options"
+          width="100%"
+          height="200px"
+        ></p-chart>
+      </div>
     </div>
     <button
       pButton
