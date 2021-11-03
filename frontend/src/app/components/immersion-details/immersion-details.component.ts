@@ -191,7 +191,7 @@ export class ImmersionDetailsComponent implements OnInit {
     const stages = this.immersion.immersionStages;
     
     //sum all minutes immersion
-    const reducer = (previousValue:Number, currentValue:any) => previousValue + currentValue.bottomMinuts;
+    const reducer = (previousValue:number, currentValue:any) => previousValue + currentValue.bottomMinuts;
     const numMinutes = stages.reduce(reducer, 0);
     
     //Generate X axis
